@@ -19,6 +19,8 @@ import {
   Plus,
 } from 'lucide-react';
 
+import { EventRegistrationModal } from './EventRegistrationModal';
+
 interface EventsViewProps {
   lang: Language;
   onNavigate: (page: PageId) => void;
@@ -39,6 +41,7 @@ export const EventsView: React.FC<EventsViewProps> = ({
   const { events, isAuthenticated, isLiveEditMode, moveToTrash, sortEventsByDate } = useCMS();
   const [filter, setFilter] = useState<'all' | 'upcoming' | 'past'>('all');
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
+  const [registeringEvent, setRegisteringEvent] = useState<EventItem | null>(null);
 
   // Auto-sync completed events from upcoming to past
   const activeEvents = autoSyncEventStatuses(
@@ -237,8 +240,9 @@ export const EventsView: React.FC<EventsViewProps> = ({
                     </button>
 
                     <button
-                      onClick={() => onOpenRegister(ev.title)}
-                      className="px-4 py-2 rounded-xl text-xs font-bold text-[#0C1B2A] bg-[#E59A1E] hover:bg-[#F5B738] transition-colors"
+                      onClick={() => setRegisteringEvent(ev)}
+                      className="px-4 py-2 rounded-xl text-xs font-bold text-[#0C1B2A] bg-[#E59A1E] hover:bg-[#F5B738] transition-colors cursor-pointer shadow-xs"
+                      title={`Reserve Seat for ${ev.title}`}
                     >
                       Reserve Seat
                     </button>
@@ -319,17 +323,25 @@ export const EventsView: React.FC<EventsViewProps> = ({
 
             <button
               onClick={() => {
-                const title = selectedEvent.title;
+                const ev = selectedEvent;
                 setSelectedEvent(null);
-                onOpenRegister(title);
+                setRegisteringEvent(ev);
               }}
-              className="w-full py-3 rounded-xl bg-[#E59A1E] text-[#0C1B2A] text-xs font-bold"
+              className="w-full py-3 rounded-xl bg-[#E59A1E] text-[#0C1B2A] text-xs font-bold hover:bg-[#F5B738] transition-colors cursor-pointer"
             >
               Confirm Admission
             </button>
           </div>
         </div>
       )}
+
+      {/* Event-Specific Google Form Registration Modal */}
+      <EventRegistrationModal
+        isOpen={!!registeringEvent}
+        onClose={() => setRegisteringEvent(null)}
+        event={registeringEvent}
+        lang={lang}
+      />
     </div>
   );
 };

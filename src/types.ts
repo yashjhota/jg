@@ -99,6 +99,7 @@ export interface EventItem {
   posterTheme?: string;
   posterImage?: string;
   recap?: string;
+  googleFormUrl?: string;
   createdAt?: string;
   isDeleted?: boolean;
   deletedAt?: string | null;

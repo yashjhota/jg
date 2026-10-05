@@ -121,6 +121,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
     conductor: 'Sahebji & Core Mentors',
     status: 'upcoming',
     description: '',
+    googleFormUrl: '',
   });
 
   // Gallery form
@@ -259,6 +260,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
           conductor: eventForm.conductor || 'Sahebji',
           status: (eventForm.status as any) || 'upcoming',
           description: eventForm.description || '',
+          googleFormUrl: eventForm.googleFormUrl || '',
         });
         onShowToast('New event scheduled and published to site!');
       }
@@ -942,6 +944,27 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                   className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none resize-none"
                   placeholder="Outline the session highlights and key speakers..."
                 />
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="block text-slate-300 font-semibold">
+                    Google Form Registration URL
+                  </label>
+                  <span className="text-[11px] text-amber-300">
+                    {eventForm.googleFormUrl?.trim() ? 'Custom Form Attached' : 'Default Org Form'}
+                  </span>
+                </div>
+                <input
+                  type="url"
+                  value={eventForm.googleFormUrl || ''}
+                  onChange={(e) => setEventForm({ ...eventForm, googleFormUrl: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                  placeholder="https://docs.google.com/forms/d/e/.../viewform"
+                />
+                <p className="text-[11px] text-slate-400 mt-1">
+                  When attendees click <strong>"Reserve Seat"</strong>, this Google Form will open inside the reservation popup. Leave blank to use default form.
+                </p>
               </div>
 
               <div className="pt-4 flex justify-end gap-3">

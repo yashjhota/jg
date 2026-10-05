@@ -101,5 +101,24 @@ export const EVENTS_DATA: EventItem[] = [
       'AI tools for professional office workflows',
       'On-the-spot internship registrations for top performers'
     ]
+  },
+  {
+    id: 'event-1790155025867',
+    title: 'AI WEB BUILDER BOOTCAMP - JAIN GENIUS',
+    subtitle: 'AI Assisted Software Development',
+    date: '9 Oct 2026',
+    time: '3:00 PM – 5:00 PM',
+    venue: 'Pathshala Hall, Chickpet Jain Temple, Bangalore',
+    ageGroup: 'Age 15–30',
+    entry: 'Free Entry (Registration Required)',
+    conductor: 'Yash Jain',
+    status: 'upcoming',
+    description: 'How a website is being design, develop and deployed.',
+    googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScb-f1OBq0y8e8Y8YpWCHYoVI0XmU66Wqvv8iQzFZZvAHaP0w/viewform?usp=dialog',
+    keyTopics: [
+      'Modern web application architecture',
+      'Rapid prototype design and responsive layouts',
+      'Cloud deployment and automated forms integration'
+    ]
   }
 ];

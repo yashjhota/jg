@@ -40,6 +40,70 @@ export function getGoogleFormViewUrl(): string {
 }
 
 /**
+ * Normalizes any Google Form URL (full viewform, short link, or embed code)
+ * into a clean, embed-ready URL with ?embedded=true.
+ * If rawUrl is missing or blank, returns the default organization Google Form embed URL.
+ */
+export function normalizeGoogleFormEmbedUrl(rawUrl?: string): string {
+  const url = (rawUrl || '').trim();
+  if (!url) {
+    const defaultUrl = getGoogleFormViewUrl();
+    const base = defaultUrl.split('?')[0];
+    return base.endsWith('/viewform') ? `${base}?embedded=true` : `${base}/viewform?embedded=true`;
+  }
+
+  // Handle if someone pasted an iframe tag
+  const iframeSrcMatch = url.match(/src=["']([^"']+)["']/i);
+  const cleanUrl = iframeSrcMatch ? iframeSrcMatch[1].trim() : url;
+
+  // If already embedded=true, return
+  if (cleanUrl.includes('embedded=true')) {
+    return cleanUrl;
+  }
+
+  // Format standard viewform links
+  if (cleanUrl.includes('/viewform')) {
+    const base = cleanUrl.split('?')[0];
+    return `${base}?embedded=true`;
+  }
+
+  // If link points to /edit or /responses by accident, convert to public viewform
+  if (cleanUrl.includes('/edit') || cleanUrl.includes('/responses')) {
+    const base = cleanUrl.split('?')[0].replace(/\/edit.*$/, '/viewform').replace(/\/responses.*$/, '/viewform');
+    return `${base}?embedded=true`;
+  }
+
+  // If it's a standard forms/d/e/{id} path
+  if (cleanUrl.includes('/forms/d/e/') && !cleanUrl.includes('/viewform')) {
+    const base = cleanUrl.split('?')[0].replace(/\/+$/, '');
+    return `${base}/viewform?embedded=true`;
+  }
+
+  // Short links or other query links
+  if (cleanUrl.includes('?') && !cleanUrl.includes('embedded=')) {
+    return `${cleanUrl}&embedded=true`;
+  }
+  if (!cleanUrl.includes('?')) {
+    return `${cleanUrl}?embedded=true`;
+  }
+
+  return cleanUrl;
+}
+
+/**
+ * Checks whether a URL is a recognized Google Forms URL
+ */
+export function isValidGoogleFormUrl(url?: string): boolean {
+  if (!url) return false;
+  const trimmed = url.trim();
+  return (
+    trimmed.includes('docs.google.com/forms') ||
+    trimmed.includes('forms.gle') ||
+    trimmed.includes('forms.google.com')
+  );
+}
+
+/**
  * Derive the /formResponse submission endpoint from the viewform URL
  */
 export function getGoogleFormResponseUrl(viewUrl?: string): string {
