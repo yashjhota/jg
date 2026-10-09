@@ -18,7 +18,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
 }) => {
   const t = TRANSLATIONS[lang];
   const { settings } = useCMS();
-  const traineesCount = settings.activeTraineesCount || SITE_CONFIG.currentTraineesCount;
+  const traineesCount = settings.currentTraineesCount || SITE_CONFIG.currentTraineesCount;
 
   return (
     <section className={`py-12 sm:py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden ${className}`}>

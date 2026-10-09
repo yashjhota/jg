@@ -1,7 +1,10 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Language, PageId } from '../../types';
 import { Compass, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+
+// Lazy load the GateScene component
+const GateScene = lazy(() => import('./GateScene'));
 
 interface WalkthroughProps {
   lang: Language;
@@ -53,7 +56,7 @@ export const WalkthroughView: React.FC<WalkthroughProps> = ({ lang, onNavigate }
 
       {/* Immersive Content Area */}
       <Suspense fallback={<WalkthroughContent />}>
-        <WalkthroughContent />
+        <GateScene lang={lang} onNavigate={onNavigate} />
       </Suspense>
     </div>
   );

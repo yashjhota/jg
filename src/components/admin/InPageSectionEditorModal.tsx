@@ -806,7 +806,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                 label="Preview Thumbnail Image"
                 value={postForm.imageUrl}
                 onChange={(url) => setPostForm({ ...postForm, imageUrl: url })}
-                hint="Upload an image or paste a web URL"
+                aspectHint="Upload an image or paste a web URL"
               />
 
               <div className="flex items-center gap-6 pt-2">
@@ -1040,7 +1040,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                 label="Photo Image"
                 value={galleryForm.url}
                 onChange={(url) => setGalleryForm({ ...galleryForm, url })}
-                hint="Upload an image or paste a photo URL"
+                aspectHint="Upload an image or paste a photo URL"
               />
 
               <div className="pt-4 flex justify-end gap-3">
