@@ -129,6 +129,16 @@ export const Hero: React.FC<HeroProps> = ({ lang, onNavigate, onOpenRegister, on
                 <span>{t.whatWeDo}</span>
               </button>
 
+              <button
+                onClick={() => {
+                  onNavigate('walkthrough');
+                }}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-base font-semibold text-white bg-gradient-to-br from-[#E59A1E]/20 to-[#F3A628]/20 hover:from-[#E59A1E]/30 hover:to-[#F3A628]/30 border border-[#E59A1E]/50 transition-all cursor-pointer group"
+              >
+                <Compass className="w-4 h-4 text-[#F3A628] group-hover:rotate-45 transition-transform" />
+                <span>Explore</span>
+              </button>
+
               <a
                 href={memberPortalUrl}
                 target="_blank"

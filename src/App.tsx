@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { PageId, Language, SocialPost, EventItem, GalleryItem } from './types';
 import { useCMS } from './services/cmsStore';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { CTASection } from './components/layout/CTASection';
 import { RegistrationModal } from './components/forms/RegistrationModal';
+import { WalkthroughView } from './components/walkthrough/WalkthroughView';
 
 // Home Section Components
 import { Hero } from './components/home/Hero';
@@ -71,6 +72,7 @@ export default function App() {
         'news',
         'contact',
         'admin',
+        'walkthrough',
       ];
       if (validPages.includes(hash)) {
         setCurrentPage(hash);
@@ -126,6 +128,13 @@ export default function App() {
 
       {/* Main View Router */}
       <main className="flex-grow">
+        {currentPage === 'walkthrough' && (
+          <WalkthroughView
+            lang={lang}
+            onNavigate={handleNavigate}
+          />
+        )}
+
         {currentPage === 'home' && (
           <>
             <Hero
