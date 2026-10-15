@@ -12,7 +12,8 @@ export type PageId =
   | 'news'
   | 'contact'
   | 'admin'
-  | 'walkthrough';
+  | 'walkthrough'
+  | 'exploration';
 
 export interface NavItem {
   id: PageId;

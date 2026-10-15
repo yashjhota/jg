@@ -295,6 +295,27 @@ export default function App() {
             lang={lang}
           />
         )}
+        {currentPage === 'exploration' && (
+          <div className="flex items-center justify-center min-h-screen p-6 text-center">
+            <div className="bg-white/90 rounded-xl px-8 py-6 max-w-xl">
+              <h2 className="text-2xl font-bold text-[#0C1B2A] mb-4">
+                {lang === 'en' ? 'Exploration Mode' : 'खोज मोड'}
+              </h2>
+              <p className="text-lg text-[#0C1B2A] mb-6">
+                {lang === 'en'
+                  ? 'The explorable campus is coming soon! For now, enjoy the welcome experience.'
+                  : 'खोजनीय परिसर जल्द ही आने वाला है! अब तक, स्वागत अनुभव का आनंद लें।'
+                }
+              </p>
+              <button
+                onClick={() => onNavigate('home')}
+                className="px-6 py-3 bg-[#E59A1E] text-[#0C1B2A] rounded hover:bg-[#F3A628]"
+              >
+                {lang === 'en' ? 'Return to Welcome' : 'स्वागत पर वापस लौटें'}
+              </button>
+            </div>
+          </div>
+        )}
       </main>
 
       {/* Structured Organization Footer */}

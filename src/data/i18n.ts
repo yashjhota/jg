@@ -36,7 +36,9 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     officialEmail: 'Official Email',
     registrationHelpline: 'Registration & Enquiry Helpline',
     allRightsReserved: 'All Rights Reserved. An initiative rooted in Jain values.',
-    memberPortalNotice: 'Registered members log in to track daily tasks, attend live cohorts, and access the full resource library.'
+    memberPortalNotice: 'Registered members log in to track daily tasks, attend live cohorts, and access the full resource library.',
+    watchmanWelcome: "Welcome to Jain Genius! I'm here to help you explore our campus.",
+    watchmanContinue: "Continue Exploration"
   },
   hi: {
     tagline: 'द चेंज मेकर्स',
@@ -73,6 +75,8 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     officialEmail: 'आधिकारिक ईमेल',
     registrationHelpline: 'पंजीकरण एवं पूछताछ हेल्पलाइन',
     allRightsReserved: 'सर्वाधिकार सुरक्षित। जैन मूल्यों पर आधारित पावन उपक्रम।',
-    memberPortalNotice: 'पंजीकृत सदस्य दैनिक टास्क ट्रैकिंग और रिसोर्स लाइब्रेरी के लिए मेंबर पोर्टल पर लॉगिन करें।'
+    memberPortalNotice: 'पंजीकृत सदस्य दैनिक टास्क ट्रैकिंग और रिसोर्स लाइब्रेरी के लिए मेंबर पोर्टल पर लॉगिन करें।',
+    watchmanWelcome: "जीनियस जैन में आपका स्वागत है! मैं आपको हमारे परिसर की खोज करने में मदद करने के लिए यहाँ हूँ.",
+    watchmanContinue: "खोज जारी रखें"
   }
 };

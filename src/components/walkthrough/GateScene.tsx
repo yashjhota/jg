@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { OrbitControls, Box, Circle } from '@react-three/drei';
 import * as THREE from 'three';
+import Watchman from './Watchman'; // Fixed import for Watchman component
 
 const GateScene: React.FunctionComponent<{ lang: 'en' | 'hi'; onNavigate: (page: 'home') => void }> = ({ lang, onNavigate }) => {
   const { size } = useThree();
@@ -9,6 +10,7 @@ const GateScene: React.FunctionComponent<{ lang: 'en' | 'hi'; onNavigate: (page:
   const [animationStep, setAnimationStep] = useState(0); // 0: initial, 1: gate opening, 2: camera moving, 3: done
   const [cameraPosition, setCameraPosition] = useState(new THREE.Vector3(0, 5, 10));
   const [cameraTarget, setCameraTarget] = useState(new THREE.Vector3(0, 0, 0));
+  const [welcomeShown, setWelcomeShown] = useState(false);
   const gateLeftRef = useRef<THREE.Group>(null);
   const gateRightRef = useRef<THREE.Group>(null);
   const continueClickedRef = useRef(false);
@@ -79,6 +81,13 @@ const GateScene: React.FunctionComponent<{ lang: 'en' | 'hi'; onNavigate: (page:
     }
   }, [reduceMotion]);
 
+  // Trigger welcome when gate/camera animation completes
+  useEffect(() => {
+    if (animationStep === 3 && !welcomeShown) {
+      setWelcomeShown(true);
+    }
+  }, [animationStep, welcomeShown]);
+
   // Skip animation handler
   const handleSkip = () => {
     if (skipEnabled) {
@@ -90,11 +99,11 @@ const GateScene: React.FunctionComponent<{ lang: 'en' | 'hi'; onNavigate: (page:
     }
   };
 
-  // Continue to M3 handler (placeholder for now, just exits to home)
+  // Continue to M3 handler - hides welcome panel to allow exploration
   const handleContinue = () => {
     if (!continueClickedRef.current) {
       continueClickedRef.current = true;
-      onNavigate('home');
+      setWelcomeShown(false);
     }
   };
 
@@ -102,6 +111,7 @@ const GateScene: React.FunctionComponent<{ lang: 'en' | 'hi'; onNavigate: (page:
   const handleExit = () => {
     onNavigate('home');
   };
+
 
   // Materials
   const gateMaterial = new THREE.MeshStandardMaterial({ color: '#8B4513' }); // SaddleBrown for wood
@@ -176,6 +186,8 @@ const GateScene: React.FunctionComponent<{ lang: 'en' | 'hi'; onNavigate: (page:
             <Circle args={[2, 32]} position={[6, -0.05, 0]} rotation={[ -Math.PI / 2, 0, 0 ]} material={grassMaterial} />
             {/* Distant building silhouette */}
             <Box args={[10, 5, 2]} position={[0, 0, -15]} material={buildingMaterial} castShadow receiveShadow />
+            {/* Watchman (appears after animation completes) */}
+            {welcomeShown && <Watchman lang={lang} onContinue={handleContinue} />}
           </group>
 
           {/* Camera controls (only if not animating) */}
@@ -190,6 +202,25 @@ const GateScene: React.FunctionComponent<{ lang: 'en' | 'hi'; onNavigate: (page:
           )}
         </Canvas>
       </div>
+
+      {/* Welcome Panel (appears after animation completes) */}
+      {welcomeShown && (
+        <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/50" onClick={handleContinue}>
+          <div className="relative w-[90%] max-w-[400px] p-6 bg-white/90 backdrop-blur-md rounded-xl border border-white/20">
+            <h2 className="text-2xl font-bold mb-4 text-center">
+              {lang === 'en'
+                ? 'Welcome to Jain Genius! I\'m here to help you explore our campus.'
+                : 'जीनियस जैन में आपका स्वागत है! मैं आपको हमारे परिसर की खोज करने में मदद करने के लिए यहाँ हूँ.'}
+            </h2>
+            <button
+              onClick={handleContinue}
+              className="w-full px-4 py-2 bg-[#E59A1E] text-[#0C1B2A] rounded hover:bg-[#F3A628] transition-colors focus:outline-none focus:ring-2 focus:ring-[#E59A1E] focus:ring-offset-2 disabled:opacity-50"
+            >
+              {lang === 'en' ? 'Continue Exploration' : 'खोज जारी रखें'}
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Fallback for WebGL unavailability */}
       <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0C1B2A] text-[#FAF8F5] p-6">
