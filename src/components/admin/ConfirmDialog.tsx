@@ -33,7 +33,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   return (
     <div className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div
-        className="w-full max-w-md bg-[#0C1B2A] border border-white/15 rounded-3xl p-6 sm:p-7 shadow-2xl text-white relative animate-in fade-in zoom-in-95 duration-200"
+        className="w-full max-w-md bg-[#15233A] border border-white/15 rounded-3xl p-6 sm:p-7 shadow-2xl text-white relative animate-in fade-in zoom-in-95 duration-200"
         role="dialog"
         aria-modal="true"
       >
@@ -57,7 +57,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
         </div>
 
         {itemTitle && (
-          <div className="bg-[#081320] border border-white/10 rounded-xl p-3 mb-5 text-xs text-slate-300 font-mono line-clamp-2">
+          <div className="bg-[#0E1828] border border-white/10 rounded-xl p-3 mb-5 text-xs text-slate-300 font-mono line-clamp-2">
             "{itemTitle}"
           </div>
         )}
@@ -82,7 +82,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
             className={`w-full sm:w-auto flex-1 px-4 py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
               confirmVariant === 'danger'
                 ? 'bg-rose-600 hover:bg-rose-500 text-white'
-                : 'bg-[#E59A1E] hover:bg-[#F3A628] text-[#0C1B2A]'
+                : 'bg-[#C99A2E] hover:bg-[#C99A2E] text-[#15233A]'
             }`}
           >
             {isProcessing ? (

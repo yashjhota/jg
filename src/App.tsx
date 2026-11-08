@@ -8,15 +8,11 @@ import { RegistrationModal } from './components/forms/RegistrationModal';
 import { WalkthroughView } from './components/walkthrough/WalkthroughView';
 import { CampusScene } from './components/walkthrough/CampusScene';
 
-// Home Section Components
+// Home Section Components (the Home page has exactly 5 sections)
 import { Hero } from './components/home/Hero';
-import { LiveMetrics } from './components/home/LiveMetrics';
+import { RecentWorkSection } from './components/home/RecentWorkSection';
 import { PillarsSection } from './components/home/PillarsSection';
-import { TopicsCarousel } from './components/home/TopicsCarousel';
-import { JourneySection } from './components/home/JourneySection';
-import { DacSection } from './components/home/DacSection';
 import { TestimonialsSection } from './components/home/TestimonialsSection';
-import { SocialFeedSection } from './components/home/SocialFeedSection';
 
 // Page Views
 import { AboutView } from './components/about/AboutView';
@@ -29,6 +25,14 @@ import { MembershipView } from './components/membership/MembershipView';
 import { NewsView } from './components/news/NewsView';
 import { ContactView } from './components/contact/ContactView';
 import { AdminDashboard } from './components/admin/AdminDashboard';
+import { NewsArticleView } from './components/news/NewsArticleView';
+import { SkillTopicsView } from './components/what-we-do/SkillTopicsView';
+import { DacView } from './components/what-we-do/DacView';
+import { MemberJourneyView } from './components/what-we-do/MemberJourneyView';
+import { AadiSparshView } from './components/ourwork/AadiSparshView';
+import { YouthShivirView } from './components/ourwork/YouthShivirView';
+import { VideosView } from './components/media/VideosView';
+import { SocialFeedView } from './components/media/SocialFeedView';
 
 // Admin Live Customization Overlays
 import { AdminLiveBar } from './components/admin/AdminLiveBar';
@@ -37,6 +41,8 @@ import { CheckCircle2, X } from 'lucide-react';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
+  // Extra URL segment, e.g. the article id in #news/<id>
+  const [currentParam, setCurrentParam] = useState<string>('');
   const [lang, setLang] = useState<Language>('en');
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [cameFromCampus, setCameFromCampus] = useState(false);
@@ -72,7 +78,15 @@ export default function App() {
   // Handle URL hash navigation if present
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '') as PageId;
+      const raw = window.location.hash.replace('#', '');
+      // #news/<id> opens a single article on its own page
+      const articleMatch = raw.match(/^news\/(.+)$/);
+      if (articleMatch) {
+        setCurrentPage('news-article');
+        setCurrentParam(decodeURIComponent(articleMatch[1]));
+        return;
+      }
+      const hash = raw as PageId;
       const validPages: PageId[] = [
         'home',
         'about',
@@ -86,9 +100,20 @@ export default function App() {
         'contact',
         'admin',
         'walkthrough',
+        'skill-topics',
+        'dac',
+        'member-journey',
+        'aadi-sparsh',
+        'youth-shivir',
+        'videos',
+        'social-feed',
       ];
       if (validPages.includes(hash)) {
         setCurrentPage(hash);
+        setCurrentParam('');
+      } else if (raw === '') {
+        setCurrentPage('home');
+        setCurrentParam('');
       }
     };
 
@@ -97,9 +122,14 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const handleNavigate = (page: PageId) => {
+  const handleNavigate = (page: PageId, param?: string) => {
     setCurrentPage(page);
-    window.location.hash = page === 'home' ? '' : page;
+    setCurrentParam(param ?? '');
+    if (page === 'news-article' && param) {
+      window.location.hash = `news/${encodeURIComponent(param)}`;
+    } else {
+      window.location.hash = page === 'home' ? '' : page;
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -116,7 +146,7 @@ export default function App() {
 
   return (
     <div
-      className={`min-h-screen flex flex-col bg-[#FAF8F5] text-[#0C1B2A] font-sans antialiased selection:bg-[#E59A1E] selection:text-[#0C1B2A] ${
+      className={`min-h-screen flex flex-col bg-white text-[#15233A] font-sans antialiased selection:bg-[#C99A2E] selection:text-[#15233A] ${
         isAuthenticated ? 'pt-10' : ''
       }`}
     >
@@ -150,6 +180,7 @@ export default function App() {
 
         {currentPage === 'home' && (
           <>
+            {/* 1. Hero */}
             <Hero
               lang={lang}
               onNavigate={handleNavigate}
@@ -160,55 +191,17 @@ export default function App() {
               }}
             />
 
-            <LiveMetrics lang={lang} />
+            {/* 2. Our Recent Work */}
+            <RecentWorkSection lang={lang} onNavigate={handleNavigate} />
 
-            <PillarsSection
-              lang={lang}
-              onNavigate={handleNavigate}
-            />
+            {/* 3. What We Do */}
+            <PillarsSection lang={lang} onNavigate={handleNavigate} />
 
-            <TopicsCarousel lang={lang} />
+            {/* 4. Member Voices */}
+            <TestimonialsSection lang={lang} onNavigate={handleNavigate} />
 
-            <JourneySection
-              lang={lang}
-              onNavigate={handleNavigate}
-              onOpenRegister={() => handleOpenRegister()}
-            />
-
-            <DacSection
-              lang={lang}
-              onNavigate={handleNavigate}
-              onOpenRegister={() => handleOpenRegister()}
-            />
-
-            <TestimonialsSection
-              lang={lang}
-              onNavigate={handleNavigate}
-              onOpenRegister={() => handleOpenRegister()}
-            />
-
-            <SocialFeedSection
-              lang={lang}
-              onNavigate={handleNavigate}
-              onOpenAddPost={() => {
-                setQuickEditorItem(null);
-                setQuickEditorSection('add_social_post');
-              }}
-              onOpenEditPost={(post: SocialPost) => {
-                setQuickEditorItem(post);
-                setQuickEditorSection('edit_social_post');
-              }}
-              onOpenEditSocials={() => {
-                setQuickEditorItem(null);
-                setQuickEditorSection('socials');
-              }}
-              onShowToast={showToast}
-            />
-
-            <CTASection
-              lang={lang}
-              onOpenRegister={() => handleOpenRegister()}
-            />
+            {/* 5. Join Us */}
+            <CTASection lang={lang} onNavigate={handleNavigate} />
           </>
         )}
 
@@ -294,6 +287,46 @@ export default function App() {
           />
         )}
 
+        {currentPage === 'news-article' && (
+          <NewsArticleView articleId={currentParam} lang={lang} onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === 'skill-topics' && <SkillTopicsView lang={lang} onNavigate={handleNavigate} />}
+
+        {currentPage === 'dac' && (
+          <DacView lang={lang} onNavigate={handleNavigate} onOpenRegister={() => handleOpenRegister()} />
+        )}
+
+        {currentPage === 'member-journey' && (
+          <MemberJourneyView lang={lang} onNavigate={handleNavigate} onOpenRegister={() => handleOpenRegister()} />
+        )}
+
+        {currentPage === 'aadi-sparsh' && <AadiSparshView onNavigate={handleNavigate} />}
+
+        {currentPage === 'youth-shivir' && <YouthShivirView onNavigate={handleNavigate} />}
+
+        {currentPage === 'videos' && <VideosView lang={lang} onNavigate={handleNavigate} />}
+
+        {currentPage === 'social-feed' && (
+          <SocialFeedView
+            lang={lang}
+            onNavigate={handleNavigate}
+            onOpenAddPost={() => {
+              setQuickEditorItem(null);
+              setQuickEditorSection('add_social_post');
+            }}
+            onOpenEditPost={(post: SocialPost) => {
+              setQuickEditorItem(post);
+              setQuickEditorSection('edit_social_post');
+            }}
+            onOpenEditSocials={() => {
+              setQuickEditorItem(null);
+              setQuickEditorSection('socials');
+            }}
+            onShowToast={showToast}
+          />
+        )}
+
         {currentPage === 'contact' && (
           <ContactView
             lang={lang}
@@ -319,7 +352,7 @@ export default function App() {
         {cameFromCampus && currentPage !== 'exploration' && currentPage !== 'walkthrough' && currentPage !== 'home' && currentPage !== 'admin' && (
           <button
             onClick={() => handleNavigate('exploration')}
-            className="fixed bottom-6 left-6 z-40 px-4 py-2 rounded-full bg-[#0C1B2A] text-white border border-[#E59A1E]/50 backdrop-blur-md shadow-2xl hover:scale-105 transition-transform cursor-pointer text-sm font-medium"
+            className="fixed bottom-6 left-6 z-40 px-4 py-2 rounded-full bg-[#15233A] text-white border border-[#C99A2E]/50 backdrop-blur-md shadow-2xl hover:scale-105 transition-transform cursor-pointer text-sm font-medium"
           >
             Return to Campus
           </button>
@@ -359,8 +392,8 @@ export default function App() {
       {/* Interactive Global Toast Notification Banner */}
       {toastMessage && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-5 fade-in duration-200">
-          <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-[#0C1B2A] text-white border border-[#E59A1E]/50 shadow-2xl backdrop-blur-md text-xs sm:text-sm font-medium">
-            <CheckCircle2 className="w-4 h-4 text-[#F3A628] shrink-0" />
+          <div className="flex items-center gap-3 px-5 py-3 rounded-lg bg-[#15233A] text-white border border-[#C99A2E]/50 shadow-2xl backdrop-blur-md text-xs sm:text-sm font-medium">
+            <CheckCircle2 className="w-4 h-4 text-[#C99A2E] shrink-0" />
             <span>{toastMessage}</span>
             <button
               onClick={() => setToastMessage(null)}

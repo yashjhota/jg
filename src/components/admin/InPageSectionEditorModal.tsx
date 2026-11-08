@@ -74,7 +74,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
 
   const [socialsForm, setSocialsForm] = useState({
     instagramUrl: settings.instagramUrl || '',
-    instagramHandle: settings.instagramHandle || '@jaingenius',
+    instagramHandle: settings.instagramHandle || '@jaingenius.tcm',
     youtubeUrl: settings.youtubeUrl || '',
     youtubeHandle: settings.youtubeHandle || '@jaingenius',
     whatsappCommunityUrl: settings.whatsappCommunityUrl || '',
@@ -100,7 +100,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
     postUrl: '',
     caption: '',
     authorName: 'Jain Genius Community',
-    authorHandle: '@jaingenius',
+    authorHandle: '@jaingenius.tcm',
     date: 'Just now',
     imageUrl: '',
     videoEmbedUrl: '',
@@ -144,7 +144,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
         postUrl: '',
         caption: '',
         authorName: 'Jain Genius Community',
-        authorHandle: '@jaingenius',
+        authorHandle: '@jaingenius.tcm',
         date: 'Just now',
         imageUrl: '',
         videoEmbedUrl: '',
@@ -300,13 +300,13 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
       <div
-        className="w-full max-w-2xl max-h-[90vh] bg-[#0C1B2A] border border-[#E59A1E]/40 rounded-3xl shadow-2xl flex flex-col overflow-hidden text-slate-200 relative"
+        className="w-full max-w-2xl max-h-[90vh] bg-[#15233A] border border-[#C99A2E]/40 rounded-3xl shadow-2xl flex flex-col overflow-hidden text-slate-200 relative"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="p-5 border-b border-white/10 flex items-center justify-between bg-[#162E4A]/80">
+        <div className="p-5 border-b border-white/10 flex items-center justify-between bg-[#1E3050]/80">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-[#E59A1E]/20 text-[#F3A628] border border-[#E59A1E]/30">
+            <div className="p-2 rounded-xl bg-[#C99A2E]/20 text-[#C99A2E] border border-[#C99A2E]/30">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
@@ -349,7 +349,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     type="text"
                     value={heroForm.heroTitle}
                     onChange={(e) => setHeroForm({ ...heroForm, heroTitle: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="e.g. Jain Genius"
                   />
                 </div>
@@ -364,7 +364,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setHeroForm({ ...heroForm, heroHighlightWord: e.target.value })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-[#F5B738] font-bold focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-[#C99A2E] font-bold focus:border-[#C99A2E] focus:outline-none"
                     placeholder="e.g. The Change Makers"
                   />
                 </div>
@@ -378,7 +378,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                   type="text"
                   value={heroForm.heroBadgeText}
                   onChange={(e) => setHeroForm({ ...heroForm, heroBadgeText: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                   placeholder="Guided by Sahebji..."
                 />
               </div>
@@ -393,7 +393,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                   onChange={(e) =>
                     setHeroForm({ ...heroForm, heroDescription: e.target.value })
                   }
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none resize-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none resize-none"
                   placeholder="Describe the awakening mission..."
                 />
               </div>
@@ -407,7 +407,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     type="text"
                     value={heroForm.heroTargetAge}
                     onChange={(e) => setHeroForm({ ...heroForm, heroTargetAge: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="Youth (15–30)"
                   />
                 </div>
@@ -422,7 +422,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setHeroForm({ ...heroForm, heroPrimaryBtnText: e.target.value })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="Become a Member"
                   />
                 </div>
@@ -441,7 +441,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                       }
                       className="sr-only peer"
                     />
-                    <div className="w-11 h-6 bg-white/20 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E59A1E]"></div>
+                    <div className="w-11 h-6 bg-white/20 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#C99A2E]"></div>
                   </label>
                 </div>
 
@@ -454,7 +454,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                       type="text"
                       value={heroForm.bannerText}
                       onChange={(e) => setHeroForm({ ...heroForm, bannerText: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                       placeholder="e.g. Admissions open for Cohort 02..."
                     />
                   </div>
@@ -472,7 +472,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E59A1E] hover:bg-[#F3A628] text-[#0C1B2A] font-bold shadow-lg cursor-pointer disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#C99A2E] hover:bg-[#C99A2E] text-[#15233A] font-bold shadow-lg cursor-pointer disabled:opacity-50"
                 >
                   <Save className="w-4 h-4" />
                   <span>{isSubmitting ? 'Saving to Cloud...' : 'Save to Cloud'}</span>
@@ -495,8 +495,8 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setSocialsForm({ ...socialsForm, instagramUrl: e.target.value })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
-                    placeholder="https://instagram.com/jaingenius"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
+                    placeholder="https://www.instagram.com/jaingenius.tcm/"
                   />
                 </div>
                 <div>
@@ -509,7 +509,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setSocialsForm({ ...socialsForm, instagramHandle: e.target.value })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="@jaingenius"
                   />
                 </div>
@@ -526,7 +526,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setSocialsForm({ ...socialsForm, youtubeUrl: e.target.value })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="https://youtube.com/@jaingenius"
                   />
                 </div>
@@ -540,7 +540,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setSocialsForm({ ...socialsForm, whatsappCommunityUrl: e.target.value })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="https://chat.whatsapp.com/..."
                   />
                 </div>
@@ -557,8 +557,8 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setSocialsForm({ ...socialsForm, telegramUrl: e.target.value })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
-                    placeholder="https://t.me/jaingenius"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
+                    placeholder="https://t.me/Jaingeniustcm"
                   />
                 </div>
                 <div>
@@ -571,8 +571,8 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setSocialsForm({ ...socialsForm, twitterUrl: e.target.value })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
-                    placeholder="https://x.com/jaingenius"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
+                    placeholder="https://x.com/JainGeniustcm"
                   />
                 </div>
               </div>
@@ -588,7 +588,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E59A1E] hover:bg-[#F3A628] text-[#0C1B2A] font-bold shadow-lg cursor-pointer disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#C99A2E] hover:bg-[#C99A2E] text-[#15233A] font-bold shadow-lg cursor-pointer disabled:opacity-50"
                 >
                   <Save className="w-4 h-4" />
                   <span>{isSubmitting ? 'Saving...' : 'Save Channels'}</span>
@@ -609,7 +609,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     type="text"
                     value={footerForm.phone}
                     onChange={(e) => setFooterForm({ ...footerForm, phone: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="+919880000000"
                   />
                 </div>
@@ -623,7 +623,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setFooterForm({ ...footerForm, phoneDisplay: e.target.value })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="+91 98800 00000"
                   />
                 </div>
@@ -638,8 +638,8 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     type="email"
                     value={footerForm.email}
                     onChange={(e) => setFooterForm({ ...footerForm, email: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
-                    placeholder="connect@jaingenius.org"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
+                    placeholder="admin@jaingenius.org"
                   />
                 </div>
                 <div>
@@ -652,7 +652,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setFooterForm({ ...footerForm, initiativeOf: e.target.value })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="Sri Jinshasan Aradhana Trust"
                   />
                 </div>
@@ -666,7 +666,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                   rows={2}
                   value={footerForm.address}
                   onChange={(e) => setFooterForm({ ...footerForm, address: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none resize-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none resize-none"
                   placeholder="Pathshala Hall, Chickpet Jain Temple..."
                 />
               </div>
@@ -682,7 +682,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setFooterForm({ ...footerForm, designerCreditName: e.target.value })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="jhota"
                   />
                 </div>
@@ -696,7 +696,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setFooterForm({ ...footerForm, designerCreditUrl: e.target.value })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="https://instagram.com/yashjhota"
                   />
                 </div>
@@ -713,7 +713,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E59A1E] hover:bg-[#F3A628] text-[#0C1B2A] font-bold shadow-lg cursor-pointer disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#C99A2E] hover:bg-[#C99A2E] text-[#15233A] font-bold shadow-lg cursor-pointer disabled:opacity-50"
                 >
                   <Save className="w-4 h-4" />
                   <span>{isSubmitting ? 'Saving...' : 'Update Footer'}</span>
@@ -735,14 +735,14 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setPostForm({ ...postForm, platform: e.target.value as SocialPlatform })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                   >
-                    <option value="instagram" className="bg-[#0C1B2A]">Instagram</option>
-                    <option value="youtube" className="bg-[#0C1B2A]">YouTube</option>
-                    <option value="twitter" className="bg-[#0C1B2A]">X (Twitter)</option>
-                    <option value="telegram" className="bg-[#0C1B2A]">Telegram</option>
-                    <option value="whatsapp" className="bg-[#0C1B2A]">WhatsApp</option>
-                    <option value="linkedin" className="bg-[#0C1B2A]">LinkedIn</option>
+                    <option value="instagram" className="bg-[#15233A]">Instagram</option>
+                    <option value="youtube" className="bg-[#15233A]">YouTube</option>
+                    <option value="twitter" className="bg-[#15233A]">X (Twitter)</option>
+                    <option value="telegram" className="bg-[#15233A]">Telegram</option>
+                    <option value="whatsapp" className="bg-[#15233A]">WhatsApp</option>
+                    <option value="linkedin" className="bg-[#15233A]">LinkedIn</option>
                   </select>
                 </div>
 
@@ -755,7 +755,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     required
                     value={postForm.postUrl}
                     onChange={(e) => setPostForm({ ...postForm, postUrl: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="https://instagram.com/p/..."
                   />
                 </div>
@@ -770,7 +770,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                   required
                   value={postForm.caption}
                   onChange={(e) => setPostForm({ ...postForm, caption: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none resize-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none resize-none"
                   placeholder="Highlights from the session or discourse..."
                 />
               </div>
@@ -784,7 +784,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     type="text"
                     value={postForm.authorName}
                     onChange={(e) => setPostForm({ ...postForm, authorName: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                   />
                 </div>
 
@@ -796,7 +796,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     type="text"
                     value={postForm.authorHandle || ''}
                     onChange={(e) => setPostForm({ ...postForm, authorHandle: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="@jaingenius"
                   />
                 </div>
@@ -815,7 +815,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     type="checkbox"
                     checked={postForm.isPinned || false}
                     onChange={(e) => setPostForm({ ...postForm, isPinned: e.target.checked })}
-                    className="rounded text-[#E59A1E] focus:ring-[#E59A1E]"
+                    className="rounded text-[#C99A2E] focus:ring-[#C99A2E]"
                   />
                   <span className="font-semibold text-white">Pin to top of feed</span>
                 </label>
@@ -825,7 +825,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     type="checkbox"
                     checked={postForm.isPublished !== false}
                     onChange={(e) => setPostForm({ ...postForm, isPublished: e.target.checked })}
-                    className="rounded text-[#E59A1E] focus:ring-[#E59A1E]"
+                    className="rounded text-[#C99A2E] focus:ring-[#C99A2E]"
                   />
                   <span className="font-semibold text-white">Published (Visible to Visitors)</span>
                 </label>
@@ -842,7 +842,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E59A1E] hover:bg-[#F3A628] text-[#0C1B2A] font-bold shadow-lg cursor-pointer disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#C99A2E] hover:bg-[#C99A2E] text-[#15233A] font-bold shadow-lg cursor-pointer disabled:opacity-50"
                 >
                   <Save className="w-4 h-4" />
                   <span>
@@ -869,7 +869,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                   required
                   value={eventForm.title}
                   onChange={(e) => setEventForm({ ...eventForm, title: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                   placeholder="e.g. Sunday Youth Shabhā"
                 />
               </div>
@@ -884,7 +884,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     required
                     value={eventForm.date}
                     onChange={(e) => setEventForm({ ...eventForm, date: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="30 August 2026"
                   />
                 </div>
@@ -896,7 +896,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     type="text"
                     value={eventForm.time}
                     onChange={(e) => setEventForm({ ...eventForm, time: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="2:30 PM - 5:30 PM"
                   />
                 </div>
@@ -911,7 +911,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     type="text"
                     value={eventForm.venue}
                     onChange={(e) => setEventForm({ ...eventForm, venue: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="Pathshala Hall, Chickpet"
                   />
                 </div>
@@ -924,11 +924,11 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setEventForm({ ...eventForm, status: e.target.value as any })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                   >
-                    <option value="upcoming" className="bg-[#0C1B2A]">Upcoming</option>
-                    <option value="ongoing" className="bg-[#0C1B2A]">Ongoing</option>
-                    <option value="past" className="bg-[#0C1B2A]">Past</option>
+                    <option value="upcoming" className="bg-[#15233A]">Upcoming</option>
+                    <option value="ongoing" className="bg-[#15233A]">Ongoing</option>
+                    <option value="past" className="bg-[#15233A]">Past</option>
                   </select>
                 </div>
               </div>
@@ -941,7 +941,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                   rows={3}
                   value={eventForm.description}
                   onChange={(e) => setEventForm({ ...eventForm, description: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none resize-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none resize-none"
                   placeholder="Outline the session highlights and key speakers..."
                 />
               </div>
@@ -959,7 +959,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                   type="url"
                   value={eventForm.googleFormUrl || ''}
                   onChange={(e) => setEventForm({ ...eventForm, googleFormUrl: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                   placeholder="https://docs.google.com/forms/d/e/.../viewform"
                 />
                 <p className="text-[11px] text-slate-400 mt-1">
@@ -978,7 +978,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E59A1E] hover:bg-[#F3A628] text-[#0C1B2A] font-bold shadow-lg cursor-pointer disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#C99A2E] hover:bg-[#C99A2E] text-[#15233A] font-bold shadow-lg cursor-pointer disabled:opacity-50"
                 >
                   <Save className="w-4 h-4" />
                   <span>{isSubmitting ? 'Saving...' : 'Save Event'}</span>
@@ -999,7 +999,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                   required
                   value={galleryForm.title}
                   onChange={(e) => setGalleryForm({ ...galleryForm, title: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                   placeholder="e.g. Sunday Youth Assembly Discussion"
                 />
               </div>
@@ -1014,12 +1014,12 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     onChange={(e) =>
                       setGalleryForm({ ...galleryForm, category: e.target.value as any })
                     }
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                   >
-                    <option value="Youth Session" className="bg-[#0C1B2A]">Youth Session</option>
-                    <option value="Workshop" className="bg-[#0C1B2A]">Workshop</option>
-                    <option value="Shivir" className="bg-[#0C1B2A]">Shivir</option>
-                    <option value="Discourse" className="bg-[#0C1B2A]">Discourse</option>
+                    <option value="Youth Session" className="bg-[#15233A]">Youth Session</option>
+                    <option value="Workshop" className="bg-[#15233A]">Workshop</option>
+                    <option value="Shivir" className="bg-[#15233A]">Shivir</option>
+                    <option value="Discourse" className="bg-[#15233A]">Discourse</option>
                   </select>
                 </div>
                 <div>
@@ -1030,7 +1030,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                     type="text"
                     value={galleryForm.year}
                     onChange={(e) => setGalleryForm({ ...galleryForm, year: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#E59A1E] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#C99A2E] focus:outline-none"
                     placeholder="2026"
                   />
                 </div>
@@ -1054,7 +1054,7 @@ export const InPageSectionEditorModal: React.FC<InPageSectionEditorModalProps> =
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E59A1E] hover:bg-[#F3A628] text-[#0C1B2A] font-bold shadow-lg cursor-pointer disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#C99A2E] hover:bg-[#C99A2E] text-[#15233A] font-bold shadow-lg cursor-pointer disabled:opacity-50"
                 >
                   <Save className="w-4 h-4" />
                   <span>{isSubmitting ? 'Saving...' : 'Save Photo'}</span>

@@ -89,16 +89,16 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
   )}`;
 
   return (
-    <div className="bg-[#FAF8F5] text-[#0C1B2A] min-h-screen">
+    <div className="bg-[#FFFFFF] text-[#15233A] min-h-screen">
       {/* Header */}
-      <section className="bg-[#0C1B2A] text-white py-20 border-b border-[#E59A1E]/30 relative overflow-hidden">
+      <section className="bg-[#15233A] text-white py-20 border-b border-[#C99A2E]/30 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E59A1E]/15 border border-[#E59A1E]/30 text-[#F3A628] text-xs font-bold uppercase tracking-widest">
-            <Mail className="w-3.5 h-3.5 text-[#E59A1E]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#C99A2E]/15 border border-[#C99A2E]/30 text-[#C99A2E] text-xs font-bold ">
+            <Mail className="w-3.5 h-3.5 text-[#C99A2E]" />
             <span>Connect & Coordinate</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-[#FAF8F5] tracking-tight font-display">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-[#FFFFFF] tracking-tight font-display">
             Contact Jain Genius
           </h1>
 
@@ -115,16 +115,16 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
           {/* Left: Contact Cards & Physical Locations (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             {/* Primary Coordinator Card */}
-            <div className="bg-white border-2 border-[#E59A1E]/40 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
+            <div className="bg-white border-2 border-[#C99A2E]/40 rounded-lg p-6 sm:p-8 shadow-sm space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-[#0C1B2A] text-[#F3A628] flex items-center justify-center font-bold text-lg">
+                <div className="w-12 h-12 rounded-lg bg-[#15233A] text-[#C99A2E] flex items-center justify-center font-bold text-lg">
                   G
                 </div>
                 <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#B8780E]">
+                  <span className="text-[11px] font-bold text-[#A57D22]">
                     Admissions & Registration Lead
                   </span>
-                  <h3 className="text-xl font-bold text-[#0C1B2A] font-display">
+                  <h3 className="text-xl font-bold text-[#15233A] font-display">
                     {SITE_CONFIG.contact.name}
                   </h3>
                 </div>
@@ -133,12 +133,12 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
               <div className="space-y-3 pt-2">
                 <a
                   href={`tel:${phone}`}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition-colors"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 transition-colors"
                 >
-                  <Phone className="w-5 h-5 text-[#E59A1E]" />
+                  <Phone className="w-5 h-5 text-[#C99A2E]" />
                   <div>
                     <span className="text-[11px] text-slate-400 block font-semibold">Direct Phone Call</span>
-                    <span className="text-sm font-bold text-[#0C1B2A]">{phoneDisplay}</span>
+                    <span className="text-sm font-bold text-[#15233A]">{phoneDisplay}</span>
                   </div>
                 </a>
 
@@ -146,34 +146,34 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 transition-colors"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 transition-colors"
                 >
                   <MessageCircle className="w-5 h-5 text-[#25D366]" />
                   <div>
                     <span className="text-[11px] text-emerald-800 block font-semibold">Instant WhatsApp Chat</span>
-                    <span className="text-sm font-bold text-[#0C1B2A]">Connect with Coordinator</span>
+                    <span className="text-sm font-bold text-[#15233A]">Connect with Coordinator</span>
                   </div>
                 </a>
 
                 <a
                   href={`mailto:${email}`}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition-colors"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 transition-colors"
                 >
-                  <Mail className="w-5 h-5 text-[#E59A1E]" />
+                  <Mail className="w-5 h-5 text-[#C99A2E]" />
                   <div>
                     <span className="text-[11px] text-slate-400 block font-semibold">Official Email</span>
-                    <span className="text-sm font-bold text-[#0C1B2A]">{email}</span>
+                    <span className="text-sm font-bold text-[#15233A]">{email}</span>
                   </div>
                 </a>
               </div>
             </div>
 
             {/* Regular Assembly Location Card */}
-            <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
+            <div className="bg-white border border-slate-200/90 rounded-lg p-6 sm:p-8 shadow-sm space-y-4">
               <div className="flex items-start gap-3">
-                <MapPin className="w-6 h-6 text-[#E59A1E] shrink-0 mt-0.5" />
+                <MapPin className="w-6 h-6 text-[#C99A2E] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-base font-bold text-[#0C1B2A] font-display">
+                  <h4 className="text-base font-bold text-[#15233A] font-display">
                     Regular Meeting & Assembly Location
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
@@ -182,15 +182,15 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
-                <span className="font-semibold text-[#0C1B2A] block">Assembly Timings:</span>
+              <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
+                <span className="font-semibold text-[#15233A] block">Assembly Timings:</span>
                 <span>• Sunday Youth Shabhās: 2:15 PM – 4:00 PM</span><br />
               </div>
             </div>
 
             {/* Community WhatsApp Group */}
-            <div className="bg-[#0C1B2A] text-white border border-[#E59A1E]/30 rounded-3xl p-6 shadow-sm space-y-3">
-              <div className="flex items-center gap-2 text-xs font-bold text-[#F3A628] uppercase tracking-wider">
+            <div className="bg-[#15233A] text-white border border-[#C99A2E]/30 rounded-lg p-6 shadow-sm space-y-3">
+              <div className="flex items-center gap-2 text-xs font-bold text-[#C99A2E] ">
                 <MessageCircle className="w-4 h-4 text-[#25D366]" />
                 <span>Jain G Community Group</span>
               </div>
@@ -201,7 +201,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                 href={whatsappGroupUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-[#0C1B2A] text-xs font-bold transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-[#15233A] text-xs font-bold transition-colors"
               >
                 <span>Join Official WhatsApp Group</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -210,7 +210,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
           </div>
 
           {/* Right: Contact Enquiry Form (7 cols) */}
-          <div className="lg:col-span-7 bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-10 shadow-sm">
+          <div className="lg:col-span-7 bg-white border border-slate-200/90 rounded-lg p-8 sm:p-10 shadow-sm">
             {submitted ? (
               <div className="py-10 text-center space-y-5">
                 <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-600 flex items-center justify-center mx-auto">
@@ -222,33 +222,33 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                     <FileSpreadsheet className="w-3.5 h-3.5" />
                     <span>Saved in Official Google Form</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-[#0C1B2A] font-display">
+                  <h3 className="text-2xl font-bold text-[#15233A] font-display">
                     Enquiry Submitted Successfully
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto leading-relaxed">
-                    Thank you, <strong className="text-[#0C1B2A]">{formData.name}</strong>. Your contact details and message have been transmitted directly to our official Google Form response sheet and notified to Coordinator Gaurav.
+                    Thank you, <strong className="text-[#15233A]">{formData.name}</strong>. Your contact details and message have been transmitted directly to our official Google Form response sheet and notified to Coordinator Gaurav.
                   </p>
                 </div>
 
                 {/* Submitted Summary Box */}
-                <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 text-left max-w-md mx-auto text-xs space-y-1.5 text-slate-700">
+                <div className="bg-slate-50 border border-slate-200/80 rounded-lg p-4 text-left max-w-md mx-auto text-xs space-y-1.5 text-slate-700">
                   <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
                     <span className="text-slate-400">Name:</span>
-                    <span className="font-semibold text-[#0C1B2A]">{formData.name}</span>
+                    <span className="font-semibold text-[#15233A]">{formData.name}</span>
                   </div>
                   <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
                     <span className="text-slate-400">Mobile:</span>
-                    <span className="font-semibold text-[#0C1B2A]">{formData.phone}</span>
+                    <span className="font-semibold text-[#15233A]">{formData.phone}</span>
                   </div>
                   {formData.email && (
                     <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
                       <span className="text-slate-400">Email:</span>
-                      <span className="font-semibold text-[#0C1B2A]">{formData.email}</span>
+                      <span className="font-semibold text-[#15233A]">{formData.email}</span>
                     </div>
                   )}
                   <div className="flex justify-between">
                     <span className="text-slate-400">Category:</span>
-                    <span className="font-semibold text-[#B8780E]">{formData.category}</span>
+                    <span className="font-semibold text-[#A57D22]">{formData.category}</span>
                   </div>
                 </div>
 
@@ -257,7 +257,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                     href={whatsappInquiryUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-[#0C1B2A] text-xs font-bold transition-colors shadow-sm"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-[#15233A] text-xs font-bold transition-colors shadow-sm"
                   >
                     <MessageCircle className="w-4 h-4" />
                     <span>Follow Up on WhatsApp</span>
@@ -267,9 +267,9 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                     href={submissionResult?.prefilledUrl || formUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold border border-slate-300 transition-colors"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold border border-slate-300 transition-colors"
                   >
-                    <FileSpreadsheet className="w-4 h-4 text-[#B8780E]" />
+                    <FileSpreadsheet className="w-4 h-4 text-[#A57D22]" />
                     <span>View on Google Forms</span>
                     <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
                   </a>
@@ -288,7 +288,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                         message: '',
                       });
                     }}
-                    className="text-xs text-slate-500 hover:text-[#0C1B2A] underline"
+                    className="text-xs text-slate-500 hover:text-[#15233A] underline"
                   >
                     Send another enquiry
                   </button>
@@ -298,7 +298,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 pb-3">
                   <div>
-                    <h3 className="text-2xl font-bold text-[#0C1B2A] font-display">
+                    <h3 className="text-2xl font-bold text-[#15233A] font-display">
                       Send an Official Enquiry
                     </h3>
                     <p className="text-xs text-slate-500 mt-0.5">
@@ -309,7 +309,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                     href={formUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs text-[#B8780E] hover:text-[#0C1B2A] font-semibold transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs text-[#A57D22] hover:text-[#15233A] font-semibold transition-colors"
                   >
                     <span>Direct Google Form</span>
                     <ExternalLink className="w-3 h-3" />
@@ -327,7 +327,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Priyansh Shah"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-[#0C1B2A] focus:outline-none focus:border-[#E59A1E]"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-sm text-[#15233A] focus:outline-none focus:border-[#C99A2E]"
                     />
                   </div>
 
@@ -341,7 +341,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="10-digit mobile number"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-[#0C1B2A] focus:outline-none focus:border-[#E59A1E]"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-sm text-[#15233A] focus:outline-none focus:border-[#C99A2E]"
                     />
                   </div>
 
@@ -354,7 +354,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="name@example.com"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-[#0C1B2A] focus:outline-none focus:border-[#E59A1E]"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-sm text-[#15233A] focus:outline-none focus:border-[#C99A2E]"
                     />
                   </div>
 
@@ -365,7 +365,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                     <select
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-[#0C1B2A] focus:outline-none focus:border-[#E59A1E]"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-sm text-[#15233A] focus:outline-none focus:border-[#C99A2E]"
                     >
                       <option value="Becoming a member">Becoming a member (Age 15–30)</option>
                       <option value="Mentoring/teaching">Mentoring / Teaching an industry module</option>
@@ -386,7 +386,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     placeholder="e.g. Inquiry regarding Account Executive career track"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-[#0C1B2A] focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-sm text-[#15233A] focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -400,7 +400,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Write your questions, background, or learning goals here..."
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-[#0C1B2A] focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-sm text-[#15233A] focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -413,11 +413,11 @@ export const ContactView: React.FC<ContactViewProps> = ({ lang, onNavigate, onOp
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-[#0C1B2A] bg-gradient-to-r from-[#F5B738] to-[#E59A1E] hover:from-[#FBC658] hover:to-[#F3A628] disabled:opacity-60 shadow-md transition-all cursor-pointer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-bold text-[#15233A] bg-[#C99A2E] hover:bg-[#B88A24] disabled:opacity-60 shadow-md transition-all cursor-pointer"
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin text-[#0C1B2A]" />
+                        <Loader2 className="w-4 h-4 animate-spin text-[#15233A]" />
                         <span>Submitting to Form...</span>
                       </>
                     ) : (

@@ -1,220 +1,146 @@
 import React, { useState } from 'react';
 import { useCMS } from '../../services/cmsStore';
-import { Language, PageId, NewsArticle } from '../../types';
-import { Newspaper, Search, Calendar, Clock, ArrowRight, Tag, X, Sparkles, Settings } from 'lucide-react';
+import { Language, NavigateFn, NewsArticle } from '../../types';
+import { Search, Calendar, Clock, ArrowRight, Settings } from 'lucide-react';
 import { CTASection } from '../layout/CTASection';
-import { SocialFeedSection } from '../home/SocialFeedSection';
+import { PageHeader } from '../common/PageHeader';
+import { HScroller } from '../common/HScroller';
 
 interface NewsViewProps {
   lang: Language;
-  onNavigate: (page: PageId) => void;
+  onNavigate: NavigateFn;
   onOpenRegister: () => void;
 }
 
-export const NewsView: React.FC<NewsViewProps> = ({ lang, onNavigate, onOpenRegister }) => {
-  const { news } = useCMS();
+const articleTime = (art: NewsArticle) => {
+  const fromDate = new Date(art.date).getTime();
+  if (!isNaN(fromDate)) return fromDate;
+  return new Date(art.createdAt || 0).getTime();
+};
+
+/** Newest first, ignoring deleted articles. */
+export const sortNews = (list: NewsArticle[]) =>
+  list.filter((a) => !a.isDeleted).sort((a, b) => articleTime(b) - articleTime(a));
+
+export const NewsView: React.FC<NewsViewProps> = ({ lang, onNavigate }) => {
+  const { news, isAuthenticated } = useCMS();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeArticle, setActiveArticle] = useState<NewsArticle | null>(null);
 
-  const categories = ['All', 'Philosophy', 'Career', 'Youth Stories', 'Announcements'];
+  const categories = ['All', 'Youth Stories', 'Announcements', 'Philosophy', 'Career'];
+  const query = searchQuery.toLowerCase();
 
-  const filteredArticles = news.filter((art) => {
+  const articles = sortNews(news).filter((art) => {
     const matchesCategory = selectedCategory === 'All' || art.category === selectedCategory;
-    const matchesSearch =
-      art.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      art.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = art.title.toLowerCase().includes(query) || art.excerpt.toLowerCase().includes(query);
     return matchesCategory && matchesSearch;
   });
 
   return (
-    <div className="bg-[#FAF8F5] text-[#0C1B2A] min-h-screen">
-      {/* Header */}
-      <section className="bg-[#0C1B2A] text-white py-20 border-b border-[#E59A1E]/30 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E59A1E]/15 border border-[#E59A1E]/30 text-[#F3A628] text-xs font-bold uppercase tracking-widest">
-            <Newspaper className="w-3.5 h-3.5 text-[#E59A1E]" />
-            <span>Perspectives & Chronicles</span>
-          </div>
+    <div className="bg-white text-[#15233A] min-h-screen">
+      <PageHeader
+        title={lang === 'hi' ? 'समाचार' : 'News'}
+        intro="Stories from our youth, event recaps and announcements."
+      />
 
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-[#FAF8F5] tracking-tight font-display">
-            News, Articles & Updates
-          </h1>
-
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-            Thought leadership on Jain philosophy for modern careers, cohort milestones, event summaries,
-            and organizational announcements.
-          </p>
-        </div>
-      </section>
-
-      {/* Filter and Search Bar */}
-      <section className="py-4 sm:py-6 bg-white border-b border-slate-200 sticky top-[60px] sm:top-[72px] z-20 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
-          {/* Categories */}
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto w-full md:w-auto scrollbar-none touch-pan-x pb-1 md:pb-0">
+      {/* Category filter and search */}
+      <section className="py-4 bg-[#FBF5E8] border-b border-[#C99A2E]/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto scrollbar-none touch-pan-x">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold transition-all border shrink-0 ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium border shrink-0 cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-[#0C1B2A] text-white border-[#E59A1E]'
-                    : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-slate-300'
+                    ? 'bg-[#15233A] text-white border-[#15233A]'
+                    : 'bg-white text-slate-600 border-slate-200 hover:border-[#C99A2E]'
                 }`}
               >
                 {cat}
               </button>
             ))}
           </div>
-
-          {/* Search Input & Admin Publish */}
-          <div className="flex items-center gap-3 w-full md:w-auto">
+          <div className="flex items-center gap-2 w-full md:w-auto">
             <div className="relative flex-1 md:w-72">
               <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
-                type="text"
+                type="search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search articles..."
-                className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#E59A1E]"
+                placeholder="Search articles…"
+                aria-label="Search articles"
+                className="w-full pl-9 pr-4 py-2 rounded-lg bg-white border border-slate-200 text-sm focus:outline-none focus:border-[#C99A2E]"
               />
             </div>
-            <button
-              onClick={() => onNavigate('admin')}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200/80 text-[#B8780E] text-xs font-semibold shrink-0 transition-colors"
-            >
-              <Settings className="w-3.5 h-3.5" />
-              <span>Admin Post</span>
-            </button>
+            {isAuthenticated && (
+              <button
+                onClick={() => onNavigate('admin')}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white border border-slate-200 text-[#A57D22] text-xs font-medium shrink-0 cursor-pointer"
+              >
+                <Settings className="w-3.5 h-3.5" />
+                Admin post
+              </button>
+            )}
           </div>
         </div>
       </section>
 
-      {/* Articles Grid */}
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredArticles.map((art) => (
-            <div
-              key={art.id}
-              onClick={() => setActiveArticle(art)}
-              className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-md hover:border-[#E59A1E]/50 transition-all cursor-pointer flex flex-col justify-between group"
-            >
-              <div className="space-y-3">
+      {/* Article cards: title + 2-line summary; the full article opens on its own page */}
+      <section className="py-14 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {articles.length === 0 ? (
+          <p className="text-slate-500">No articles match your search.</p>
+        ) : (
+          <HScroller
+            key={selectedCategory + query}
+            ariaLabel="News articles"
+            items={articles}
+            getKey={(art) => art.id}
+            renderItem={(art) => (
+              <a
+                href={`#news/${encodeURIComponent(art.id)}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('news-article', art.id);
+                }}
+                className="group h-full flex flex-col rounded-lg bg-white border border-slate-200 hover:border-[#C99A2E] hover:shadow-md overflow-hidden transition"
+              >
                 {art.imageUrl && (
-                  <div className="rounded-2xl overflow-hidden aspect-video bg-slate-100 border border-slate-200 mb-2">
+                  <div className="aspect-video bg-slate-100 overflow-hidden">
                     <img
                       src={art.imageUrl}
-                      alt={art.title}
-                      className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                      alt=""
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
                     />
                   </div>
                 )}
-
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#E59A1E]/15 text-[#B8780E]">
-                    {art.category}
-                  </span>
-                  <div className="flex items-center gap-3 text-[11px] text-slate-400">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3 text-slate-400" />
+                <div className="p-5 flex-1 flex flex-col">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 caption text-slate-500">
+                    <span className="font-medium text-[#A57D22]">{art.category}</span>
+                    <span className="inline-flex items-center gap-1">
+                      <Calendar className="w-3 h-3" />
                       {art.date}
                     </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3 text-slate-400" />
+                    <span className="inline-flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
                       {art.readTime}
                     </span>
                   </div>
+                  <h2 className="card-title mt-2 text-[#15233A] group-hover:text-[#A57D22]">{art.title}</h2>
+                  <p className="mt-2 text-[15px] text-slate-600 line-clamp-2">{art.excerpt}</p>
+                  <span className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-medium text-[#A57D22]">
+                    Read article
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
                 </div>
-
-                <h3 className="text-xl font-bold text-[#0C1B2A] font-display group-hover:text-[#B8780E] transition-colors leading-snug">
-                  {art.title}
-                </h3>
-
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  {art.excerpt}
-                </p>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#B8780E]">
-                <span>By {art.author}</span>
-                <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                  Read Article →
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+              </a>
+            )}
+          />
+        )}
       </section>
 
-      {/* Article Reader Modal */}
-      {activeArticle && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 overflow-y-auto bg-[#081320]/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
-        >
-          <div className="relative w-full max-w-2xl bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-2xl text-[#0C1B2A]">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#B8780E]">
-                {activeArticle.category} • {activeArticle.readTime}
-              </span>
-              <button
-                onClick={() => setActiveArticle(null)}
-                className="p-1.5 rounded-xl hover:bg-slate-100 text-slate-400 hover:text-[#0C1B2A]"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="py-6 space-y-4 max-h-[65vh] overflow-y-auto">
-              {activeArticle.imageUrl && (
-                <div className="rounded-2xl overflow-hidden aspect-video bg-slate-100 border border-slate-200">
-                  <img
-                    src={activeArticle.imageUrl}
-                    alt={activeArticle.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              )}
-
-              <h2 className="text-2xl font-bold text-[#0C1B2A] font-display leading-tight">
-                {activeArticle.title}
-              </h2>
-              <div className="text-xs text-slate-500 pb-2 border-b border-slate-100">
-                Published on {activeArticle.date} • By {activeArticle.author}
-              </div>
-
-              <div className="space-y-4 pt-2 text-sm text-slate-700 leading-relaxed">
-                {activeArticle.fullBody.map((p, idx) => (
-                  <p key={idx}>{p}</p>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-slate-100 flex justify-end">
-              <button
-                onClick={() => setActiveArticle(null)}
-                className="px-5 py-2.5 rounded-xl bg-[#0C1B2A] text-white text-xs font-bold hover:bg-[#162E4A]"
-              >
-                Close Article
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Live Social Media Feed */}
-      <div className="border-t border-slate-200 bg-slate-50/50">
-        <SocialFeedSection
-          lang={lang}
-          onNavigate={onNavigate}
-          showHeaderAction={false}
-        />
-      </div>
-
-      {/* Bottom CTA Band */}
-      <CTASection lang={lang} onOpenRegister={onOpenRegister} />
+      <CTASection lang={lang} onNavigate={onNavigate} />
     </div>
   );
 };

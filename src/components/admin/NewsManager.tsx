@@ -135,7 +135,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
               placeholder="Search news, announcements, author..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 pr-4 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 text-slate-800 w-64 focus:outline-none focus:border-[#E59A1E]"
+              className="pl-9 pr-4 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 text-slate-800 w-64 focus:outline-none focus:border-[#C99A2E]"
             />
           </div>
 
@@ -146,7 +146,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
                 onClick={() => setCategoryFilter(cat)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
                   categoryFilter === cat
-                    ? 'bg-white text-[#0C1B2A] shadow-xs'
+                    ? 'bg-white text-[#15233A] shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
@@ -167,7 +167,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
 
           <button
             onClick={handleOpenCreate}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#F5B738] to-[#E59A1E] hover:from-[#FBC658] hover:to-[#F3A628] text-[#0C1B2A] text-xs font-bold shadow-xs hover:shadow transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] hover:from-[#D9B25A] hover:to-[#C99A2E] text-[#15233A] text-xs font-bold shadow-xs hover:shadow transition-all"
           >
             <Plus className="w-4 h-4" />
             <span>Publish Article</span>
@@ -184,7 +184,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
           >
             <div className="space-y-2.5 flex-1">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-[#B8780E] border border-amber-200/60">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-[#A57D22] border border-amber-200/60">
                   {art.category}
                 </span>
                 <span className="text-xs text-slate-400 flex items-center gap-1">
@@ -202,7 +202,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
                 </span>
               </div>
 
-              <h4 className="text-base font-bold text-[#0C1B2A] font-display">
+              <h4 className="text-base font-bold text-[#15233A] font-display">
                 {art.title}
               </h4>
 
@@ -227,7 +227,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
               <button
                 onClick={() => handleOpenEdit(art)}
                 title="Edit article"
-                className="p-2 rounded-xl text-slate-500 hover:text-[#0C1B2A] hover:bg-slate-100 transition-colors"
+                className="p-2 rounded-xl text-slate-500 hover:text-[#15233A] hover:bg-slate-100 transition-colors"
               >
                 <Edit3 className="w-4 h-4" />
               </button>
@@ -249,7 +249,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
           <p className="text-sm font-semibold text-slate-700">No articles found.</p>
           <button
             onClick={handleOpenCreate}
-            className="px-4 py-2 rounded-xl bg-[#0C1B2A] text-white text-xs font-semibold"
+            className="px-4 py-2 rounded-xl bg-[#15233A] text-white text-xs font-semibold"
           >
             Write an Article or Announcement
           </button>
@@ -263,11 +263,11 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
           aria-modal="true"
           className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
         >
-          <div className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 text-[#0C1B2A]">
+          <div className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 text-[#15233A]">
             <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50">
               <div className="flex items-center gap-2">
-                <Newspaper className="w-5 h-5 text-[#E59A1E]" />
-                <h3 className="text-lg font-bold font-display text-[#0C1B2A]">
+                <Newspaper className="w-5 h-5 text-[#C99A2E]" />
+                <h3 className="text-lg font-bold font-display text-[#15233A]">
                   {editingArticleId ? 'Edit News / Announcement' : 'Publish New Article'}
                 </h3>
               </div>
@@ -290,7 +290,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   placeholder="e.g. First Batch of 6 CA Firm Interns Successfully Placed"
-                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                 />
               </div>
 
@@ -307,7 +307,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
                         category: e.target.value as NewsArticle['category'],
                       })
                     }
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   >
                     {categories.map((c) => (
                       <option key={c} value={c}>
@@ -327,7 +327,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                     placeholder="e.g. 12 Sep 2026"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -340,7 +340,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
                     value={formData.readTime}
                     onChange={(e) => setFormData({ ...formData, readTime: e.target.value })}
                     placeholder="e.g. 3 min read"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
               </div>
@@ -355,7 +355,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
                   value={formData.author}
                   onChange={(e) => setFormData({ ...formData, author: e.target.value })}
                   placeholder="e.g. Jain Genius Editorial Wing"
-                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                 />
               </div>
 
@@ -369,7 +369,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
                   value={formData.excerpt}
                   onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
                   placeholder="Brief 1-2 sentence preview displayed on cards..."
-                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                 />
               </div>
 
@@ -382,7 +382,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
                   value={bodyText}
                   onChange={(e) => setBodyText(e.target.value)}
                   placeholder="Write the full message, discourse notes, or announcement here..."
-                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                 />
               </div>
 
@@ -404,7 +404,7 @@ export const NewsManager: React.FC<NewsManagerProps> = ({ onNavigate, showToast 
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#F5B738] to-[#E59A1E] text-[#0C1B2A] text-xs font-bold shadow-xs hover:shadow"
+                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] text-[#15233A] text-xs font-bold shadow-xs hover:shadow"
                 >
                   {editingArticleId ? 'Save Changes' : 'Publish to News'}
                 </button>

@@ -9,6 +9,8 @@ import { SiteSettingsManager } from './SiteSettingsManager';
 import { SocialFeedManager } from './SocialFeedManager';
 import { TestingManager } from './TestingManager';
 import { TrashManager } from './TrashManager';
+import { VideosManager } from './VideosManager';
+import { applyNov2026Update, UpdateReport } from '../../services/contentUpdates';
 import { Logo } from '../common/Logo';
 import {
   ShieldCheck,
@@ -32,6 +34,8 @@ import {
   Share2,
   Trash2,
   Edit3,
+  Video,
+  RefreshCw,
 } from 'lucide-react';
 
 interface AdminDashboardProps {
@@ -47,6 +51,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
     testimonials,
     settings,
     socialPosts,
+    videos,
     logs,
     isAuthenticated,
     login,
@@ -61,9 +66,20 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
   const [pinInput, setPinInput] = useState('');
   const [pinError, setPinError] = useState(false);
   const [activeTab, setActiveTab] = useState<
-    'overview' | 'events' | 'gallery' | 'news' | 'social' | 'testimonials' | 'settings' | 'testing' | 'trash'
+    'overview' | 'events' | 'gallery' | 'news' | 'social' | 'videos' | 'testimonials' | 'settings' | 'testing' | 'trash'
   >('overview');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [updateRunning, setUpdateRunning] = useState(false);
+  const [updateReport, setUpdateReport] = useState<UpdateReport | null>(null);
+
+  const runNov2026Update = async () => {
+    setUpdateRunning(true);
+    try {
+      setUpdateReport(await applyNov2026Update());
+    } finally {
+      setUpdateRunning(false);
+    }
+  };
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -87,13 +103,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
   // --- If Not Authenticated, Display Dignified Admin Login Screen ---
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#081320] flex items-center justify-center p-4 sm:p-6 text-[#FAF8F5]">
-        <div className="w-full max-w-md bg-[#0C1B2A] border border-[#E59A1E]/30 rounded-3xl p-8 sm:p-10 shadow-2xl space-y-6 relative overflow-hidden">
+      <div className="min-h-screen bg-[#0E1828] flex items-center justify-center p-4 sm:p-6 text-[#FFFFFF]">
+        <div className="w-full max-w-md bg-[#15233A] border border-[#C99A2E]/30 rounded-3xl p-8 sm:p-10 shadow-2xl space-y-6 relative overflow-hidden">
           {/* Subtle Ambient Glow */}
-          <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#E59A1E]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#C99A2E]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="text-center space-y-3">
-            <div className="inline-flex p-3.5 rounded-2xl bg-[#E59A1E]/15 border border-[#E59A1E]/30 text-[#F3A628] mb-1">
+            <div className="inline-flex p-3.5 rounded-2xl bg-[#C99A2E]/15 border border-[#C99A2E]/30 text-[#C99A2E] mb-1">
               <ShieldCheck className="w-8 h-8" />
             </div>
 
@@ -122,7 +138,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
                     if (pinError) setPinError(false);
                   }}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#081320] border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#E59A1E] transition-colors"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0E1828] border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#C99A2E] transition-colors"
                 />
               </div>
 
@@ -136,7 +152,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
 
             <button
               type="submit"
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-[#F5B738] to-[#E59A1E] hover:from-[#FBC658] hover:to-[#F3A628] text-[#0C1B2A] font-bold text-sm shadow-md hover:shadow-lg transition-all"
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] hover:from-[#D9B25A] hover:to-[#C99A2E] text-[#15233A] font-bold text-sm shadow-md hover:shadow-lg transition-all"
             >
               Sign In to Admin Dashboard
             </button>
@@ -157,13 +173,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
 
   // --- Authenticated Admin Dashboard Layout ---
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-[#0C1B2A] flex flex-col">
+    <div className="min-h-screen bg-[#FFFFFF] text-[#15233A] flex flex-col">
       {/* Toast Floating Notification */}
       {toastMessage && (
         <div
           role="status"
           aria-live="polite"
-          className="fixed bottom-6 right-6 z-50 bg-[#0C1B2A] text-white px-5 py-3 rounded-2xl shadow-xl border border-[#E59A1E]/40 flex items-center gap-3 animate-fade-in"
+          className="fixed bottom-6 right-6 z-50 bg-[#15233A] text-white px-5 py-3 rounded-2xl shadow-xl border border-[#C99A2E]/40 flex items-center gap-3 animate-fade-in"
         >
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span className="text-xs font-semibold">{toastMessage}</span>
@@ -171,21 +187,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
       )}
 
       {/* Top Admin Navigation Bar */}
-      <header className="bg-[#0C1B2A] text-white border-b border-[#E59A1E]/20 sticky top-0 z-30 shadow-md">
+      <header className="bg-[#15233A] text-white border-b border-[#C99A2E]/20 sticky top-0 z-30 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <button
               onClick={() => onNavigate('home')}
               className="text-left group flex items-center gap-2"
             >
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#F5B738] to-[#E59A1E] text-[#0C1B2A] flex items-center justify-center font-black text-sm">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#C99A2E] to-[#C99A2E] text-[#15233A] flex items-center justify-center font-black text-sm">
                 JG
               </div>
               <div className="hidden sm:block">
-                <div className="text-xs font-black tracking-wide text-[#FAF8F5] uppercase">
+                <div className="text-xs font-black tracking-wide text-[#FFFFFF] uppercase">
                   Jain Genius
                 </div>
-                <div className="text-[10px] text-[#F3A628] font-bold">Admin Central</div>
+                <div className="text-[10px] text-[#C99A2E] font-bold">Admin Central</div>
               </div>
             </button>
 
@@ -214,7 +230,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
                 setLiveEditMode(true);
                 onNavigate('home');
               }}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#E59A1E] hover:bg-[#F3A628] text-[#0C1B2A] font-bold transition-all shadow-xs cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#C99A2E] hover:bg-[#C99A2E] text-[#15233A] font-bold transition-all shadow-xs cursor-pointer"
             >
               <Edit3 className="w-3.5 h-3.5" />
               <span>Live Edit Website</span>
@@ -224,7 +240,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
               onClick={() => onNavigate('home')}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 text-slate-200 transition-colors font-medium cursor-pointer"
             >
-              <Eye className="w-3.5 h-3.5 text-[#E59A1E]" />
+              <Eye className="w-3.5 h-3.5 text-[#C99A2E]" />
               <span className="hidden sm:inline">View Public Website</span>
               <span className="sm:hidden">Public</span>
             </button>
@@ -245,7 +261,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
             onClick={() => setActiveTab('overview')}
             className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 whitespace-nowrap transition-colors ${
               activeTab === 'overview'
-                ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold shadow-xs'
+                ? 'bg-[#C99A2E] text-[#15233A] font-bold shadow-xs'
                 : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
@@ -257,7 +273,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
             onClick={() => setActiveTab('events')}
             className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 whitespace-nowrap transition-colors ${
               activeTab === 'events'
-                ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold shadow-xs'
+                ? 'bg-[#C99A2E] text-[#15233A] font-bold shadow-xs'
                 : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
@@ -269,7 +285,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
             onClick={() => setActiveTab('gallery')}
             className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 whitespace-nowrap transition-colors ${
               activeTab === 'gallery'
-                ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold shadow-xs'
+                ? 'bg-[#C99A2E] text-[#15233A] font-bold shadow-xs'
                 : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
@@ -281,7 +297,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
             onClick={() => setActiveTab('news')}
             className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 whitespace-nowrap transition-colors ${
               activeTab === 'news'
-                ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold shadow-xs'
+                ? 'bg-[#C99A2E] text-[#15233A] font-bold shadow-xs'
                 : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
@@ -293,7 +309,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
             onClick={() => setActiveTab('social')}
             className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 whitespace-nowrap transition-colors ${
               activeTab === 'social'
-                ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold shadow-xs'
+                ? 'bg-[#C99A2E] text-[#15233A] font-bold shadow-xs'
                 : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
@@ -302,10 +318,22 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
           </button>
 
           <button
+            onClick={() => setActiveTab('videos')}
+            className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 whitespace-nowrap transition-colors ${
+              activeTab === 'videos'
+                ? 'bg-[#C99A2E] text-[#15233A] font-bold shadow-xs'
+                : 'text-slate-300 hover:text-white hover:bg-white/5'
+            }`}
+          >
+            <Video className="w-3.5 h-3.5" />
+            <span>Videos ({videos.filter((v) => v.url).length}/5)</span>
+          </button>
+
+          <button
             onClick={() => setActiveTab('testimonials')}
             className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 whitespace-nowrap transition-colors ${
               activeTab === 'testimonials'
-                ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold shadow-xs'
+                ? 'bg-[#C99A2E] text-[#15233A] font-bold shadow-xs'
                 : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
@@ -317,7 +345,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
             onClick={() => setActiveTab('settings')}
             className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 whitespace-nowrap transition-colors ${
               activeTab === 'settings'
-                ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold shadow-xs'
+                ? 'bg-[#C99A2E] text-[#15233A] font-bold shadow-xs'
                 : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
@@ -329,7 +357,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
             onClick={() => setActiveTab('testing')}
             className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 whitespace-nowrap transition-colors ${
               activeTab === 'testing'
-                ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold shadow-xs'
+                ? 'bg-[#C99A2E] text-[#15233A] font-bold shadow-xs'
                 : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
@@ -359,7 +387,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
             {/* Greeting & Headline */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-bold font-display text-[#0C1B2A]">
+                <h2 className="text-2xl font-bold font-display text-[#15233A]">
                   Admin Command Hub
                 </h2>
                 <p className="text-xs text-slate-500">
@@ -372,14 +400,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
                   onClick={() => onNavigate('home')}
                   className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 shadow-xs"
                 >
-                  <Eye className="w-3.5 h-3.5 text-[#E59A1E]" />
+                  <Eye className="w-3.5 h-3.5 text-[#C99A2E]" />
                   <span>Preview Live Website</span>
                 </button>
               </div>
             </div>
 
             {/* Firebase Live Cloud Database Card */}
-            <div className="bg-gradient-to-r from-[#0C1B2A] to-[#162E4A] rounded-3xl p-6 border border-[#E59A1E]/30 text-white shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="bg-gradient-to-r from-[#15233A] to-[#1E3050] rounded-3xl p-6 border border-[#C99A2E]/30 text-white shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2">
                   <span className="relative flex h-2.5 w-2.5">
@@ -390,11 +418,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
                     Google Cloud Firestore Real-Time Database Active
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-[#FAF8F5] font-display">
+                <h3 className="text-base font-bold text-[#FFFFFF] font-display">
                   Live Database Connected & Bidirectionally Synchronized
                 </h3>
                 <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
-                  All additions, modifications, and deletions made in this admin dashboard are persisted immediately in Firestore (Project: <code className="bg-black/30 px-1.5 py-0.5 rounded text-[#F5B738] font-mono text-[11px]">studio-3012200389-9b4f3</code>) and stream in real-time across public visitors and all devices without requiring page refreshes.
+                  All additions, modifications, and deletions made in this admin dashboard are persisted immediately in Firestore (Project: <code className="bg-black/30 px-1.5 py-0.5 rounded text-[#C99A2E] font-mono text-[11px]">studio-3012200389-9b4f3</code>) and stream in real-time across public visitors and all devices without requiring page refreshes.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 shrink-0">
@@ -415,21 +443,54 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
               </div>
             </div>
 
+            {/* One-click content update for the Nov 2026 brief */}
+            <div className="bg-white rounded-lg p-6 border-2 border-[#C99A2E]/50 shadow-sm space-y-3">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <h3 className="text-lg font-display text-[#15233A]">Nov 2026 site update</h3>
+                  <p className="text-sm text-slate-600 max-w-2xl">
+                    Adds the new events, gallery cards and news articles from the developer brief, renames the
+                    "3 Days!!!! Youth Workshop" event, and updates the Instagram, X, Telegram and email settings.
+                    Safe to run more than once: it never creates duplicates.
+                  </p>
+                </div>
+                <button
+                  onClick={runNov2026Update}
+                  disabled={updateRunning}
+                  className="btn-primary shrink-0 disabled:opacity-50"
+                >
+                  <RefreshCw className={`w-4 h-4 ${updateRunning ? 'animate-spin' : ''}`} />
+                  {updateRunning ? 'Applying…' : 'Apply update'}
+                </button>
+              </div>
+              {updateReport && (
+                <ul
+                  className={`text-sm rounded-lg p-4 space-y-1 ${
+                    updateReport.ok ? 'bg-emerald-50 text-emerald-900' : 'bg-red-50 text-red-800'
+                  }`}
+                >
+                  {updateReport.lines.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
             {/* Quick Metrics Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
               <div
                 onClick={() => setActiveTab('events')}
-                className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-xs hover:border-[#E59A1E] cursor-pointer transition-all space-y-2 group"
+                className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-xs hover:border-[#C99A2E] cursor-pointer transition-all space-y-2 group"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                     Events
                   </span>
-                  <div className="w-8 h-8 rounded-xl bg-amber-50 text-[#E59A1E] flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-8 h-8 rounded-xl bg-amber-50 text-[#C99A2E] flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Calendar className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="text-3xl font-extrabold text-[#0C1B2A] font-display">
+                <div className="text-3xl font-extrabold text-[#15233A] font-display">
                   {events.length}
                 </div>
                 <p className="text-[11px] text-slate-400">
@@ -439,7 +500,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
 
               <div
                 onClick={() => setActiveTab('gallery')}
-                className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-xs hover:border-[#E59A1E] cursor-pointer transition-all space-y-2 group"
+                className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-xs hover:border-[#C99A2E] cursor-pointer transition-all space-y-2 group"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -449,7 +510,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
                     <Camera className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="text-3xl font-extrabold text-[#0C1B2A] font-display">
+                <div className="text-3xl font-extrabold text-[#15233A] font-display">
                   {gallery.length}
                 </div>
                 <p className="text-[11px] text-slate-400">Archived photos & session captures</p>
@@ -457,7 +518,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
 
               <div
                 onClick={() => setActiveTab('news')}
-                className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-xs hover:border-[#E59A1E] cursor-pointer transition-all space-y-2 group"
+                className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-xs hover:border-[#C99A2E] cursor-pointer transition-all space-y-2 group"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -467,7 +528,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
                     <Newspaper className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="text-3xl font-extrabold text-[#0C1B2A] font-display">
+                <div className="text-3xl font-extrabold text-[#15233A] font-display">
                   {news.length}
                 </div>
                 <p className="text-[11px] text-slate-400">Published news & thought pieces</p>
@@ -475,7 +536,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
 
               <div
                 onClick={() => setActiveTab('social')}
-                className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-xs hover:border-[#E59A1E] cursor-pointer transition-all space-y-2 group"
+                className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-xs hover:border-[#C99A2E] cursor-pointer transition-all space-y-2 group"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -485,7 +546,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
                     <Share2 className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="text-3xl font-extrabold text-[#0C1B2A] font-display">
+                <div className="text-3xl font-extrabold text-[#15233A] font-display">
                   {socialPosts.length}
                 </div>
                 <p className="text-[11px] text-slate-400">Live feeds & video embeds</p>
@@ -493,7 +554,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
 
               <div
                 onClick={() => setActiveTab('testimonials')}
-                className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-xs hover:border-[#E59A1E] cursor-pointer transition-all space-y-2 group"
+                className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-xs hover:border-[#C99A2E] cursor-pointer transition-all space-y-2 group"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -503,7 +564,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
                     <MessageSquare className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="text-3xl font-extrabold text-[#0C1B2A] font-display">
+                <div className="text-3xl font-extrabold text-[#15233A] font-display">
                   {testimonials.length}
                 </div>
                 <p className="text-[11px] text-slate-400">
@@ -516,9 +577,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
               <button
                 onClick={() => setActiveTab('events')}
-                className="p-5 rounded-3xl bg-gradient-to-br from-[#0C1B2A] to-[#162E4A] text-white text-left space-y-2 hover:shadow-lg transition-all group"
+                className="p-5 rounded-3xl bg-gradient-to-br from-[#15233A] to-[#1E3050] text-white text-left space-y-2 hover:shadow-lg transition-all group"
               >
-                <div className="w-8 h-8 rounded-xl bg-white/10 text-[#F5B738] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-8 h-8 rounded-xl bg-white/10 text-[#C99A2E] flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Plus className="w-4 h-4" />
                 </div>
                 <h4 className="text-sm font-bold font-display text-white">
@@ -531,9 +592,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
 
               <button
                 onClick={() => setActiveTab('gallery')}
-                className="p-5 rounded-3xl bg-gradient-to-br from-[#0C1B2A] to-[#162E4A] text-white text-left space-y-2 hover:shadow-lg transition-all group"
+                className="p-5 rounded-3xl bg-gradient-to-br from-[#15233A] to-[#1E3050] text-white text-left space-y-2 hover:shadow-lg transition-all group"
               >
-                <div className="w-8 h-8 rounded-xl bg-white/10 text-[#F5B738] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-8 h-8 rounded-xl bg-white/10 text-[#C99A2E] flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Camera className="w-4 h-4" />
                 </div>
                 <h4 className="text-sm font-bold font-display text-white">
@@ -546,9 +607,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
 
               <button
                 onClick={() => setActiveTab('news')}
-                className="p-5 rounded-3xl bg-gradient-to-br from-[#0C1B2A] to-[#162E4A] text-white text-left space-y-2 hover:shadow-lg transition-all group"
+                className="p-5 rounded-3xl bg-gradient-to-br from-[#15233A] to-[#1E3050] text-white text-left space-y-2 hover:shadow-lg transition-all group"
               >
-                <div className="w-8 h-8 rounded-xl bg-white/10 text-[#F5B738] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-8 h-8 rounded-xl bg-white/10 text-[#C99A2E] flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Newspaper className="w-4 h-4" />
                 </div>
                 <h4 className="text-sm font-bold font-display text-white">
@@ -561,9 +622,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
 
               <button
                 onClick={() => setActiveTab('social')}
-                className="p-5 rounded-3xl bg-gradient-to-br from-[#0C1B2A] to-[#162E4A] text-white text-left space-y-2 hover:shadow-lg transition-all group"
+                className="p-5 rounded-3xl bg-gradient-to-br from-[#15233A] to-[#1E3050] text-white text-left space-y-2 hover:shadow-lg transition-all group"
               >
-                <div className="w-8 h-8 rounded-xl bg-white/10 text-[#F5B738] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-8 h-8 rounded-xl bg-white/10 text-[#C99A2E] flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Share2 className="w-4 h-4" />
                 </div>
                 <h4 className="text-sm font-bold font-display text-white">
@@ -576,9 +637,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
 
               <button
                 onClick={() => setActiveTab('settings')}
-                className="p-5 rounded-3xl bg-gradient-to-br from-[#0C1B2A] to-[#162E4A] text-white text-left space-y-2 hover:shadow-lg transition-all group"
+                className="p-5 rounded-3xl bg-gradient-to-br from-[#15233A] to-[#1E3050] text-white text-left space-y-2 hover:shadow-lg transition-all group"
               >
-                <div className="w-8 h-8 rounded-xl bg-white/10 text-[#F5B738] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-8 h-8 rounded-xl bg-white/10 text-[#C99A2E] flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Settings className="w-4 h-4" />
                 </div>
                 <h4 className="text-sm font-bold font-display text-white">
@@ -591,9 +652,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
 
               <button
                 onClick={() => setActiveTab('testing')}
-                className="p-5 rounded-3xl bg-gradient-to-br from-[#0C1B2A] to-[#1a385c] text-white text-left space-y-2 hover:shadow-lg transition-all group border border-[#E59A1E]/30"
+                className="p-5 rounded-3xl bg-gradient-to-br from-[#15233A] to-[#1a385c] text-white text-left space-y-2 hover:shadow-lg transition-all group border border-[#C99A2E]/30"
               >
-                <div className="w-8 h-8 rounded-xl bg-[#E59A1E]/20 text-[#F5B738] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-8 h-8 rounded-xl bg-[#C99A2E]/20 text-[#C99A2E] flex items-center justify-center group-hover:scale-110 transition-transform">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <h4 className="text-sm font-bold font-display text-white">
@@ -609,8 +670,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
             <div className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-xs space-y-4">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                 <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-[#E59A1E]" />
-                  <h3 className="text-sm font-bold text-[#0C1B2A] font-display">
+                  <Clock className="w-4 h-4 text-[#C99A2E]" />
+                  <h3 className="text-sm font-bold text-[#15233A] font-display">
                     Recent Administrative Changes & Audit Log
                   </h3>
                 </div>
@@ -673,6 +734,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, lang
         {/* Tab 5: Social Media Hub */}
         {activeTab === 'social' && (
           <SocialFeedManager onNavigate={onNavigate} showToast={showToast} />
+        )}
+
+        {/* Videos (Media > Videos) */}
+        {activeTab === 'videos' && (
+          <VideosManager onNavigate={onNavigate} showToast={showToast} />
         )}
 
         {/* Tab 6: Testimonials */}

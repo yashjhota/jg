@@ -54,8 +54,8 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
   });
 
   // Color Contrast Sandbox State
-  const [hexBg, setHexBg] = useState('#FAF8F5');
-  const [hexFg, setHexFg] = useState('#0C1B2A');
+  const [hexBg, setHexBg] = useState('#FFFFFF');
+  const [hexFg, setHexFg] = useState('#15233A');
 
   // Auto-run test suite on initial mount if not yet executed
   useEffect(() => {
@@ -126,16 +126,16 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
   return (
     <div className="space-y-8">
       {/* Header Banner */}
-      <div className="bg-[#0C1B2A] rounded-3xl p-6 sm:p-8 border border-[#E59A1E]/30 text-white shadow-xl relative overflow-hidden">
-        <div className="absolute -right-16 -top-16 w-64 h-64 bg-[#E59A1E]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="bg-[#15233A] rounded-3xl p-6 sm:p-8 border border-[#C99A2E]/30 text-white shadow-xl relative overflow-hidden">
+        <div className="absolute -right-16 -top-16 w-64 h-64 bg-[#C99A2E]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E59A1E]/15 border border-[#E59A1E]/30 text-[#F5B738] text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C99A2E]/15 border border-[#C99A2E]/30 text-[#C99A2E] text-xs font-bold uppercase tracking-wider">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Full-Stack Quality Assurance & Verification Suite</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold font-display text-[#FAF8F5]">
+            <h2 className="text-2xl sm:text-3xl font-bold font-display text-[#FFFFFF]">
               Automated Testing & Diagnostic Lab
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
@@ -150,7 +150,7 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
               className={`px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 shadow-md transition-all ${
                 isRunning
                   ? 'bg-slate-700 text-slate-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-[#F5B738] to-[#E59A1E] text-[#0C1B2A] hover:brightness-110'
+                  : 'bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] text-[#15233A] hover:brightness-110'
               }`}
             >
               {isRunning ? (
@@ -171,7 +171,7 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
               disabled={!summary || isRunning}
               className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 transition-all disabled:opacity-50"
             >
-              <FileDown className="w-4 h-4 text-[#F5B738]" />
+              <FileDown className="w-4 h-4 text-[#C99A2E]" />
               <span>Export Report (PDF)</span>
             </button>
 
@@ -195,7 +195,7 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
             </div>
             <div className="w-full bg-white/10 rounded-full h-2 overflow-hidden">
               <div
-                className="bg-gradient-to-r from-[#F5B738] to-[#E59A1E] h-full transition-all duration-300"
+                className="bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] h-full transition-all duration-300"
                 style={{ width: `${Math.min(100, Math.round((progressCount / TEST_CASE_COUNT) * 100))}%` }}
               />
             </div>
@@ -211,7 +211,7 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
               <span className="text-xs font-semibold uppercase tracking-wider">Total Tests</span>
               <Layers className="w-4 h-4 text-slate-400" />
             </div>
-            <div className="text-2xl font-bold font-display text-[#0C1B2A]">{summary.total}</div>
+            <div className="text-2xl font-bold font-display text-[#15233A]">{summary.total}</div>
             <div className="text-[11px] text-slate-500 mt-1">Multi-Category Assertions</div>
           </div>
 
@@ -238,16 +238,16 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
               <span className="text-xs font-semibold uppercase tracking-wider">Execution Time</span>
               <Clock className="w-4 h-4 text-slate-400" />
             </div>
-            <div className="text-2xl font-bold font-display text-[#0C1B2A]">{summary.durationMs} ms</div>
+            <div className="text-2xl font-bold font-display text-[#15233A]">{summary.durationMs} ms</div>
             <div className="text-[11px] text-slate-500 mt-1">Low Overhead Execution</div>
           </div>
 
           <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs col-span-2 sm:col-span-1">
-            <div className="flex items-center justify-between text-[#E59A1E] mb-1">
+            <div className="flex items-center justify-between text-[#C99A2E] mb-1">
               <span className="text-xs font-semibold uppercase tracking-wider">Health Score</span>
-              <Activity className="w-4 h-4 text-[#E59A1E]" />
+              <Activity className="w-4 h-4 text-[#C99A2E]" />
             </div>
-            <div className="text-2xl font-bold font-display text-[#E59A1E]">{summary.healthScore} / 100</div>
+            <div className="text-2xl font-bold font-display text-[#C99A2E]">{summary.healthScore} / 100</div>
             <div className="text-[11px] text-emerald-600 font-semibold mt-1">Grade A+ Production</div>
           </div>
         </div>
@@ -275,7 +275,7 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
                   onClick={() => setActiveCategoryFilter(tab.id as any)}
                   className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap transition-colors ${
                     isActive
-                      ? 'bg-[#0C1B2A] text-white shadow-xs'
+                      ? 'bg-[#15233A] text-white shadow-xs'
                       : 'text-slate-600 hover:bg-slate-100'
                   }`}
                 >
@@ -294,7 +294,7 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search test assertions..."
-              className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#E59A1E]"
+              className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#C99A2E]"
             />
           </div>
         </div>
@@ -338,7 +338,7 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
 
                       <div className="space-y-0.5">
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-xs sm:text-sm font-bold text-[#0C1B2A]">
+                          <span className="text-xs sm:text-sm font-bold text-[#15233A]">
                             {test.name}
                           </span>
                           <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-500">
@@ -387,11 +387,11 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
       </div>
 
       {/* Interactive QA Sandbox / Playground */}
-      <div className="bg-[#FAF8F5] rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-6">
+      <div className="bg-[#FFFFFF] rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-6">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <Sliders className="w-4 h-4 text-[#E59A1E]" />
-            <h3 className="text-lg font-bold font-display text-[#0C1B2A]">
+            <Sliders className="w-4 h-4 text-[#C99A2E]" />
+            <h3 className="text-lg font-bold font-display text-[#15233A]">
               Live Interactive Unit & Algorithm Playground
             </h3>
           </div>
@@ -414,7 +414,7 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
                 type="text"
                 value={sandboxPhone}
                 onChange={(e) => setSandboxPhone(e.target.value)}
-                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:border-[#E59A1E]"
+                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:border-[#C99A2E]"
               />
             </div>
 
@@ -447,7 +447,7 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
                 max="10"
                 value={sandboxScores.analytical}
                 onChange={(e) => setSandboxScores({ ...sandboxScores, analytical: Number(e.target.value) })}
-                className="w-full accent-[#E59A1E]"
+                className="w-full accent-[#C99A2E]"
               />
 
               <div className="flex items-center justify-between text-[11px]">
@@ -460,13 +460,13 @@ export const TestingManager: React.FC<TestingManagerProps> = ({ showToast }) => 
                 max="10"
                 value={sandboxScores.interpersonal}
                 onChange={(e) => setSandboxScores({ ...sandboxScores, interpersonal: Number(e.target.value) })}
-                className="w-full accent-[#E59A1E]"
+                className="w-full accent-[#C99A2E]"
               />
             </div>
 
             <div className="p-3 bg-slate-50 rounded-xl space-y-1 text-xs">
               <div className="text-[10px] text-slate-400 font-bold uppercase">Recommended Path</div>
-              <div className="font-bold text-[#0C1B2A] line-clamp-1">{careerRecResult.recommendedTrack}</div>
+              <div className="font-bold text-[#15233A] line-clamp-1">{careerRecResult.recommendedTrack}</div>
               <div className="text-[10px] text-emerald-600 font-semibold">Confidence: {careerRecResult.confidence}%</div>
             </div>
           </div>

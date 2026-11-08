@@ -79,7 +79,7 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
             type="button"
             onClick={() => setMode('upload')}
             className={`px-2 py-0.5 rounded font-medium transition-colors ${
-              mode === 'upload' ? 'bg-[#0C1B2A] text-white' : 'text-slate-500 hover:text-slate-800'
+              mode === 'upload' ? 'bg-[#15233A] text-white' : 'text-slate-500 hover:text-slate-800'
             }`}
           >
             Upload File
@@ -89,7 +89,7 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
             type="button"
             onClick={() => setMode('url')}
             className={`px-2 py-0.5 rounded font-medium transition-colors ${
-              mode === 'url' ? 'bg-[#0C1B2A] text-white' : 'text-slate-500 hover:text-slate-800'
+              mode === 'url' ? 'bg-[#15233A] text-white' : 'text-slate-500 hover:text-slate-800'
             }`}
           >
             Web URL
@@ -141,7 +141,7 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
               onClick={() => fileInputRef.current?.click()}
               className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all ${
                 isDragging
-                  ? 'border-[#E59A1E] bg-[#FFFBF0]'
+                  ? 'border-[#C99A2E] bg-[#FFFBF0]'
                   : 'border-slate-300 hover:border-slate-400 bg-slate-50/70 hover:bg-slate-50'
               }`}
             >
@@ -162,7 +162,7 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
                 </div>
                 <div className="space-y-0.5">
                   <p className="text-xs font-semibold text-slate-700">
-                    <span className="text-[#B8780E]">Click to upload</span> or drag and drop
+                    <span className="text-[#A57D22]">Click to upload</span> or drag and drop
                   </p>
                   <p className="text-[11px] text-slate-400">PNG, JPG, WebP (auto-optimized)</p>
                   <p className="text-[10px] text-slate-400 italic">{aspectHint}</p>
@@ -178,13 +178,13 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
                   value={urlInput}
                   onChange={(e) => setUrlInput(e.target.value)}
                   placeholder={placeholder}
-                  className="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 text-slate-800 focus:outline-none focus:border-[#E59A1E]"
+                  className="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 text-slate-800 focus:outline-none focus:border-[#C99A2E]"
                 />
               </div>
               <button
                 type="button"
                 onClick={applyUrl}
-                className="px-4 py-2 rounded-xl bg-[#0C1B2A] hover:bg-[#162E4A] text-white text-xs font-semibold transition-colors shrink-0 flex items-center gap-1"
+                className="px-4 py-2 rounded-xl bg-[#15233A] hover:bg-[#1E3050] text-white text-xs font-semibold transition-colors shrink-0 flex items-center gap-1"
               >
                 <Check className="w-3.5 h-3.5" />
                 <span>Apply</span>

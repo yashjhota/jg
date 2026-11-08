@@ -122,10 +122,10 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
   return (
     <div className="space-y-8 max-w-5xl mx-auto">
       {/* Overview Banner */}
-      <div className="bg-gradient-to-r from-[#0C1B2A] to-[#162E4A] rounded-3xl p-6 sm:p-8 text-white border border-[#E59A1E]/30 shadow-lg relative overflow-hidden">
+      <div className="bg-gradient-to-r from-[#15233A] to-[#1E3050] rounded-3xl p-6 sm:p-8 text-white border border-[#C99A2E]/30 shadow-lg relative overflow-hidden">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E59A1E]/20 text-[#F3A628] text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C99A2E]/20 text-[#C99A2E] text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Full Site Management Privileges</span>
             </div>
@@ -141,10 +141,10 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
           <button
             onClick={handleSubmit}
             disabled={isSaving}
-            className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#F5B738] to-[#E59A1E] hover:from-[#FBC658] hover:to-[#F3A628] text-[#0C1B2A] font-bold text-sm shadow-md hover:shadow-lg transition-all shrink-0 cursor-pointer disabled:opacity-50"
+            className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] hover:from-[#D9B25A] hover:to-[#C99A2E] text-[#15233A] font-bold text-sm shadow-md hover:shadow-lg transition-all shrink-0 cursor-pointer disabled:opacity-50"
           >
             {isSaving ? (
-              <Loader2 className="w-4 h-4 animate-spin text-[#0C1B2A]" />
+              <Loader2 className="w-4 h-4 animate-spin text-[#15233A]" />
             ) : (
               <Save className="w-4 h-4" />
             )}
@@ -163,7 +163,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 <Instagram className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-[#0C1B2A] font-display">
+                <h3 className="text-lg font-bold text-[#15233A] font-display">
                   Social Media Presence & Public Handles
                 </h3>
                 <p className="text-xs text-slate-500">
@@ -187,8 +187,8 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 type="text"
                 value={formData.instagramHandle || ''}
                 onChange={(e) => setFormData({ ...formData, instagramHandle: e.target.value })}
-                placeholder="@jaingenius or @yashjhota"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                placeholder="@jaingenius.tcm"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
               <p className="text-[11px] text-slate-400 mt-1">
                 Rendered on social follow buttons, footer link cards, and public social feeds.
@@ -205,8 +205,8 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 type="url"
                 value={formData.instagramUrl || ''}
                 onChange={(e) => setFormData({ ...formData, instagramUrl: e.target.value })}
-                placeholder="https://www.instagram.com/jaingenius"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                placeholder="https://www.instagram.com/jaingenius.tcm/"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
               <p className="text-[11px] text-slate-400 mt-1">
                 Direct destination link opened when visitors tap on Instagram icons.
@@ -224,7 +224,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.youtubeUrl || ''}
                 onChange={(e) => setFormData({ ...formData, youtubeUrl: e.target.value })}
                 placeholder="https://www.youtube.com/@jaingenius"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
 
@@ -239,7 +239,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.youtubeHandle || ''}
                 onChange={(e) => setFormData({ ...formData, youtubeHandle: e.target.value })}
                 placeholder="@jaingenius"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
 
@@ -254,7 +254,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.telegramUrl || ''}
                 onChange={(e) => setFormData({ ...formData, telegramUrl: e.target.value })}
                 placeholder="https://t.me/jaingeniusorg"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
 
@@ -275,7 +275,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                   })
                 }
                 placeholder="https://chat.whatsapp.com/invite/..."
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
 
@@ -290,7 +290,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.twitterUrl || ''}
                 onChange={(e) => setFormData({ ...formData, twitterUrl: e.target.value })}
                 placeholder="https://x.com/jaingeniustcm"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
 
@@ -305,7 +305,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.memberPortalUrl || ''}
                 onChange={(e) => setFormData({ ...formData, memberPortalUrl: e.target.value })}
                 placeholder="https://jaingeniusorg.lovable.app/"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
           </div>
@@ -314,11 +314,11 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
         {/* SECTION 2: Organization Brand, Venue & Attribution */}
         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6">
           <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
-            <div className="w-10 h-10 rounded-2xl bg-amber-50 text-[#B8780E] flex items-center justify-center border border-amber-100">
+            <div className="w-10 h-10 rounded-2xl bg-amber-50 text-[#A57D22] flex items-center justify-center border border-amber-100">
               <Building2 className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-[#0C1B2A] font-display">
+              <h3 className="text-lg font-bold text-[#15233A] font-display">
                 Brand Identity, Headquarter Venue & Credits
               </h3>
               <p className="text-xs text-slate-500">
@@ -338,7 +338,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.initiativeOf || ''}
                 onChange={(e) => setFormData({ ...formData, initiativeOf: e.target.value })}
                 placeholder="Param Pujya Muniraj Shri Bhuvanbhushanvijayji Maharajsaheb"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
               <p className="text-[11px] text-slate-400 mt-1">
                 Displayed in the top navigation bar, hero banner, and official footer.
@@ -355,7 +355,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.tagline || ''}
                 onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
                 placeholder="The Change Makers"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
 
@@ -369,7 +369,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.targetAge || ''}
                 onChange={(e) => setFormData({ ...formData, targetAge: e.target.value })}
                 placeholder="Youth (Age 15–30)"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
 
@@ -383,14 +383,14 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.subTagline || ''}
                 onChange={(e) => setFormData({ ...formData, subTagline: e.target.value })}
                 placeholder="Build a generation of Jain change-makers who lead with values, professional excellence, and community seva."
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
 
             {/* Assembly Venue Address */}
             <div className="sm:col-span-2">
               <label className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-[#E59A1E]" />
+                <MapPin className="w-3.5 h-3.5 text-[#C99A2E]" />
                 <span>Headquarters / Regular Assembly Venue Address</span>
               </label>
               <input
@@ -398,7 +398,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.address || ''}
                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                 placeholder="Pathshala Hall, Chickpet Jain Temple, Chickpet, Bangalore, Karnataka, India"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
               <p className="text-[11px] text-slate-400 mt-1">
                 Shown on the public Contact page and event venue instructions.
@@ -408,7 +408,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
             {/* Designer / Developer Credit Name */}
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
-                <Palette className="w-3.5 h-3.5 text-[#E59A1E]" />
+                <Palette className="w-3.5 h-3.5 text-[#C99A2E]" />
                 <span>Footer Attribution / Designer Credit Name</span>
               </label>
               <input
@@ -416,7 +416,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.designerCreditName || ''}
                 onChange={(e) => setFormData({ ...formData, designerCreditName: e.target.value })}
                 placeholder="jhota"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
               <p className="text-[11px] text-slate-400 mt-1">
                 Appears in footer: "Designed & Developed by [name]".
@@ -426,7 +426,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
             {/* Designer Credit URL */}
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
-                <ExternalLink className="w-3.5 h-3.5 text-[#E59A1E]" />
+                <ExternalLink className="w-3.5 h-3.5 text-[#C99A2E]" />
                 <span>Designer Credit Instagram / Website Link</span>
               </label>
               <input
@@ -434,7 +434,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.designerCreditUrl || ''}
                 onChange={(e) => setFormData({ ...formData, designerCreditUrl: e.target.value })}
                 placeholder="https://www.instagram.com/yashjhota"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
           </div>
@@ -447,7 +447,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-[#0C1B2A] font-display">
+              <h3 className="text-lg font-bold text-[#15233A] font-display">
                 Live Metrics & Membership Deposit
               </h3>
               <p className="text-xs text-slate-500">
@@ -460,7 +460,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
             {/* Active Trainees Count */}
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5 text-[#E59A1E]" />
+                <Users className="w-3.5 h-3.5 text-[#C99A2E]" />
                 <span>Active Cohort Trainees</span>
               </label>
               <input
@@ -473,7 +473,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                     currentTraineesCount: parseInt(e.target.value, 10) || 0,
                   })
                 }
-                className="w-full px-4 py-2.5 text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-bold text-[#0C1B2A]"
+                className="w-full px-4 py-2.5 text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-bold text-[#15233A]"
               />
               <p className="text-[11px] text-slate-400 mt-1">Displayed in live stats banner.</p>
             </div>
@@ -481,7 +481,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
             {/* Programs Count */}
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
-                <GraduationCap className="w-3.5 h-3.5 text-[#E59A1E]" />
+                <GraduationCap className="w-3.5 h-3.5 text-[#C99A2E]" />
                 <span>Programs Run (Display)</span>
               </label>
               <input
@@ -489,14 +489,14 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.programsCount || '9+'}
                 onChange={(e) => setFormData({ ...formData, programsCount: e.target.value })}
                 placeholder="9+"
-                className="w-full px-4 py-2.5 text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-bold text-[#0C1B2A]"
+                className="w-full px-4 py-2.5 text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-bold text-[#15233A]"
               />
             </div>
 
             {/* Events Count */}
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-[#E59A1E]" />
+                <Calendar className="w-3.5 h-3.5 text-[#C99A2E]" />
                 <span>Events Held (Display)</span>
               </label>
               <input
@@ -504,14 +504,14 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.eventsCount || '12+'}
                 onChange={(e) => setFormData({ ...formData, eventsCount: e.target.value })}
                 placeholder="12+"
-                className="w-full px-4 py-2.5 text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-bold text-[#0C1B2A]"
+                className="w-full px-4 py-2.5 text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-bold text-[#15233A]"
               />
             </div>
 
             {/* Membership Deposit */}
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
-                <DollarSign className="w-3.5 h-3.5 text-[#E59A1E]" />
+                <DollarSign className="w-3.5 h-3.5 text-[#C99A2E]" />
                 <span>Refundable Deposit</span>
               </label>
               <input
@@ -519,7 +519,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.membershipDeposit || '₹1,000'}
                 onChange={(e) => setFormData({ ...formData, membershipDeposit: e.target.value })}
                 placeholder="₹1,000"
-                className="w-full px-4 py-2.5 text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-bold text-[#0C1B2A]"
+                className="w-full px-4 py-2.5 text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-bold text-[#15233A]"
               />
               <p className="text-[11px] text-slate-400 mt-1">100% refundable on shivir completion.</p>
             </div>
@@ -533,7 +533,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
               <Phone className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-[#0C1B2A] font-display">
+              <h3 className="text-lg font-bold text-[#15233A] font-display">
                 Helpline Numbers & Registration Pipeline
               </h3>
               <p className="text-xs text-slate-500">
@@ -552,7 +552,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.phoneDisplay || ''}
                 onChange={(e) => setFormData({ ...formData, phoneDisplay: e.target.value })}
                 placeholder="+91 94800 52108"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
 
@@ -565,21 +565,21 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.phone || ''}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 placeholder="9480052108"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
 
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5 text-[#E59A1E]" />
+                <Mail className="w-3.5 h-3.5 text-[#C99A2E]" />
                 <span>Enquiry Email Address</span>
               </label>
               <input
                 type="email"
                 value={formData.email || ''}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="jaingeniustcm@gmail.com"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                placeholder="admin@jaingenius.org"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
 
@@ -593,13 +593,13 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.whatsappGroupUrl || ''}
                 onChange={(e) => setFormData({ ...formData, whatsappGroupUrl: e.target.value })}
                 placeholder="https://wa.me/919480052108"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
 
             <div className="sm:col-span-2">
               <label className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
-                <ExternalLink className="w-3.5 h-3.5 text-[#E59A1E]" />
+                <ExternalLink className="w-3.5 h-3.5 text-[#C99A2E]" />
                 <span>Official Google Registration & Enquiry Form URL</span>
               </label>
               <input
@@ -607,7 +607,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.googleFormUrl || ''}
                 onChange={(e) => setFormData({ ...formData, googleFormUrl: e.target.value })}
                 placeholder="https://docs.google.com/forms/d/e/1FAIpQLSe-0lD9a..."
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
               <p className="text-[11px] text-slate-400 mt-1">
                 Submissions from the modal and public register buttons synchronize with this spreadsheet form.
@@ -619,11 +619,11 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
         {/* SECTION 5: Top Public Announcement Banner */}
         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6">
           <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
-            <div className="w-10 h-10 rounded-2xl bg-amber-50 text-[#B8780E] flex items-center justify-center border border-amber-100">
+            <div className="w-10 h-10 rounded-2xl bg-amber-50 text-[#A57D22] flex items-center justify-center border border-amber-100">
               <Bell className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-[#0C1B2A] font-display">
+              <h3 className="text-lg font-bold text-[#15233A] font-display">
                 Top Public Notice & Urgent Announcement Banner
               </h3>
               <p className="text-xs text-slate-500">
@@ -646,7 +646,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 onChange={(e) => setFormData({ ...formData, bannerEnabled: e.target.checked })}
                 className="sr-only peer"
               />
-              <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E59A1E]"></div>
+              <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#C99A2E]"></div>
             </label>
           </div>
 
@@ -660,7 +660,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.bannerText || ''}
                 onChange={(e) => setFormData({ ...formData, bannerText: e.target.value })}
                 placeholder="📢 Admissions open for Cohort 02. Sunday Youth Assembly at 2:30 PM..."
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
 
@@ -673,22 +673,22 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                 value={formData.bannerLinkText || ''}
                 onChange={(e) => setFormData({ ...formData, bannerLinkText: e.target.value })}
                 placeholder="View Events"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] focus:bg-white font-medium"
+                className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] focus:bg-white font-medium"
               />
             </div>
           </div>
         </div>
 
         {/* SECTION 6: Live Public Preview Card */}
-        <div className="bg-[#0C1B2A] rounded-3xl p-6 sm:p-8 text-white border border-[#E59A1E]/40 shadow-lg space-y-5">
+        <div className="bg-[#15233A] rounded-3xl p-6 sm:p-8 text-white border border-[#C99A2E]/40 shadow-lg space-y-5">
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
             <div className="flex items-center gap-2">
-              <Eye className="w-5 h-5 text-[#F3A628]" />
+              <Eye className="w-5 h-5 text-[#C99A2E]" />
               <h3 className="text-base font-bold text-white font-display">
                 Live Public Simulation Preview
               </h3>
             </div>
-            <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#E59A1E]/20 text-[#F3A628] border border-[#E59A1E]/30">
+            <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#C99A2E]/20 text-[#C99A2E] border border-[#C99A2E]/30">
               Immediate Visitor Experience
             </span>
           </div>
@@ -696,12 +696,12 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
           <div className="space-y-4">
             {/* Top Banner Simulation */}
             {formData.bannerEnabled && (
-              <div className="p-3 rounded-xl bg-[#162E4A] border border-[#E59A1E]/30 text-xs text-slate-200 flex items-center justify-between gap-4">
+              <div className="p-3 rounded-xl bg-[#1E3050] border border-[#C99A2E]/30 text-xs text-slate-200 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-2 truncate">
-                  <span className="w-2 h-2 rounded-full bg-[#E59A1E] animate-pulse shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-[#C99A2E] animate-pulse shrink-0" />
                   <span className="truncate">{formData.bannerText}</span>
                 </div>
-                <span className="px-2.5 py-1 rounded-lg bg-[#E59A1E] text-[#0C1B2A] font-bold text-[10px] shrink-0">
+                <span className="px-2.5 py-1 rounded-lg bg-[#C99A2E] text-[#15233A] font-bold text-[10px] shrink-0">
                   {formData.bannerLinkText || 'Action'}
                 </span>
               </div>
@@ -709,7 +709,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
 
             {/* Social Pill Simulation */}
             <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#F3A628] block">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#C99A2E] block">
                 Social Badges As Seen By Public Visitors:
               </span>
               <div className="flex flex-wrap items-center gap-3">
@@ -720,7 +720,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                   className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-pink-500/10 border border-pink-500/30 text-xs font-semibold text-pink-300 hover:bg-pink-500/20"
                 >
                   <Instagram className="w-3.5 h-3.5 text-pink-400" />
-                  <span>Follow {formData.instagramHandle || '@jaingenius'}</span>
+                  <span>Follow {formData.instagramHandle || '@jaingenius.tcm'}</span>
                 </a>
 
                 {formData.youtubeUrl && (
@@ -761,7 +761,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
                   href={formData.designerCreditUrl || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#F3A628] font-bold underline ml-1"
+                  className="text-[#C99A2E] font-bold underline ml-1"
                 >
                   {formData.designerCreditName || 'jhota'}
                 </a>
@@ -780,10 +780,10 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
           <button
             type="submit"
             disabled={isSaving}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-[#F5B738] to-[#E59A1E] hover:from-[#FBC658] hover:to-[#F3A628] text-[#0C1B2A] font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer disabled:opacity-50"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] hover:from-[#D9B25A] hover:to-[#C99A2E] text-[#15233A] font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer disabled:opacity-50"
           >
             {isSaving ? (
-              <Loader2 className="w-4 h-4 animate-spin text-[#0C1B2A]" />
+              <Loader2 className="w-4 h-4 animate-spin text-[#15233A]" />
             ) : (
               <Save className="w-4 h-4" />
             )}
@@ -795,9 +795,9 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
       {/* SECTION 7: Backup, Export, JSON Restore & Diagnostics */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6">
         <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
-          <Settings className="w-5 h-5 text-[#E59A1E]" />
+          <Settings className="w-5 h-5 text-[#C99A2E]" />
           <div>
-            <h3 className="text-lg font-bold text-[#0C1B2A] font-display">
+            <h3 className="text-lg font-bold text-[#15233A] font-display">
               Data Backup, Export & System Recovery
             </h3>
             <p className="text-xs text-slate-500">
@@ -822,7 +822,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
             <button
               type="button"
               onClick={handleDownloadBackup}
-              className="px-4 py-2.5 rounded-xl bg-[#0C1B2A] hover:bg-[#162E4A] text-white text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer"
+              className="px-4 py-2.5 rounded-xl bg-[#15233A] hover:bg-[#1E3050] text-white text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer"
             >
               <ExternalLink className="w-3.5 h-3.5" />
               <span>Download Backup File</span>
@@ -863,7 +863,7 @@ export const SiteSettingsManager: React.FC<SiteSettingsManagerProps> = ({
               value={importJsonText}
               onChange={(e) => setImportJsonText(e.target.value)}
               placeholder="Paste JSON backup content here..."
-              className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 font-mono focus:outline-none focus:border-[#E59A1E]"
+              className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 font-mono focus:outline-none focus:border-[#C99A2E]"
             />
             {importError && <p className="text-xs text-red-600 font-medium">{importError}</p>}
             <div className="flex justify-end">

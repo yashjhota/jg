@@ -99,11 +99,11 @@ export const TrashBinModal: React.FC<TrashBinModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
       <div
-        className="w-full max-w-3xl max-h-[85vh] bg-[#0C1B2A] border border-[#E59A1E]/30 rounded-3xl shadow-2xl flex flex-col overflow-hidden text-slate-200 relative"
+        className="w-full max-w-3xl max-h-[85vh] bg-[#15233A] border border-[#C99A2E]/30 rounded-3xl shadow-2xl flex flex-col overflow-hidden text-slate-200 relative"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="p-6 border-b border-white/10 flex items-center justify-between bg-[#162E4A]/60">
+        <div className="p-6 border-b border-white/10 flex items-center justify-between bg-[#1E3050]/60">
           <div className="flex items-center gap-3">
             <div className="p-2.5 rounded-xl bg-red-500/20 text-red-400 border border-red-500/30">
               <Trash2 className="w-5 h-5" />
@@ -131,13 +131,13 @@ export const TrashBinModal: React.FC<TrashBinModalProps> = ({
         </div>
 
         {/* Filters and Actions Bar */}
-        <div className="px-6 py-3 border-b border-white/10 bg-[#081320] flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="px-6 py-3 border-b border-white/10 bg-[#0E1828] flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-1.5 overflow-x-auto py-1">
             <button
               onClick={() => setSelectedModule('all')}
               className={`px-3 py-1.5 rounded-lg font-medium transition-colors cursor-pointer ${
                 selectedModule === 'all'
-                  ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold'
+                  ? 'bg-[#C99A2E] text-[#15233A] font-bold'
                   : 'bg-white/5 text-slate-300 hover:bg-white/10'
               }`}
             >
@@ -147,7 +147,7 @@ export const TrashBinModal: React.FC<TrashBinModalProps> = ({
               onClick={() => setSelectedModule('social')}
               className={`px-3 py-1.5 rounded-lg font-medium transition-colors cursor-pointer ${
                 selectedModule === 'social'
-                  ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold'
+                  ? 'bg-[#C99A2E] text-[#15233A] font-bold'
                   : 'bg-white/5 text-slate-300 hover:bg-white/10'
               }`}
             >
@@ -157,7 +157,7 @@ export const TrashBinModal: React.FC<TrashBinModalProps> = ({
               onClick={() => setSelectedModule('events')}
               className={`px-3 py-1.5 rounded-lg font-medium transition-colors cursor-pointer ${
                 selectedModule === 'events'
-                  ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold'
+                  ? 'bg-[#C99A2E] text-[#15233A] font-bold'
                   : 'bg-white/5 text-slate-300 hover:bg-white/10'
               }`}
             >
@@ -167,7 +167,7 @@ export const TrashBinModal: React.FC<TrashBinModalProps> = ({
               onClick={() => setSelectedModule('gallery')}
               className={`px-3 py-1.5 rounded-lg font-medium transition-colors cursor-pointer ${
                 selectedModule === 'gallery'
-                  ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold'
+                  ? 'bg-[#C99A2E] text-[#15233A] font-bold'
                   : 'bg-white/5 text-slate-300 hover:bg-white/10'
               }`}
             >
@@ -177,7 +177,7 @@ export const TrashBinModal: React.FC<TrashBinModalProps> = ({
               onClick={() => setSelectedModule('news')}
               className={`px-3 py-1.5 rounded-lg font-medium transition-colors cursor-pointer ${
                 selectedModule === 'news'
-                  ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold'
+                  ? 'bg-[#C99A2E] text-[#15233A] font-bold'
                   : 'bg-white/5 text-slate-300 hover:bg-white/10'
               }`}
             >
@@ -187,7 +187,7 @@ export const TrashBinModal: React.FC<TrashBinModalProps> = ({
               onClick={() => setSelectedModule('testimonials')}
               className={`px-3 py-1.5 rounded-lg font-medium transition-colors cursor-pointer ${
                 selectedModule === 'testimonials'
-                  ? 'bg-[#E59A1E] text-[#0C1B2A] font-bold'
+                  ? 'bg-[#C99A2E] text-[#15233A] font-bold'
                   : 'bg-white/5 text-slate-300 hover:bg-white/10'
               }`}
             >
@@ -295,7 +295,7 @@ export const TrashBinModal: React.FC<TrashBinModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 bg-[#162E4A]/40 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+        <div className="p-4 bg-[#1E3050]/40 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
           <span>
             Restored items immediately reappear on the live frontend across all visitor browsers.
           </span>

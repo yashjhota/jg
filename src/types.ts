@@ -13,12 +13,26 @@ export type PageId =
   | 'contact'
   | 'admin'
   | 'walkthrough'
-  | 'exploration';
+  | 'exploration'
+  // Added in the Nov 2026 site update
+  | 'skill-topics'
+  | 'dac'
+  | 'member-journey'
+  | 'aadi-sparsh'
+  | 'youth-shivir'
+  | 'videos'
+  | 'social-feed'
+  | 'news-article';
+
+/** Navigate to a page; `param` carries e.g. the article id for 'news-article'. */
+export type NavigateFn = (page: PageId, param?: string) => void;
 
 export interface NavItem {
   id: PageId;
   labelEn: string;
   labelHi: string;
+  /** Present on the three dropdown menus. */
+  children?: NavItem[];
 }
 
 export interface HolisticPillar {
@@ -102,10 +116,30 @@ export interface EventItem {
   posterImage?: string;
   recap?: string;
   googleFormUrl?: string;
+  /** Page holding the full story, e.g. 'aadi-sparsh'. The card shows a "Read the full story" link. */
+  linkTo?: PageId;
+  /** ISO date used only for ordering when `date` is free text such as "Sep 2026". */
+  sortDate?: string;
   createdAt?: string;
   isDeleted?: boolean;
   deletedAt?: string | null;
   deletedBy?: string;
+}
+
+export type VideoKind = 'youtube' | 'instagram' | 'mp4' | '';
+
+/** One of the five fixed slots on Media > Videos. */
+export interface VideoSlot {
+  slotId: number;
+  url: string;
+  kind: VideoKind;
+  title: string;
+  description: string;
+  editedBy: string;
+  isFeatured?: boolean;
+  /** 9:16 video (reel / short / phone MP4). Kept vertical, never cropped to landscape. */
+  vertical?: boolean;
+  updatedAt?: string;
 }
 
 export interface TestimonialSlot {
@@ -243,7 +277,7 @@ export interface AdminActivityLog {
   id: string;
   timestamp: string;
   action: 'create' | 'update' | 'delete' | 'reset' | 'import' | 'auth';
-  module: 'events' | 'gallery' | 'news' | 'testimonials' | 'settings' | 'social' | 'system';
+  module: 'events' | 'gallery' | 'news' | 'testimonials' | 'settings' | 'social' | 'videos' | 'system';
   description: string;
 }
 

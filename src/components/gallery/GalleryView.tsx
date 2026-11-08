@@ -16,6 +16,8 @@ import {
   Plus,
 } from 'lucide-react';
 import { CTASection } from '../layout/CTASection';
+import { HScroller } from '../common/HScroller';
+import { ClampText } from '../common/ClampText';
 
 interface GalleryViewProps {
   lang: Language;
@@ -35,26 +37,31 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
   onShowToast,
 }) => {
   const { gallery, isAuthenticated, isLiveEditMode, moveToTrash } = useCMS();
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeMedia, setActiveMedia] = useState<GalleryItem | null>(null);
 
-  const categories = ['All', 'Youth Session', 'Discourse', 'Workshop', 'Shivir'];
-
-  const filteredItems = gallery
-    .filter((item) => !item.isDeleted)
-    .filter((item) => (selectedCategory === 'All' ? true : item.category === selectedCategory));
+  const categories: GalleryItem['category'][] = ['Youth Session', 'Discourse', 'Workshop', 'Shivir'];
+  const activeItems = gallery.filter((item) => !item.isDeleted);
+  // Newest additions first within each category
+  const byCategory = categories
+    .map((cat) => ({
+      cat,
+      items: activeItems
+        .filter((item) => item.category === cat)
+        .sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime()),
+    }))
+    .filter((group) => group.items.length > 0);
 
   return (
-    <div className="bg-[#FAF8F5] text-[#0C1B2A] min-h-screen">
+    <div className="bg-[#FFFFFF] text-[#15233A] min-h-screen">
       {/* Header */}
-      <section className="bg-[#0C1B2A] text-white py-20 border-b border-[#E59A1E]/30 relative overflow-hidden">
+      <section className="bg-[#15233A] text-white py-20 border-b border-[#C99A2E]/30 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E59A1E]/15 border border-[#E59A1E]/30 text-[#F3A628] text-xs font-bold uppercase tracking-widest">
-            <Camera className="w-3.5 h-3.5 text-[#E59A1E]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#C99A2E]/15 border border-[#C99A2E]/30 text-[#C99A2E] text-xs font-bold ">
+            <Camera className="w-3.5 h-3.5 text-[#C99A2E]" />
             <span>Community Moments</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-[#FAF8F5] tracking-tight font-display">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-[#FFFFFF] tracking-tight font-display">
             Photo & Assembly Gallery
           </h1>
 
@@ -65,63 +72,49 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
         </div>
       </section>
 
-      {/* Filter Tabs */}
-      <section className="py-4 sm:py-6 bg-white border-b border-slate-200 sticky top-[60px] sm:top-[72px] z-20 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto w-full sm:w-auto scrollbar-none touch-pan-x pb-1 sm:pb-0">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-2 hidden sm:inline">
-              Category:
-            </span>
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold transition-all border shrink-0 ${
-                  selectedCategory === cat
-                    ? 'bg-[#0C1B2A] text-white border-[#E59A1E]'
-                    : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-slate-300'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-2 justify-end sm:justify-auto">
+      {(isLiveEditMode || isAuthenticated) && (
+        <section className="py-3 bg-[#FBF5E8] border-b border-[#C99A2E]/20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end gap-2">
             {isLiveEditMode && isAuthenticated && (
               <button
                 onClick={onOpenAddGallery}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#E59A1E] hover:bg-[#F3A628] text-[#0C1B2A] text-xs font-bold transition-all shadow-sm cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#C99A2E] text-[#15233A] text-xs font-medium cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
-                <span>+ Add Photo</span>
+                <span>Add photo</span>
               </button>
             )}
-
-            <button
-              onClick={() => onNavigate('admin')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200/80 text-[#B8780E] text-xs font-semibold shrink-0 transition-colors cursor-pointer"
-            >
-              <Settings className="w-3.5 h-3.5" />
-              <span>Admin Manage</span>
-            </button>
+            {isAuthenticated && (
+              <button
+                onClick={() => onNavigate('admin')}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-[#A57D22] text-xs font-medium cursor-pointer"
+              >
+                <Settings className="w-3.5 h-3.5" />
+                <span>Admin manage</span>
+              </button>
+            )}
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Gallery Grid */}
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredItems.map((item) => (
+      {/* One scroller per category */}
+      {byCategory.map(({ cat, items }) => (
+      <section key={cat} className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="section-heading mb-6">{cat}</h2>
+        <HScroller
+          ariaLabel={`${cat} photos`}
+          items={items}
+          getKey={(item) => item.id}
+          renderItem={(item) => (
             <div
-              key={item.id}
-              className="group bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+              onClick={() => setActiveMedia(item)}
+              className="h-full cursor-pointer group bg-white border border-slate-200/90 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
             >
               {/* Admin Live Action Ribbon */}
               {isLiveEditMode && isAuthenticated && (
-                <div className="bg-[#0C1B2A] text-white px-3 py-1.5 flex items-center justify-between text-[11px] border-b border-[#E59A1E]/30 z-20">
-                  <span className="text-[#F3A628] font-bold flex items-center gap-1">
-                    <Sparkles className="w-3 h-3 text-[#E59A1E]" />
+                <div className="bg-[#15233A] text-white px-3 py-1.5 flex items-center justify-between text-[11px] border-b border-[#C99A2E]/30 z-20">
+                  <span className="text-[#C99A2E] font-bold flex items-center gap-1">
+                    <Sparkles className="w-3 h-3 text-[#C99A2E]" />
                     <span>Live Photo</span>
                   </span>
                   <div className="flex items-center gap-1.5">
@@ -130,7 +123,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
                         e.stopPropagation();
                         onOpenEditGallery?.(item);
                       }}
-                      className="px-2 py-0.5 rounded bg-white/10 hover:bg-[#E59A1E] hover:text-[#0C1B2A] text-[10px] font-semibold transition-colors cursor-pointer"
+                      className="px-2 py-0.5 rounded bg-white/10 hover:bg-[#C99A2E] hover:text-[#15233A] text-[10px] font-semibold transition-colors cursor-pointer"
                     >
                       Edit
                     </button>
@@ -149,7 +142,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
                 </div>
               )}
               {/* Media Card Preview */}
-              <div className="relative aspect-video bg-gradient-to-br from-[#0C1B2A] to-[#162E4A] overflow-hidden">
+              <div className="relative aspect-video bg-gradient-to-br from-[#15233A] to-[#1E3050] overflow-hidden">
                 {item.url ? (
                   <img
                     src={item.url}
@@ -159,7 +152,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
                 ) : (
                   <div className="p-6 h-full flex flex-col justify-between">
                     <div className="flex items-center justify-between">
-                      <span className="px-2.5 py-1 rounded-md bg-[#E59A1E]/20 text-[#F3A628] text-[11px] font-bold uppercase tracking-wider">
+                      <span className="px-2.5 py-1 rounded-md bg-[#C99A2E]/20 text-[#C99A2E] text-[11px] font-bold ">
                         {item.category}
                       </span>
                       <span className="text-xs font-semibold text-slate-400">
@@ -168,10 +161,10 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
                     </div>
 
                     <div className="text-white space-y-1">
-                      <span className="text-[10px] text-slate-400 block uppercase font-mono tracking-widest">
+                      <span className="text-[10px] text-slate-400 block font-mono ">
                         Archive Documentation
                       </span>
-                      <p className="text-sm font-bold font-display line-clamp-2 text-[#FAF8F5] group-hover:text-[#F3A628] transition-colors">
+                      <p className="text-sm font-bold font-display line-clamp-2 text-[#FFFFFF] group-hover:text-[#C99A2E] transition-colors">
                         {item.title}
                       </p>
                     </div>
@@ -181,7 +174,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
                 {item.url && (
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 flex flex-col justify-between">
                     <div className="flex items-center justify-between">
-                      <span className="px-2.5 py-0.5 rounded-md bg-[#0C1B2A]/80 backdrop-blur-xs text-[#F3A628] text-[10px] font-bold uppercase tracking-wider border border-white/10">
+                      <span className="px-2.5 py-0.5 rounded-md bg-[#15233A]/80 backdrop-blur-xs text-[#C99A2E] text-[10px] font-bold border border-white/10">
                         {item.category}
                       </span>
                       <span className="text-[11px] font-semibold text-white/90 bg-black/50 px-2 py-0.5 rounded backdrop-blur-xs">
@@ -196,33 +189,32 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
               </div>
 
               <div className="p-5 space-y-2">
-                <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                  {item.caption}
-                </p>
+                <ClampText text={item.caption} lines={2} title={item.title} className="text-sm text-slate-600" />
                 <div className="pt-2 flex items-center justify-between text-[11px] text-slate-400">
                   <span className="flex items-center gap-1">
-                    <MapPin className="w-3 h-3 text-[#E59A1E]" />
+                    <MapPin className="w-3 h-3 text-[#C99A2E]" />
                     {item.event || 'Pathshala Hall, Chickpet'}
                   </span>
-                  <span className="text-[#B8780E] font-semibold">View Record →</span>
+                  <span className="text-[#A57D22] font-medium">View photo →</span>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+          )}
+        />
       </section>
+      ))}
 
       {/* Lightbox / Detail Modal */}
       {activeMedia && (
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 overflow-y-auto bg-[#081320]/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+          className="fixed inset-0 z-50 overflow-y-auto bg-[#0E1828]/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
         >
-          <div className="relative w-full max-w-2xl bg-[#0C1B2A] border border-[#E59A1E]/40 rounded-3xl overflow-hidden shadow-2xl text-slate-200">
-            <div className="flex items-center justify-between p-4 border-b border-white/10 bg-[#081320]">
+          <div className="relative w-full max-w-2xl bg-[#15233A] border border-[#C99A2E]/40 rounded-lg overflow-hidden shadow-2xl text-slate-200">
+            <div className="flex items-center justify-between p-4 border-b border-white/10 bg-[#0E1828]">
               <div className="text-xs">
-                <span className="text-[#F3A628] font-bold uppercase">{activeMedia.category}</span>
+                <span className="text-[#C99A2E] font-bold ">{activeMedia.category}</span>
                 <span className="text-slate-400 mx-2">•</span>
                 <span>Assembly Year {activeMedia.year}</span>
               </div>
@@ -235,20 +227,20 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
             </div>
 
             {activeMedia.url && (
-              <div className="aspect-video bg-black max-h-80 overflow-hidden flex items-center justify-center">
+              <div className="bg-black max-h-[60vh] overflow-hidden flex items-center justify-center">
                 <img
                   src={activeMedia.url}
                   alt={activeMedia.title}
-                  className="w-full h-full object-contain"
+                  className="max-w-full max-h-[60vh] object-contain"
                 />
               </div>
             )}
 
             <div className="p-8 space-y-4">
-              <span className="px-3 py-1 rounded-full bg-[#E59A1E]/20 text-[#F3A628] text-xs font-bold uppercase tracking-wider inline-block">
+              <span className="px-3 py-1 rounded-full bg-[#C99A2E]/20 text-[#C99A2E] text-xs font-bold inline-block">
                 {activeMedia.category} Assembly Record
               </span>
-              <h3 className="text-2xl font-bold text-[#FAF8F5] font-display">
+              <h3 className="text-2xl font-bold text-[#FFFFFF] font-display">
                 {activeMedia.title}
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed">
@@ -257,7 +249,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
 
               <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400">
                 <span className="flex items-center gap-1.5">
-                  <MapPin className="w-4 h-4 text-[#E59A1E]" />
+                  <MapPin className="w-4 h-4 text-[#C99A2E]" />
                   {activeMedia.event || 'Pathshala Hall, Chickpet Jain Temple'}
                 </span>
 
@@ -266,7 +258,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
                     setActiveMedia(null);
                     onOpenRegister();
                   }}
-                  className="px-4 py-2 rounded-xl bg-[#E59A1E] text-[#0C1B2A] font-bold hover:bg-[#F5B738] transition-colors"
+                  className="px-4 py-2 rounded-lg bg-[#C99A2E] text-[#15233A] font-bold hover:bg-[#C99A2E] transition-colors"
                 >
                   Attend Next Assembly
                 </button>
@@ -277,7 +269,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
       )}
 
       {/* CTA Section */}
-      <CTASection lang={lang} onOpenRegister={onOpenRegister} />
+      <CTASection lang={lang} onNavigate={onNavigate} />
     </div>
   );
 };

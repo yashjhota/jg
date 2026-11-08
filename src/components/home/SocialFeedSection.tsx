@@ -129,7 +129,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
 
   // Dynamic social handles & links from CMS
   const instagramUrl = settings.instagramUrl || SITE_CONFIG.social.instagram;
-  const instagramHandle = settings.instagramHandle || '@jaingenius';
+  const instagramHandle = settings.instagramHandle || SITE_CONFIG.social.instagramHandle;
   const youtubeUrl = settings.youtubeUrl || SITE_CONFIG.social.youtube;
   const whatsappUrl =
     settings.whatsappCommunityUrl || settings.whatsappGroupUrl || SITE_CONFIG.social.whatsappCommunity;
@@ -162,22 +162,22 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
       className={`py-14 sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden ${className}`}
     >
       {/* Background ambient lighting */}
-      <div className="absolute top-1/4 right-0 -mr-48 w-96 h-96 bg-[#E59A1E]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-0 -mr-48 w-96 h-96 bg-[#C99A2E]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-0 -ml-48 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10 space-y-8 sm:space-y-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E59A1E]/10 border border-[#E59A1E]/30 text-[#F3A628] text-xs font-semibold">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#C99A2E]/10 border border-[#C99A2E]/30 text-[#C99A2E] text-xs font-semibold">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>LIVE COMMUNITY PULSE • REAL-TIME NEWS</span>
+              <span>Live community updates</span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0C1B2A] tracking-tight font-display">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#15233A] tracking-tight font-display">
               Latest from Our Social Channels
             </h2>
 
@@ -193,7 +193,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
                 href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 hover:from-pink-500/20 hover:to-purple-500/20 border border-pink-500/30 text-xs font-semibold text-slate-800 transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-pink-500/10 to-purple-500/10 hover:from-pink-500/20 hover:to-purple-500/20 border border-pink-500/30 text-xs font-semibold text-slate-800 transition-all hover:scale-105"
               >
                 <Instagram className="w-3.5 h-3.5 text-pink-600" />
                 <span>Follow {instagramHandle}</span>
@@ -205,7 +205,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
                 href={youtubeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-xs font-semibold text-slate-800 transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-xs font-semibold text-slate-800 transition-all hover:scale-105"
               >
                 <Youtube className="w-3.5 h-3.5 text-red-600" />
                 <span>YouTube</span>
@@ -217,7 +217,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-xs font-semibold text-slate-800 transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-xs font-semibold text-slate-800 transition-all hover:scale-105"
               >
                 <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
                 <span>WhatsApp Community</span>
@@ -229,7 +229,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
                 href={telegramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-xs font-semibold text-slate-800 transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-xs font-semibold text-slate-800 transition-all hover:scale-105"
               >
                 <Send className="w-3.5 h-3.5 text-sky-600" />
                 <span>Telegram</span>
@@ -239,10 +239,10 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
             {showHeaderAction && onNavigate && (
               <button
                 onClick={() => onNavigate('news')}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#0C1B2A] text-white hover:bg-[#162E4A] text-xs font-semibold transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#15233A] text-white hover:bg-[#1E3050] text-xs font-semibold transition-colors cursor-pointer"
               >
                 <span>All News</span>
-                <ArrowRight className="w-3 h-3 text-[#F3A628]" />
+                <ArrowRight className="w-3 h-3 text-[#C99A2E]" />
               </button>
             )}
 
@@ -250,14 +250,14 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
               <div className="flex items-center gap-2 pl-1 border-l border-slate-300">
                 <button
                   onClick={onOpenAddPost}
-                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#E59A1E] hover:bg-[#F3A628] text-[#0C1B2A] text-xs font-bold transition-all shadow-sm cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#C99A2E] hover:bg-[#C99A2E] text-[#15233A] text-xs font-bold transition-all shadow-sm cursor-pointer"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>+ Add Post</span>
                 </button>
                 <button
                   onClick={onOpenEditSocials}
-                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#162E4A] hover:bg-[#1E3E64] border border-[#E59A1E]/30 text-[#F3A628] text-xs font-bold transition-all shadow-sm cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#1E3050] hover:bg-[#2A3F63] border border-[#C99A2E]/30 text-[#C99A2E] text-xs font-bold transition-all shadow-sm cursor-pointer"
                 >
                   <Edit3 className="w-3.5 h-3.5" />
                   <span>Edit Channels</span>
@@ -275,15 +275,27 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
             { id: 'youtube', label: 'YouTube Videos', icon: <Youtube className="w-3.5 h-3.5 text-red-500" /> },
             { id: 'twitter', label: 'X (Twitter)', icon: <Twitter className="w-3.5 h-3.5 text-sky-500" /> },
             { id: 'community', label: 'Telegram & WhatsApp', icon: <Send className="w-3.5 h-3.5 text-blue-500" /> },
-          ].map((tab) => {
+          ]
+            .map((tab) => ({
+              ...tab,
+              count:
+                tab.id === 'all'
+                  ? publishedPosts.length
+                  : tab.id === 'community'
+                  ? publishedPosts.filter((p) => p.platform === 'telegram' || p.platform === 'whatsapp').length
+                  : publishedPosts.filter((p) => p.platform === tab.id).length,
+            }))
+            // Hide any platform tab with 0 posts
+            .filter((tab) => tab.id === 'all' || tab.count > 0)
+            .map((tab) => {
             const isSelected = activePlatform === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActivePlatform(tab.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-2 ${
+                className={`px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-2 ${
                   isSelected
-                    ? 'bg-[#0C1B2A] text-[#FAF8F5] shadow-sm ring-1 ring-[#E59A1E]/50'
+                    ? 'bg-[#15233A] text-[#FFFFFF] shadow-sm ring-1 ring-[#C99A2E]/50'
                     : 'bg-white hover:bg-slate-50 text-slate-600 border border-slate-200'
                 }`}
               >
@@ -291,14 +303,10 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
                 <span>{tab.label}</span>
                 <span
                   className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                    isSelected ? 'bg-white/15 text-[#F3A628]' : 'bg-slate-100 text-slate-500'
+                    isSelected ? 'bg-white/15 text-[#C99A2E]' : 'bg-slate-100 text-slate-500'
                   }`}
                 >
-                  {tab.id === 'all'
-                    ? publishedPosts.length
-                    : tab.id === 'community'
-                    ? publishedPosts.filter((p) => p.platform === 'telegram' || p.platform === 'whatsapp').length
-                    : publishedPosts.filter((p) => p.platform === tab.id).length}
+                  {tab.count}
                 </span>
               </button>
             );
@@ -307,7 +315,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
 
         {/* Dynamic Post Cards Grid */}
         {displayedPosts.length === 0 ? (
-          <div className="p-12 text-center bg-white rounded-3xl border border-slate-200 text-slate-500 space-y-3">
+          <div className="p-12 text-center bg-white rounded-lg border border-slate-200 text-slate-500 space-y-3">
             <Share2 className="w-10 h-10 mx-auto text-slate-400 opacity-60" />
             <h3 className="text-base font-bold text-slate-800">No updates found in this category</h3>
             <p className="text-xs text-slate-500">
@@ -315,7 +323,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
             </p>
             <button
               onClick={() => setActivePlatform('all')}
-              className="px-4 py-2 rounded-xl bg-[#E59A1E] text-[#0C1B2A] text-xs font-bold"
+              className="px-4 py-2 rounded-lg bg-[#C99A2E] text-[#15233A] text-xs font-bold"
             >
               View All Updates
             </button>
@@ -326,18 +334,18 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
             {isLiveEditMode && isAuthenticated && (
               <button
                 onClick={onOpenAddPost}
-                className="h-full min-h-[300px] p-6 rounded-3xl border-2 border-dashed border-[#E59A1E]/50 hover:border-[#E59A1E] bg-[#E59A1E]/5 hover:bg-[#E59A1E]/10 flex flex-col items-center justify-center text-center gap-3 transition-all hover:scale-[1.01] cursor-pointer group"
+                className="h-full min-h-[300px] p-6 rounded-lg border-2 border-dashed border-[#C99A2E]/50 hover:border-[#C99A2E] bg-[#C99A2E]/5 hover:bg-[#C99A2E]/10 flex flex-col items-center justify-center text-center gap-3 transition-all hover:scale-[1.01] cursor-pointer group"
               >
-                <div className="w-12 h-12 rounded-2xl bg-[#E59A1E]/20 text-[#E59A1E] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-lg bg-[#C99A2E]/20 text-[#C99A2E] flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Plus className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-base text-[#0C1B2A]">Add Social Media Post</h4>
+                  <h4 className="font-bold text-base text-[#15233A]">Add Social Media Post</h4>
                   <p className="text-xs text-slate-500 mt-1 max-w-[220px]">
                     Publish an Instagram reel, YouTube talk, or announcement card to the feed.
                   </p>
                 </div>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#E59A1E] text-[#0C1B2A] text-xs font-bold shadow-sm">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#C99A2E] text-[#15233A] text-xs font-bold shadow-sm">
                   <Plus className="w-3.5 h-3.5" />
                   <span>New Social Post</span>
                 </span>
@@ -352,17 +360,17 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
               return (
                 <article
                   key={post.id}
-                  className={`bg-white rounded-3xl border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between overflow-hidden relative group ${
+                  className={`bg-white rounded-lg border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between overflow-hidden relative group ${
                     post.isPinned
-                      ? 'border-[#E59A1E]/80 ring-2 ring-[#E59A1E]/20 shadow-md'
-                      : 'border-slate-200/90 shadow-xs hover:border-[#E59A1E]/50'
+                      ? 'border-[#C99A2E]/80 ring-2 ring-[#C99A2E]/20 shadow-md'
+                      : 'border-slate-200/90 shadow-xs hover:border-[#C99A2E]/50'
                   }`}
                 >
                   {/* Admin In-Page Live Action Ribbon */}
                   {isLiveEditMode && isAuthenticated && (
-                    <div className="bg-[#0C1B2A] text-white px-3 py-1.5 flex items-center justify-between text-[11px] border-b border-[#E59A1E]/30 z-20">
-                      <span className="text-[#F3A628] font-bold flex items-center gap-1">
-                        <Sparkles className="w-3 h-3 text-[#E59A1E]" />
+                    <div className="bg-[#15233A] text-white px-3 py-1.5 flex items-center justify-between text-[11px] border-b border-[#C99A2E]/30 z-20">
+                      <span className="text-[#C99A2E] font-bold flex items-center gap-1">
+                        <Sparkles className="w-3 h-3 text-[#C99A2E]" />
                         <span>Live Admin</span>
                       </span>
                       <div className="flex items-center gap-1.5">
@@ -377,7 +385,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
                         </button>
                         <button
                           onClick={() => onOpenEditPost?.(post)}
-                          className="px-2 py-0.5 rounded bg-white/10 hover:bg-[#E59A1E] hover:text-[#0C1B2A] text-[10px] font-semibold transition-colors cursor-pointer"
+                          className="px-2 py-0.5 rounded bg-white/10 hover:bg-[#C99A2E] hover:text-[#15233A] text-[10px] font-semibold transition-colors cursor-pointer"
                           title="Edit caption, link or image"
                         >
                           Edit
@@ -465,7 +473,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
                     {/* Author line */}
                     <div className="flex items-center justify-between text-xs text-slate-500">
                       <div className="flex items-center gap-1.5 font-medium text-slate-800 truncate">
-                        <User className="w-3.5 h-3.5 text-[#E59A1E] shrink-0" />
+                        <User className="w-3.5 h-3.5 text-[#C99A2E] shrink-0" />
                         <span className="truncate">{post.authorName}</span>
                       </div>
                       {post.authorHandle && (
@@ -510,7 +518,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
                       {hasVideo && (
                         <button
                           onClick={() => setActiveVideoPost(post)}
-                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-red-50 text-red-700 hover:bg-red-100 text-xs font-bold transition-colors"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-red-50 text-red-700 hover:bg-red-100 text-xs font-bold transition-colors"
                         >
                           <Play className="w-3 h-3 fill-red-700" />
                           <span>Play</span>
@@ -521,10 +529,10 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
                         href={post.postUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-[#E59A1E] text-slate-700 hover:text-[#0C1B2A] text-xs font-bold transition-colors shadow-2xs group/btn"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-[#C99A2E] text-slate-700 hover:text-[#15233A] text-xs font-bold transition-colors shadow-2xs group/btn"
                       >
                         <span>{meta.actionLabel}</span>
-                        <ExternalLink className="w-3 h-3 text-[#E59A1E] group-hover/btn:translate-x-0.5 transition-transform" />
+                        <ExternalLink className="w-3 h-3 text-[#C99A2E] group-hover/btn:translate-x-0.5 transition-transform" />
                       </a>
                     </div>
                   </div>
@@ -538,7 +546,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
       {/* Video Player Modal */}
       {activeVideoPost && (
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="w-full max-w-3xl bg-[#0C1B2A] border border-[#E59A1E]/40 rounded-3xl p-5 sm:p-7 shadow-2xl text-white space-y-4 my-8 relative">
+          <div className="w-full max-w-3xl bg-[#15233A] border border-[#C99A2E]/40 rounded-lg p-5 sm:p-7 shadow-2xl text-white space-y-4 my-8 relative">
             <button
               onClick={() => setActiveVideoPost(null)}
               className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/10 z-10"
@@ -548,7 +556,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
             </button>
 
             {/* Video Container */}
-            <div className="relative aspect-video rounded-2xl overflow-hidden bg-black shadow-lg">
+            <div className="relative aspect-video rounded-lg overflow-hidden bg-black shadow-lg">
               {activeVideoPost.videoEmbedUrl ? (
                 <iframe
                   src={`${activeVideoPost.videoEmbedUrl}?autoplay=1&rel=0`}
@@ -567,7 +575,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
                     href={activeVideoPost.postUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs inline-flex items-center gap-2"
+                    className="px-5 py-2.5 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold text-xs inline-flex items-center gap-2"
                   >
                     <span>Watch on YouTube</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -580,7 +588,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
             <div className="space-y-2 pt-2">
               <div className="flex items-center justify-between text-xs text-slate-400">
                 <div className="flex items-center gap-1.5 font-semibold text-white">
-                  <User className="w-3.5 h-3.5 text-[#F3A628]" />
+                  <User className="w-3.5 h-3.5 text-[#C99A2E]" />
                   <span>{activeVideoPost.authorName}</span>
                 </div>
                 <span>{activeVideoPost.date}</span>
@@ -598,7 +606,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
                   href={activeVideoPost.postUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-[#F3A628] hover:underline font-semibold"
+                  className="inline-flex items-center gap-1.5 text-xs text-[#C99A2E] hover:underline font-semibold"
                 >
                   <span>Open directly on YouTube</span>
                   <ExternalLink className="w-3 h-3" />

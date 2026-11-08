@@ -74,10 +74,10 @@ export const AdminLiveBar: React.FC<AdminLiveBarProps> = ({
         <div className="fixed bottom-4 right-4 z-40">
           <button
             onClick={() => setShowLoginModal(true)}
-            className="flex items-center gap-2 px-3 py-2 rounded-full bg-[#0C1B2A]/90 hover:bg-[#162E4A] text-[#FAF8F5] border border-[#E59A1E]/40 shadow-xl backdrop-blur-md text-xs font-semibold hover:scale-105 active:scale-95 transition-all cursor-pointer group"
+            className="flex items-center gap-2 px-3 py-2 rounded-full bg-[#15233A]/90 hover:bg-[#1E3050] text-[#FFFFFF] border border-[#C99A2E]/40 shadow-xl backdrop-blur-md text-xs font-semibold hover:scale-105 active:scale-95 transition-all cursor-pointer group"
             title="Institutional Content Management Portal"
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-[#E59A1E] group-hover:rotate-12 transition-transform" />
+            <ShieldCheck className="w-3.5 h-3.5 text-[#C99A2E] group-hover:rotate-12 transition-transform" />
             <span>Admin</span>
           </button>
         </div>
@@ -86,7 +86,7 @@ export const AdminLiveBar: React.FC<AdminLiveBarProps> = ({
         {showLoginModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-150">
             <div
-              className="w-full max-w-sm bg-[#0C1B2A] border border-[#E59A1E]/40 rounded-3xl p-6 sm:p-8 shadow-2xl text-white space-y-5 relative"
+              className="w-full max-w-sm bg-[#15233A] border border-[#C99A2E]/40 rounded-3xl p-6 sm:p-8 shadow-2xl text-white space-y-5 relative"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -97,7 +97,7 @@ export const AdminLiveBar: React.FC<AdminLiveBarProps> = ({
               </button>
 
               <div className="text-center space-y-2">
-                <div className="inline-flex p-3 rounded-2xl bg-[#E59A1E]/15 border border-[#E59A1E]/30 text-[#F3A628]">
+                <div className="inline-flex p-3 rounded-2xl bg-[#C99A2E]/15 border border-[#C99A2E]/30 text-[#C99A2E]">
                   <Lock className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold font-display">Admin Authentication</h3>
@@ -119,7 +119,7 @@ export const AdminLiveBar: React.FC<AdminLiveBarProps> = ({
                     className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white text-center text-lg tracking-widest focus:outline-none transition-all ${
                       pinError
                         ? 'border-red-500 focus:ring-2 focus:ring-red-500/50'
-                        : 'border-white/10 focus:border-[#E59A1E] focus:ring-2 focus:ring-[#E59A1E]/30'
+                        : 'border-white/10 focus:border-[#C99A2E] focus:ring-2 focus:ring-[#C99A2E]/30'
                     }`}
                   />
                   {pinError && (
@@ -131,7 +131,7 @@ export const AdminLiveBar: React.FC<AdminLiveBarProps> = ({
 
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-[#F5B738] to-[#E59A1E] hover:from-[#FBC658] hover:to-[#F3A628] text-[#0C1B2A] font-bold text-sm shadow-lg hover:shadow-xl transition-all cursor-pointer"
+                  className="w-full py-3 rounded-xl bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] hover:from-[#D9B25A] hover:to-[#C99A2E] text-[#15233A] font-bold text-sm shadow-lg hover:shadow-xl transition-all cursor-pointer"
                 >
                   Unlock Admin Controls
                 </button>
@@ -146,12 +146,12 @@ export const AdminLiveBar: React.FC<AdminLiveBarProps> = ({
   // When Authenticated: Fixed Top/Bottom Floating Administration Dock
   return (
     <>
-      <div className="fixed top-0 inset-x-0 z-50 bg-[#081320]/95 backdrop-blur-md border-b border-[#E59A1E]/30 shadow-2xl py-2 px-3 sm:px-6 text-xs text-slate-200">
+      <div className="fixed top-0 inset-x-0 z-50 bg-[#0E1828]/95 backdrop-blur-md border-b border-[#C99A2E]/30 shadow-2xl py-2 px-3 sm:px-6 text-xs text-slate-200">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 sm:gap-4">
           {/* Left: Admin Status & Cloud Persistence State */}
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5 font-bold text-[#F3A628] uppercase tracking-wider text-[11px]">
-              <ShieldCheck className="w-4 h-4 text-[#E59A1E]" />
+            <div className="flex items-center gap-1.5 font-bold text-[#C99A2E] uppercase tracking-wider text-[11px]">
+              <ShieldCheck className="w-4 h-4 text-[#C99A2E]" />
               <span>Admin Active</span>
             </div>
 
@@ -180,7 +180,7 @@ export const AdminLiveBar: React.FC<AdminLiveBarProps> = ({
               onClick={handleToggleEdit}
               className={`flex items-center gap-2 px-3 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
                 isLiveEditMode
-                  ? 'bg-[#E59A1E] text-[#0C1B2A] shadow-md shadow-[#E59A1E]/30 ring-2 ring-[#E59A1E]/50'
+                  ? 'bg-[#C99A2E] text-[#15233A] shadow-md shadow-[#C99A2E]/30 ring-2 ring-[#C99A2E]/50'
                   : 'bg-white/10 text-slate-300 hover:bg-white/20'
               }`}
             >
@@ -242,7 +242,7 @@ export const AdminLiveBar: React.FC<AdminLiveBarProps> = ({
             {/* Admin Dashboard */}
             <button
               onClick={() => onNavigate('admin')}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#162E4A] hover:bg-[#1E3E64] border border-[#E59A1E]/30 text-[#F3A628] font-bold transition-all cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#1E3050] hover:bg-[#2A3F63] border border-[#C99A2E]/30 text-[#C99A2E] font-bold transition-all cursor-pointer"
             >
               <LayoutDashboard className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Dashboard</span>

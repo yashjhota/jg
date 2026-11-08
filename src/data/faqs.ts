@@ -40,7 +40,7 @@ export const MEMBERSHIP_FAQS: FAQItem[] = [
     category: 'Contact & Support',
     questionEn: 'Whom should I contact if I have questions before registering?',
     questionHi: 'पंजीकरण से पूर्व मार्गदर्शन के लिए किससे संपर्क करें?',
-    answerEn: 'You can directly call or message Gaurav at +91 94800 52108 (also available on WhatsApp) or email us at jaingeniustcm@gmail.com.',
-    answerHi: 'आप सीधे गौरव जी से +91 94800 52108 पर कॉल या व्हाट्सएप के माध्यम से बात कर सकते हैं, अथवा jaingeniustcm@gmail.com पर ईमेल भेज सकते हैं।'
+    answerEn: 'You can directly call or message Gaurav at +91 94800 52108 (also available on WhatsApp) or email us at admin@jaingenius.org.',
+    answerHi: 'आप सीधे गौरव जी से +91 94800 52108 पर कॉल या व्हाट्सएप के माध्यम से बात कर सकते हैं, अथवा admin@jaingenius.org पर ईमेल भेज सकते हैं।'
   }
 ];

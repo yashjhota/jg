@@ -95,7 +95,7 @@ export const TrashManager: React.FC<TrashManagerProps> = ({ showToast }) => {
             <Trash2 className="w-3.5 h-3.5" />
             <span>Trash & Recovery Bin</span>
           </div>
-          <h2 className="text-2xl font-extrabold text-[#0C1B2A] font-display">
+          <h2 className="text-2xl font-extrabold text-[#15233A] font-display">
             Trashed Content Archive
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -140,7 +140,7 @@ export const TrashManager: React.FC<TrashManagerProps> = ({ showToast }) => {
           onClick={() => setSelectedModule('all')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
             selectedModule === 'all'
-              ? 'bg-[#0C1B2A] text-white shadow-xs'
+              ? 'bg-[#15233A] text-white shadow-xs'
               : 'bg-white hover:bg-slate-50 text-slate-600 border border-slate-200'
           }`}
         >
@@ -150,7 +150,7 @@ export const TrashManager: React.FC<TrashManagerProps> = ({ showToast }) => {
           onClick={() => setSelectedModule('social')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
             selectedModule === 'social'
-              ? 'bg-[#0C1B2A] text-white shadow-xs'
+              ? 'bg-[#15233A] text-white shadow-xs'
               : 'bg-white hover:bg-slate-50 text-slate-600 border border-slate-200'
           }`}
         >
@@ -160,7 +160,7 @@ export const TrashManager: React.FC<TrashManagerProps> = ({ showToast }) => {
           onClick={() => setSelectedModule('events')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
             selectedModule === 'events'
-              ? 'bg-[#0C1B2A] text-white shadow-xs'
+              ? 'bg-[#15233A] text-white shadow-xs'
               : 'bg-white hover:bg-slate-50 text-slate-600 border border-slate-200'
           }`}
         >
@@ -170,7 +170,7 @@ export const TrashManager: React.FC<TrashManagerProps> = ({ showToast }) => {
           onClick={() => setSelectedModule('gallery')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
             selectedModule === 'gallery'
-              ? 'bg-[#0C1B2A] text-white shadow-xs'
+              ? 'bg-[#15233A] text-white shadow-xs'
               : 'bg-white hover:bg-slate-50 text-slate-600 border border-slate-200'
           }`}
         >
@@ -180,7 +180,7 @@ export const TrashManager: React.FC<TrashManagerProps> = ({ showToast }) => {
           onClick={() => setSelectedModule('news')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
             selectedModule === 'news'
-              ? 'bg-[#0C1B2A] text-white shadow-xs'
+              ? 'bg-[#15233A] text-white shadow-xs'
               : 'bg-white hover:bg-slate-50 text-slate-600 border border-slate-200'
           }`}
         >
@@ -190,7 +190,7 @@ export const TrashManager: React.FC<TrashManagerProps> = ({ showToast }) => {
           onClick={() => setSelectedModule('testimonials')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
             selectedModule === 'testimonials'
-              ? 'bg-[#0C1B2A] text-white shadow-xs'
+              ? 'bg-[#15233A] text-white shadow-xs'
               : 'bg-white hover:bg-slate-50 text-slate-600 border border-slate-200'
           }`}
         >
@@ -216,7 +216,7 @@ export const TrashManager: React.FC<TrashManagerProps> = ({ showToast }) => {
           filteredTrash.map((item) => (
             <div
               key={`${item.module}-${item.id}`}
-              className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:border-[#E59A1E]/50 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+              className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:border-[#C99A2E]/50 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4"
             >
               <div className="space-y-1.5 flex-1 min-w-0">
                 <div className="flex items-center gap-2 text-xs">
