@@ -1,6 +1,10 @@
 import { EventItem } from '../types';
+import { NOV2026_EVENTS } from './nov2026Content';
 
 export const EVENTS_DATA: EventItem[] = [
+  // Nov 2026 brief: Aadi Sparsh, Police meeting, 3-Day Youth Shivir and more
+  ...NOV2026_EVENTS,
+
   // Real Past Events from Source of Truth
   {
     id: 'event-desh-to-aazad',

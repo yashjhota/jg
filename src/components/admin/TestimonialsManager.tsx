@@ -119,7 +119,7 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
       {/* Top Controls Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-3xl border border-slate-200/90 shadow-xs">
         <div>
-          <h3 className="text-base font-bold text-[#0C1B2A] font-display">
+          <h3 className="text-base font-bold text-[#15233A] font-display">
             Student Transformations & Testimonial Slots
           </h3>
           <p className="text-xs text-slate-500">
@@ -138,7 +138,7 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
 
           <button
             onClick={handleOpenCreate}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#F5B738] to-[#E59A1E] hover:from-[#FBC658] hover:to-[#F3A628] text-[#0C1B2A] text-xs font-bold shadow-xs hover:shadow transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] hover:from-[#D9B25A] hover:to-[#C99A2E] text-[#15233A] text-xs font-bold shadow-xs hover:shadow transition-all"
           >
             <Plus className="w-4 h-4" />
             <span>Add Student Story</span>
@@ -156,7 +156,7 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
               key={slot.slotId}
               className={`rounded-3xl p-6 border flex flex-col justify-between transition-all ${
                 isReady
-                  ? 'bg-white border-slate-200/90 shadow-xs hover:border-[#E59A1E]/60'
+                  ? 'bg-white border-slate-200/90 shadow-xs hover:border-[#C99A2E]/60'
                   : 'bg-slate-50/70 border-dashed border-slate-300'
               }`}
             >
@@ -176,7 +176,7 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
                     <button
                       onClick={() => handleOpenEdit(slot)}
                       title="Edit slot"
-                      className="p-1.5 rounded-lg text-slate-500 hover:text-[#0C1B2A] hover:bg-slate-100"
+                      className="p-1.5 rounded-lg text-slate-500 hover:text-[#15233A] hover:bg-slate-100"
                     >
                       <Edit3 className="w-3.5 h-3.5" />
                     </button>
@@ -196,18 +196,18 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
                       <img
                         src={slot.avatarUrl}
                         alt={slot.studentName}
-                        className="w-12 h-12 rounded-full object-cover border-2 border-[#E59A1E]"
+                        className="w-12 h-12 rounded-full object-cover border-2 border-[#C99A2E]"
                       />
                     ) : (
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#E59A1E] to-[#B8780E] text-[#0C1B2A] font-bold flex items-center justify-center text-sm shadow-xs">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C99A2E] to-[#A57D22] text-[#15233A] font-bold flex items-center justify-center text-sm shadow-xs">
                         {slot.studentName?.charAt(0) || 'S'}
                       </div>
                     )}
                     <div>
-                      <h4 className="text-sm font-bold text-[#0C1B2A] font-display">
+                      <h4 className="text-sm font-bold text-[#15233A] font-display">
                         {slot.studentName}
                       </h4>
-                      <p className="text-[11px] text-[#B8780E] font-medium">
+                      <p className="text-[11px] text-[#A57D22] font-medium">
                         {slot.trackOrProgramme}
                       </p>
                     </div>
@@ -236,7 +236,7 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
 
               <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
                 <span>{slot.label}</span>
-                <span className="font-semibold text-[#E59A1E]">{slot.cohort || 'Cohort 01'}</span>
+                <span className="font-semibold text-[#C99A2E]">{slot.cohort || 'Cohort 01'}</span>
               </div>
             </div>
           );
@@ -250,11 +250,11 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
           aria-modal="true"
           className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
         >
-          <div className="relative w-full max-w-xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 text-[#0C1B2A]">
+          <div className="relative w-full max-w-xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 text-[#15233A]">
             <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50">
               <div className="flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-[#E59A1E]" />
-                <h3 className="text-lg font-bold font-display text-[#0C1B2A]">
+                <MessageSquare className="w-5 h-5 text-[#C99A2E]" />
+                <h3 className="text-lg font-bold font-display text-[#15233A]">
                   {editingSlotId ? `Edit Slot #${editingSlotId}` : 'Add Student Testimonial'}
                 </h3>
               </div>
@@ -280,7 +280,7 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
                         status: e.target.value as 'ready' | 'to_supply',
                       })
                     }
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   >
                     <option value="ready">Live Published Story</option>
                     <option value="to_supply">In-Training Placeholder</option>
@@ -299,7 +299,7 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
                         gender: e.target.value as 'boy' | 'girl',
                       })
                     }
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   >
                     <option value="boy">Boy Candidate</option>
                     <option value="girl">Girl Candidate</option>
@@ -317,7 +317,7 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
                     value={formData.studentName}
                     onChange={(e) => setFormData({ ...formData, studentName: e.target.value })}
                     placeholder="e.g. Paras Kothari"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -330,7 +330,7 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
                     value={formData.label}
                     onChange={(e) => setFormData({ ...formData, label: e.target.value })}
                     placeholder="e.g. Student 1 (Boy)"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
               </div>
@@ -345,7 +345,7 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
                     value={formData.trackOrProgramme}
                     onChange={(e) => setFormData({ ...formData, trackOrProgramme: e.target.value })}
                     placeholder="e.g. Account Executive Track / Banking"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -358,7 +358,7 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
                     value={formData.cohort}
                     onChange={(e) => setFormData({ ...formData, cohort: e.target.value })}
                     placeholder="Cohort 01"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
               </div>
@@ -380,7 +380,7 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
                   value={formData.experienceText}
                   onChange={(e) => setFormData({ ...formData, experienceText: e.target.value })}
                   placeholder="Describe how the 60-session track, 5:45 AM discipline, or Sahebji's guidance transformed their perspective and career..."
-                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                 />
               </div>
 
@@ -394,7 +394,7 @@ export const TestimonialsManager: React.FC<TestimonialsManagerProps> = ({
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#F5B738] to-[#E59A1E] text-[#0C1B2A] text-xs font-bold shadow-xs hover:shadow"
+                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] text-[#15233A] text-xs font-bold shadow-xs hover:shadow"
                 >
                   {editingSlotId ? 'Save Changes' : 'Save Testimonial'}
                 </button>

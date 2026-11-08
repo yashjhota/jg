@@ -1,6 +1,8 @@
 import { GalleryItem, NewsItem } from '../types';
+import { NOV2026_GALLERY } from './nov2026Content';
 
 export const GALLERY_ITEMS: GalleryItem[] = [
+  ...NOV2026_GALLERY,
   {
     id: 'gal-1',
     title: 'Desh To Aazad Ho Gaya, Hum Kab? — Youth Assembly',

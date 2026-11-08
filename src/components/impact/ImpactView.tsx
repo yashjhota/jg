@@ -4,6 +4,7 @@ import { SITE_CONFIG } from '../../data/siteConfig';
 import { Language, PageId } from '../../types';
 import { TRANSLATIONS } from '../../data/i18n';
 import { CTASection } from '../layout/CTASection';
+import { TestimonialScroller, usePublishedTestimonials } from '../home/TestimonialsSection';
 import { Sparkles, Users, Award, Download, Clock, Settings, Quote, CheckCircle2 } from 'lucide-react';
 
 interface ImpactViewProps {
@@ -13,21 +14,21 @@ interface ImpactViewProps {
 }
 
 export const ImpactView: React.FC<ImpactViewProps> = ({ lang, onNavigate, onOpenRegister }) => {
-  const { testimonials } = useCMS();
+  const published = usePublishedTestimonials();
   const [reportNotice, setReportNotice] = useState<string | null>(null);
   const t = TRANSLATIONS[lang];
 
   return (
-    <div className="bg-[#FAF8F5] text-[#0C1B2A] min-h-screen">
+    <div className="bg-[#FFFFFF] text-[#15233A] min-h-screen">
       {/* Header */}
-      <section className="bg-[#0C1B2A] text-white py-20 border-b border-[#E59A1E]/30 relative overflow-hidden">
+      <section className="bg-[#15233A] text-white py-20 border-b border-[#C99A2E]/30 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E59A1E]/15 border border-[#E59A1E]/30 text-[#F3A628] text-xs font-bold uppercase tracking-widest">
-            <Award className="w-3.5 h-3.5 text-[#E59A1E]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#C99A2E]/15 border border-[#C99A2E]/30 text-[#C99A2E] text-xs font-bold ">
+            <Award className="w-3.5 h-3.5 text-[#C99A2E]" />
             <span>Verifiable Transformation</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-[#FAF8F5] tracking-tight font-display">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-[#FFFFFF] tracking-tight font-display">
             Impact & Member Journeys
           </h1>
 
@@ -41,41 +42,40 @@ export const ImpactView: React.FC<ImpactViewProps> = ({ lang, onNavigate, onOpen
       {/* Real Verified Core Impact Stat Section */}
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-[#0C1B2A] text-white border-2 border-[#E59A1E]/50 rounded-3xl p-8 shadow-md space-y-3">
+          <div className="bg-[#15233A] text-white border-2 border-[#C99A2E]/50 rounded-lg p-8 shadow-md space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-[#F3A628] uppercase tracking-wider">
-                Live Cohort
+              <span className="text-xs font-bold text-[#C99A2E] ">
+                Aadi Sparsh 2026
               </span>
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
             </div>
-            <div className="text-4xl sm:text-5xl font-extrabold text-[#FAF8F5] font-display">
-              {SITE_CONFIG.currentTraineesCount}
+            <div className="text-4xl sm:text-5xl font-extrabold text-[#FFFFFF] font-display">
+              {SITE_CONFIG.stats.registrations}
             </div>
-            <h4 className="text-base font-bold text-white">Active Members in Training</h4>
+            <h4 className="text-base font-bold text-white">Registrations</h4>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Currently undergoing the intensive 60-session industry tracks and rigorous daily habit reporting.
+              Our volunteers visited {SITE_CONFIG.stats.homesVisited} homes across 13 areas of Bengaluru.
             </p>
           </div>
 
-          <div className="bg-white border border-slate-200/90 rounded-3xl p-8 shadow-sm space-y-3">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+          <div className="bg-white border border-slate-200/90 rounded-lg p-8 shadow-sm space-y-3">
+            <span className="text-xs font-bold text-slate-400 block">
               Discipline Engine
             </span>
-            <div className="text-4xl sm:text-5xl font-extrabold text-[#0C1B2A] font-display">
+            <div className="text-4xl sm:text-5xl font-extrabold text-[#15233A] font-display">
               14 Habits
             </div>
-            <h4 className="text-base font-bold text-[#0C1B2A]">Daily Activity Card (DAC)</h4>
+            <h4 className="text-base font-bold text-[#15233A]">Daily Activity Card (DAC)</h4>
             <p className="text-xs text-slate-600 leading-relaxed">
               Target 5:45 AM awakening, yoga, pooja, svadhyaya, zero negative speech, and evening reflections tracked daily.
             </p>
           </div>
 
-          <div className="bg-white border border-slate-200/90 rounded-3xl p-8 shadow-sm space-y-3 flex flex-col justify-between">
+          <div className="bg-white border border-slate-200/90 rounded-lg p-8 shadow-sm space-y-3 flex flex-col justify-between">
             <div>
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-slate-400 block">
                 Annual Documentation
               </span>
-              <h4 className="text-lg font-bold text-[#0C1B2A] font-display mt-2">
+              <h4 className="text-lg font-bold text-[#15233A] font-display mt-2">
                 Audited Annual Impact Report
               </h4>
               <p className="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -94,7 +94,7 @@ export const ImpactView: React.FC<ImpactViewProps> = ({ lang, onNavigate, onOpen
               </button>
             </div>
             {reportNotice && (
-              <div className="mt-3 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-center justify-between">
+              <div className="mt-3 p-3 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-center justify-between">
                 <span>{reportNotice}</span>
                 <button onClick={() => setReportNotice(null)} className="text-amber-700 font-bold ml-2">✕</button>
               </div>
@@ -107,143 +107,32 @@ export const ImpactView: React.FC<ImpactViewProps> = ({ lang, onNavigate, onOpen
       <section className="py-16 bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="text-xs font-bold text-[#B8780E] uppercase tracking-wider block">
+            <span className="text-xs font-bold text-[#A57D22] block">
               Student Perspectives
             </span>
-            <h3 className="text-3xl sm:text-4xl font-extrabold text-[#0C1B2A] font-display">
+            <h3 className="text-3xl sm:text-4xl font-extrabold text-[#15233A] font-display">
               Member Voices & First Cohort
             </h3>
-            {/* Dynamic Verified Voices Banner */}
-            <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-900 text-xs sm:text-sm font-medium leading-relaxed max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div>
-                {testimonials.some((t) => !t.isDeleted && t.status === 'ready' && Boolean((t.studentName || t.name)?.trim())) ? (
-                  <span>
-                    <span className="font-bold text-amber-950">Verified Member Transformations</span> — Direct reflections and experiences from active Jain Genius Cohort 01 trainees. Additional student stories will be published as members graduate.
-                  </span>
-                ) : (
-                  <span>
-                    <span className="font-bold text-amber-950">Student Stories Coming Soon</span> — The first batch of 24 Jain Genius members is currently undergoing intensive training. Their verified transformations, testimonials, and placement records will be published here upon cohort graduation.
-                  </span>
-                )}
-              </div>
-              <button
-                onClick={() => onNavigate('admin')}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-200/80 hover:bg-amber-300/80 text-amber-950 text-xs font-bold shrink-0 transition-colors"
-              >
-                <Settings className="w-3.5 h-3.5" />
-                <span>Admin Edit</span>
-              </button>
-            </div>
           </div>
 
-          {/* Structured Slots for Cohort 01 Testimonials */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              // Published stories first
-              ...testimonials.filter((s) => !s.isDeleted && s.status === 'ready' && Boolean((s.studentName || s.name)?.trim())),
-              // Followed by pending slots
-              ...testimonials.filter((s) => !s.isDeleted && !(s.status === 'ready' && Boolean((s.studentName || s.name)?.trim()))),
-            ].map((slot) => {
-              const publicName = (slot.studentName || slot.name || 'Student').trim();
-              const publicQuote = (slot.experienceText || slot.quote || '').trim() ||
-                'Being part of Jain Genius has instilled daily discipline, deeper clarity, and meaningful career direction.';
-              const isPublished = slot.status === 'ready' && Boolean(publicName);
+          {published.length > 0 ? (
+            <div className="max-w-4xl mx-auto">
+              <TestimonialScroller items={published} />
+            </div>
+          ) : (
+            <p className="max-w-2xl mx-auto text-center rounded-lg bg-[#FBF5E8] p-5 text-slate-600">
+              Member stories will appear here soon.
+            </p>
+          )}
 
-              if (isPublished) {
-                return (
-                  <div
-                    key={slot.slotId}
-                    className="p-6 rounded-3xl bg-white border-2 border-[#E59A1E]/40 shadow-sm flex flex-col justify-between"
-                  >
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 uppercase tracking-wide flex items-center gap-1">
-                          <CheckCircle2 className="w-3 h-3" />
-                          Verified Member
-                        </span>
-                        <span className="text-[11px] text-[#B8780E] font-semibold">
-                          {slot.yearOrCohort || slot.cohort || 'Cohort 01'}
-                        </span>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        {slot.avatarUrl ? (
-                          <img
-                            src={slot.avatarUrl}
-                            alt={publicName}
-                            className="w-11 h-11 rounded-full object-cover border-2 border-[#E59A1E]/30"
-                          />
-                        ) : (
-                          <div className="w-11 h-11 rounded-full bg-[#0C1B2A] text-[#FAF8F5] font-bold text-sm flex items-center justify-center border border-[#E59A1E]/50">
-                            {publicName.charAt(0)}
-                          </div>
-                        )}
-                        <div>
-                          <h4 className="text-sm font-bold text-[#0C1B2A] font-display">
-                            {publicName}
-                          </h4>
-                          <p className="text-[11px] text-slate-500">
-                            {slot.trackOrProgramme || (slot.gender === 'boy' ? 'Boy Candidate' : 'Girl Candidate')}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="relative">
-                        <Quote className="w-5 h-5 text-amber-300 absolute -top-1 -left-1 opacity-40" />
-                        <p className="text-xs text-slate-700 italic leading-relaxed pl-4">
-                          "{publicQuote}"
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-                      <span>Bangalore Assembly</span>
-                      <span className="text-[#B8780E] font-semibold">Jain Genius</span>
-                    </div>
-                  </div>
-                );
-              }
-
-              return (
-                <div
-                  key={slot.slotId}
-                  className="p-6 rounded-3xl bg-slate-50 border border-dashed border-slate-300 flex flex-col justify-between"
-                >
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-200 text-slate-700 uppercase tracking-wide">
-                        {slot.label}
-                      </span>
-                      <span className="text-[11px] text-slate-400 font-medium flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        In Training
-                      </span>
-                    </div>
-
-                    <h4 className="text-base font-bold text-slate-800 font-display">
-                      Slot #{slot.slotId} • {slot.gender === 'boy' ? 'Boy Candidate' : 'Girl Candidate'}
-                    </h4>
-
-                    <p className="text-xs text-slate-500 italic leading-relaxed">
-                      {publicQuote || '[Verified journey and experience write-up will be published upon completion of the 60-session industry track]'}
-                    </p>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-400">
-                    <span>Track: {slot.trackOrProgramme || '60-Session Master'}</span>
-                    <span className="text-[#E59A1E] font-semibold">Cohort 01</span>
-                  </div>
-                </div>
-              );
-            })}
-
+          <div className="max-w-4xl mx-auto">
             {/* Mentor & Coordinator Slot */}
-            <div className="p-6 rounded-3xl bg-gradient-to-br from-[#0C1B2A] to-[#112438] text-white border border-[#E59A1E]/40 flex flex-col justify-between">
+            <div className="p-6 rounded-lg bg-gradient-to-br from-[#15233A] to-[#1E3050] text-white border border-[#C99A2E]/40 flex flex-col justify-between">
               <div className="space-y-3">
-                <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#E59A1E] text-[#0C1B2A] uppercase tracking-wide">
+                <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#C99A2E] text-[#15233A] ">
                   Coordination Note
                 </span>
-                <h4 className="text-base font-bold text-[#FAF8F5] font-display">
+                <h4 className="text-base font-bold text-[#FFFFFF] font-display">
                   Gaurav — Admissions Lead
                 </h4>
                 <p className="text-xs text-slate-300 leading-relaxed">
@@ -251,7 +140,7 @@ export const ImpactView: React.FC<ImpactViewProps> = ({ lang, onNavigate, onOpen
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-white/10 text-[11px] text-[#F3A628]">
+              <div className="mt-6 pt-4 border-t border-white/10 text-[11px] text-[#C99A2E]">
                 Enquiries: {SITE_CONFIG.contact.phoneDisplay}
               </div>
             </div>
@@ -260,7 +149,7 @@ export const ImpactView: React.FC<ImpactViewProps> = ({ lang, onNavigate, onOpen
       </section>
 
       {/* Bottom CTA Band */}
-      <CTASection lang={lang} onOpenRegister={onOpenRegister} />
+      <CTASection lang={lang} onNavigate={onNavigate} />
     </div>
   );
 };

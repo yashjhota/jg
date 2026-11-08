@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SITE_CONFIG } from '../../data/siteConfig';
 import { MEMBERSHIP_FAQS } from '../../data/faqs';
 import { Language, PageId } from '../../types';
 import { TRANSLATIONS } from '../../data/i18n';
 import { CTASection } from '../layout/CTASection';
+import { Accordion } from '../common/Accordion';
+import { HScroller } from '../common/HScroller';
 import { Sparkles, ShieldCheck, CheckCircle2, Phone, MessageCircle, ArrowRight, HelpCircle, ChevronDown, ChevronUp, UserCheck, Award } from 'lucide-react';
 
 interface MembershipViewProps {
@@ -17,12 +19,6 @@ export const MembershipView: React.FC<MembershipViewProps> = ({
   onNavigate,
   onOpenRegister,
 }) => {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-
-  const toggleFaq = (idx: number) => {
-    setOpenFaqIndex(openFaqIndex === idx ? null : idx);
-  };
-
   const benefits = [
     { title: '14-Habit Daily Activity Card (DAC)', desc: 'Physical and digital tracker for waking up at 5:45 AM, yoga, rituals, and daily reflections.' },
     { title: 'Full Access to 8 Career Tracks', desc: 'Complete 60-session mastery tracks across Accounting, GST, Digital Marketing, E-Commerce, etc.' },
@@ -39,16 +35,16 @@ export const MembershipView: React.FC<MembershipViewProps> = ({
   ];
 
   return (
-    <div className="bg-[#FAF8F5] text-[#0C1B2A] min-h-screen">
+    <div className="bg-[#FFFFFF] text-[#15233A] min-h-screen">
       {/* Header */}
-      <section className="bg-[#0C1B2A] text-white py-20 border-b border-[#E59A1E]/30 relative overflow-hidden">
+      <section className="bg-[#15233A] text-white py-20 border-b border-[#C99A2E]/30 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E59A1E]/15 border border-[#E59A1E]/30 text-[#F3A628] text-xs font-bold uppercase tracking-widest">
-            <UserCheck className="w-3.5 h-3.5 text-[#E59A1E]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#C99A2E]/15 border border-[#C99A2E]/30 text-[#C99A2E] text-xs font-bold ">
+            <UserCheck className="w-3.5 h-3.5 text-[#C99A2E]" />
             <span>Join The Change Makers</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-[#FAF8F5] tracking-tight font-display">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-[#FFFFFF] tracking-tight font-display">
             Membership in Jain Genius
           </h1>
 
@@ -61,20 +57,20 @@ export const MembershipView: React.FC<MembershipViewProps> = ({
 
       {/* Main Pricing & Deposit Card */}
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto bg-white border-2 border-[#E59A1E] rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden">
+        <div className="max-w-4xl mx-auto bg-white border-2 border-[#C99A2E] rounded-lg p-8 sm:p-12 shadow-xl relative overflow-hidden">
           {/* Saffron Ribbon */}
-          <div className="absolute top-6 right-6 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E59A1E]/15 text-[#B8780E] text-xs font-bold uppercase tracking-wide">
-            <ShieldCheck className="w-4 h-4 text-[#E59A1E]" />
+          <div className="absolute top-6 right-6 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C99A2E]/15 text-[#A57D22] text-xs font-bold ">
+            <ShieldCheck className="w-4 h-4 text-[#C99A2E]" />
             <span>Transparent Deposit</span>
           </div>
 
           <div className="space-y-6">
             <div>
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block">
+              <span className="text-xs font-bold text-slate-400 block">
                 Standard Youth Membership
               </span>
               <div className="flex items-baseline gap-2 mt-1">
-                <span className="text-4xl sm:text-5xl font-extrabold text-[#0C1B2A] font-display">
+                <span className="text-4xl sm:text-5xl font-extrabold text-[#15233A] font-display">
                   {SITE_CONFIG.membershipDeposit}
                 </span>
                 <span className="text-xs sm:text-sm font-semibold text-slate-500">
@@ -88,8 +84,8 @@ export const MembershipView: React.FC<MembershipViewProps> = ({
             </div>
 
             {/* Categories note */}
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600">
-              <span className="font-bold text-[#0C1B2A] block mb-1">
+            <div className="p-4 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600">
+              <span className="font-bold text-[#15233A] block mb-1">
                 Categories (For organizational records only — same deposit applies):
               </span>
               <span>
@@ -101,27 +97,19 @@ export const MembershipView: React.FC<MembershipViewProps> = ({
 
             {/* Included Benefits Grid */}
             <div className="space-y-3 pt-2">
-              <h4 className="text-xs font-bold text-[#0C1B2A] uppercase tracking-wider">
+              <h4 className="text-xs font-bold text-[#15233A] ">
                 What Your Membership Unlocks:
               </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {benefits.map((b, i) => (
-                  <div key={i} className="flex items-start gap-2.5 p-3.5 rounded-xl bg-[#FAF8F5] border border-slate-100">
-                    <CheckCircle2 className="w-4 h-4 text-[#E59A1E] shrink-0 mt-0.5" />
-                    <div>
-                      <span className="text-xs font-bold text-[#0C1B2A] block">{b.title}</span>
-                      <span className="text-[11px] text-slate-500 leading-snug block mt-0.5">{b.desc}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <Accordion
+                items={benefits.map((b, i) => ({ id: `benefit-${i}`, title: b.title, content: b.desc }))}
+              />
             </div>
 
             {/* Action Bar */}
             <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
               <button
                 onClick={onOpenRegister}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-bold text-[#0C1B2A] bg-gradient-to-r from-[#F5B738] to-[#E59A1E] hover:from-[#FBC658] hover:to-[#F3A628] shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg text-sm font-bold text-[#15233A] bg-[#C99A2E] hover:bg-[#B88A24] shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 <span>Become a Member Now</span>
                 <ArrowRight className="w-4 h-4" />
@@ -130,16 +118,16 @@ export const MembershipView: React.FC<MembershipViewProps> = ({
               <div className="flex items-center gap-3">
                 <a
                   href={`tel:${SITE_CONFIG.contact.phone}`}
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-semibold text-slate-700 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-semibold text-slate-700 transition-colors"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#E59A1E]" />
+                  <Phone className="w-3.5 h-3.5 text-[#C99A2E]" />
                   <span>Call Gaurav</span>
                 </a>
                 <a
                   href={SITE_CONFIG.contact.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/30 text-xs font-semibold text-emerald-800 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/30 text-xs font-semibold text-emerald-800 transition-colors"
                 >
                   <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
                   <span>WhatsApp</span>
@@ -154,7 +142,7 @@ export const MembershipView: React.FC<MembershipViewProps> = ({
       <section className="py-16 bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0C1B2A] font-display">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#15233A] font-display">
               Simple 4-Step Onboarding
             </h3>
             <p className="text-xs sm:text-sm text-slate-600">
@@ -162,67 +150,61 @@ export const MembershipView: React.FC<MembershipViewProps> = ({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {steps.map((st) => (
-              <div key={st.num} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-                <span className="w-8 h-8 rounded-xl bg-[#0C1B2A] text-[#F3A628] font-bold text-xs flex items-center justify-center">
+          <HScroller
+            ariaLabel="Onboarding steps"
+            items={steps}
+            getKey={(st) => st.num}
+            renderItem={(st) => (
+              <div className="h-full p-6 rounded-lg bg-slate-50 border border-slate-200 space-y-2">
+                <span className="w-8 h-8 rounded-lg bg-[#15233A] text-[#C99A2E] font-medium text-xs flex items-center justify-center">
                   {st.num}
                 </span>
-                <h4 className="text-base font-bold text-[#0C1B2A] font-display mt-2">
-                  {st.title}
-                </h4>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  {st.desc}
-                </p>
+                <h4 className="card-title text-[#15233A] mt-2">{st.title}</h4>
+                <p className="text-sm text-slate-600 leading-relaxed">{st.desc}</p>
               </div>
-            ))}
+            )}
+          />
+        </div>
+      </section>
+
+      {/* Cohort 02 call-to-action (moved from Home) */}
+      <section className="py-14 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-6 md:p-8 rounded-lg bg-[#15233A] text-white flex flex-col sm:flex-row items-center justify-between gap-5 border border-[#C99A2E]/40">
+          <div className="space-y-1 text-center sm:text-left">
+            <h3 className="section-heading text-white">
+              {lang === 'hi' ? 'क्या आप अगले बैच में शामिल होना चाहते हैं?' : 'Ready to start your transformation in Cohort 02?'}
+            </h3>
+            <p className="text-slate-300">
+              {lang === 'hi'
+                ? 'सीमित 24 स्थान। केवल 15–30 आयु वर्ग के युवाओं के लिए।'
+                : 'Limited to 24 dedicated young change-makers (age 15–30) per cohort.'}
+            </p>
           </div>
+          <button onClick={onOpenRegister} className="btn-primary shrink-0">
+            {lang === 'hi' ? 'अभी आवेदन करें' : 'Apply for Next Cohort'}
+          </button>
         </div>
       </section>
 
       {/* Membership FAQ Accordion */}
       <section className="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#B8780E] uppercase tracking-wider">
-            <HelpCircle className="w-4 h-4 text-[#E59A1E]" />
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#A57D22] ">
+            <HelpCircle className="w-4 h-4 text-[#C99A2E]" />
             <span>Common Questions</span>
           </div>
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0C1B2A] font-display">
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#15233A] font-display">
             Frequently Asked Questions
           </h3>
         </div>
 
-        <div className="space-y-3">
-          {MEMBERSHIP_FAQS.map((faq, idx) => {
-            const isOpen = openFaqIndex === idx;
-            const q = lang === 'hi' ? faq.questionHi : faq.questionEn;
-            const a = lang === 'hi' ? faq.answerHi : faq.answerEn;
-            return (
-              <div
-                key={idx}
-                className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs transition-colors"
-              >
-                <button
-                  onClick={() => toggleFaq(idx)}
-                  className="w-full text-left p-5 flex items-center justify-between gap-4 font-semibold text-sm text-[#0C1B2A] hover:text-[#B8780E]"
-                >
-                  <span>{q}</span>
-                  {isOpen ? (
-                    <ChevronUp className="w-4 h-4 text-[#E59A1E] shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
-                  )}
-                </button>
-
-                {isOpen && (
-                  <div className="px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                    {a}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
+        <Accordion
+          items={MEMBERSHIP_FAQS.map((faq, idx) => ({
+            id: `faq-${idx}`,
+            title: lang === 'hi' ? faq.questionHi : faq.questionEn,
+            content: lang === 'hi' ? faq.answerHi : faq.answerEn,
+          }))}
+        />
       </section>
 
       {/* Bottom CTA Band */}

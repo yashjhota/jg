@@ -314,9 +314,9 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
   return (
     <div className="space-y-6">
       {/* Top Header & Metrics Bar */}
-      <div className="bg-[#0C1B2A] border border-white/10 rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="bg-[#15233A] border border-white/10 rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-semibold text-[#F3A628] uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-xs font-semibold text-[#C99A2E] uppercase tracking-wider mb-1">
             <Share2 className="w-4 h-4" />
             <span>Social Media Hub & Real-Time Pulse</span>
           </div>
@@ -339,7 +339,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
 
           <button
             onClick={handleOpenCreate}
-            className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#F5B738] via-[#E59A1E] to-[#F3A628] text-[#0C1B2A] text-xs font-bold hover:brightness-110 transition-all shadow-md inline-flex items-center justify-center gap-1.5"
+            className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#C99A2E] via-[#C99A2E] to-[#C99A2E] text-[#15233A] text-xs font-bold hover:brightness-110 transition-all shadow-md inline-flex items-center justify-center gap-1.5"
           >
             <Plus className="w-4 h-4" />
             <span>Add Social Post / Embed</span>
@@ -348,9 +348,9 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
       </div>
 
       {/* Official Channels Quick Links */}
-      <div className="bg-[#081320] border border-white/10 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div className="bg-[#0E1828] border border-white/10 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3 text-xs">
         <div className="flex items-center gap-2 text-slate-300 font-medium">
-          <Flame className="w-4 h-4 text-[#F3A628]" />
+          <Flame className="w-4 h-4 text-[#C99A2E]" />
           <span>Official Social Handles:</span>
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -400,7 +400,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
             onClick={() => setStatusTab('active')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
               statusTab === 'active'
-                ? 'bg-[#E59A1E] text-[#0C1B2A] shadow-md shadow-[#E59A1E]/10'
+                ? 'bg-[#C99A2E] text-[#15233A] shadow-md shadow-[#C99A2E]/10'
                 : 'bg-white/5 hover:bg-white/10 text-slate-300'
             }`}
           >
@@ -434,7 +434,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-[#0C1B2A] p-3.5 rounded-xl border border-white/10">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-[#15233A] p-3.5 rounded-xl border border-white/10">
         <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-1 sm:pb-0">
           {['All', 'instagram', 'youtube', 'twitter', 'telegram', 'whatsapp'].map((plat) => {
             const isSelected = platformFilter === plat;
@@ -446,7 +446,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                 onClick={() => setPlatformFilter(plat)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors flex items-center gap-1.5 ${
                   isSelected
-                    ? 'bg-[#E59A1E] text-[#0C1B2A]'
+                    ? 'bg-[#C99A2E] text-[#15233A]'
                     : 'text-slate-300 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -464,7 +464,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search posts, handles, tags..."
-            className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-[#081320] border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#E59A1E]"
+            className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-[#0E1828] border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#C99A2E]"
           />
           {search && (
             <button
@@ -479,7 +479,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
 
       {/* Post Grid */}
       {filteredPosts.length === 0 ? (
-        <div className="bg-[#0C1B2A] border border-white/10 rounded-2xl p-12 text-center text-slate-400">
+        <div className="bg-[#15233A] border border-white/10 rounded-2xl p-12 text-center text-slate-400">
           <Share2 className="w-10 h-10 mx-auto text-slate-500 mb-3 opacity-60" />
           <h3 className="text-base font-bold text-white mb-1">
             {statusTab === 'trash' ? 'Trash Bin is Empty' : 'No Social Posts Found'}
@@ -494,7 +494,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
           {statusTab === 'active' && (
             <button
               onClick={handleOpenCreate}
-              className="px-4 py-2 rounded-xl bg-[#E59A1E] text-[#0C1B2A] text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer"
+              className="px-4 py-2 rounded-xl bg-[#C99A2E] text-[#15233A] text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add Social Post Now</span>
@@ -510,13 +510,13 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
             return (
               <div
                 key={post.id}
-                className={`bg-[#0C1B2A] border rounded-2xl overflow-hidden flex flex-col justify-between transition-all hover:border-[#E59A1E]/50 ${
+                className={`bg-[#15233A] border rounded-2xl overflow-hidden flex flex-col justify-between transition-all hover:border-[#C99A2E]/50 ${
                   post.isDeleted
                     ? 'border-rose-500/40 opacity-80'
                     : post.isPinned
-                    ? 'border-[#E59A1E] ring-1 ring-[#E59A1E]/30 shadow-lg shadow-[#E59A1E]/5'
+                    ? 'border-[#C99A2E] ring-1 ring-[#C99A2E]/30 shadow-lg shadow-[#C99A2E]/5'
                     : 'border-white/10'
-                } ${!isPublished && !post.isDeleted ? 'opacity-60 bg-[#081320]' : ''}`}
+                } ${!isPublished && !post.isDeleted ? 'opacity-60 bg-[#0E1828]' : ''}`}
               >
                 {/* Header of card */}
                 <div className="p-4 border-b border-white/5 space-y-3">
@@ -538,7 +538,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                         </span>
                       )}
                       {!post.isDeleted && post.isPinned && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#E59A1E]/20 text-[#F3A628] border border-[#E59A1E]/40 text-[10px] font-bold">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#C99A2E]/20 text-[#C99A2E] border border-[#C99A2E]/40 text-[10px] font-bold">
                           <Pin className="w-2.5 h-2.5 fill-current" />
                           <span>Pinned</span>
                         </span>
@@ -554,7 +554,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                   {/* Author / Date Info */}
                   <div className="flex items-center justify-between text-xs text-slate-400">
                     <div className="flex items-center gap-1.5 font-medium text-slate-200 truncate">
-                      <User className="w-3 h-3 text-[#F3A628]" />
+                      <User className="w-3 h-3 text-[#C99A2E]" />
                       <span className="truncate">{post.authorName}</span>
                     </div>
                     <span className="text-[11px] shrink-0">{post.date}</span>
@@ -563,7 +563,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
 
                 {/* Media preview (if exists) */}
                 {post.imageUrl && (
-                  <div className="relative aspect-video bg-[#081320] overflow-hidden group">
+                  <div className="relative aspect-video bg-[#0E1828] overflow-hidden group">
                     <img
                       src={post.imageUrl}
                       alt="Social Post Thumbnail"
@@ -591,7 +591,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                       {post.tags.slice(0, 3).map((tag, idx) => (
                         <span
                           key={idx}
-                          className="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-[#F3A628]"
+                          className="px-2 py-0.5 rounded bg-white/5 text-[10px] font-medium text-[#C99A2E]"
                         >
                           {tag}
                         </span>
@@ -608,7 +608,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                 </div>
 
                 {/* Card Action Bar */}
-                <div className="p-3 bg-[#081320]/80 border-t border-white/5 flex items-center justify-between gap-1 text-xs">
+                <div className="p-3 bg-[#0E1828]/80 border-t border-white/5 flex items-center justify-between gap-1 text-xs">
                   {post.isDeleted ? (
                     <div className="flex items-center justify-between w-full gap-2">
                       <span className="text-[11px] text-rose-300 font-semibold flex items-center gap-1">
@@ -642,7 +642,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                           title={post.isPinned ? 'Unpin post' : 'Pin to top of feed'}
                           className={`p-1.5 rounded-lg border transition-colors cursor-pointer ${
                             post.isPinned
-                              ? 'bg-[#E59A1E]/20 text-[#F3A628] border-[#E59A1E]/40'
+                              ? 'bg-[#C99A2E]/20 text-[#C99A2E] border-[#C99A2E]/40'
                               : 'text-slate-400 hover:text-white border-white/10 hover:bg-white/5'
                           }`}
                         >
@@ -666,7 +666,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                           target="_blank"
                           rel="noopener noreferrer"
                           title="Open source post link"
-                          className="p-1.5 rounded-lg text-slate-400 hover:text-[#F3A628] border border-white/10 hover:bg-white/5 transition-colors"
+                          className="p-1.5 rounded-lg text-slate-400 hover:text-[#C99A2E] border border-white/10 hover:bg-white/5 transition-colors"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
                         </a>
@@ -677,7 +677,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                           onClick={() => handleOpenEdit(post)}
                           className="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 hover:text-white transition-colors flex items-center gap-1 text-[11px] font-medium cursor-pointer"
                         >
-                          <Edit3 className="w-3 h-3 text-[#F3A628]" />
+                          <Edit3 className="w-3 h-3 text-[#C99A2E]" />
                           <span>Edit</span>
                         </button>
 
@@ -713,7 +713,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
       {/* CREATE / EDIT MODAL */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="w-full max-w-2xl bg-[#0C1B2A] border border-[#E59A1E]/40 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 my-8 text-white relative">
+          <div className="w-full max-w-2xl bg-[#15233A] border border-[#C99A2E]/40 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 my-8 text-white relative">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10"
@@ -722,7 +722,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
             </button>
 
             <div>
-              <div className="flex items-center gap-2 text-xs font-semibold text-[#F3A628] uppercase tracking-wider mb-1">
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#C99A2E] uppercase tracking-wider mb-1">
                 <Share2 className="w-4 h-4" />
                 <span>{editingPostId ? 'Edit Social Post' : 'Publish New Social Post'}</span>
               </div>
@@ -758,8 +758,8 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                         onClick={() => setFormData({ ...formData, platform: plat })}
                         className={`p-2.5 rounded-xl border flex items-center gap-2 text-xs font-semibold transition-all ${
                           isSelected
-                            ? `${cfg.bg} ${cfg.border} ring-1 ring-[#E59A1E] text-white`
-                            : 'bg-[#081320] border-white/10 text-slate-400 hover:text-white'
+                            ? `${cfg.bg} ${cfg.border} ring-1 ring-[#C99A2E] text-white`
+                            : 'bg-[#0E1828] border-white/10 text-slate-400 hover:text-white'
                         }`}
                       >
                         {cfg.icon}
@@ -776,7 +776,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                   <label className="block text-slate-300 font-semibold">
                     Post / Reel / Video / Announcement URL *
                   </label>
-                  <span className="text-[11px] text-[#F3A628]">
+                  <span className="text-[11px] text-[#C99A2E]">
                     Auto-detects platform & embeds
                   </span>
                 </div>
@@ -787,14 +787,14 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                     value={formData.postUrl}
                     onChange={(e) => handleUrlChange(e.target.value)}
                     placeholder="https://www.instagram.com/p/... or https://youtube.com/watch?v=..."
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#081320] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1828] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#C99A2E]"
                   />
                   {formData.postUrl && (
                     <a
                       href={formData.postUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#F3A628]"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#C99A2E]"
                       title="Test link in new tab"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
@@ -814,7 +814,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                   value={formData.caption}
                   onChange={(e) => setFormData({ ...formData, caption: e.target.value })}
                   placeholder="Summarize the update, key takeaways from the shivirs, or Sahebji's quote..."
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#081320] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#E59A1E] leading-relaxed"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1828] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#C99A2E] leading-relaxed"
                 />
               </div>
 
@@ -830,7 +830,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                     value={formData.authorName}
                     onChange={(e) => setFormData({ ...formData, authorName: e.target.value })}
                     placeholder="e.g. Jain Genius — The Change Makers"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#081320] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1828] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -843,7 +843,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                     value={formData.authorHandle}
                     onChange={(e) => setFormData({ ...formData, authorHandle: e.target.value })}
                     placeholder="e.g. @jaingenius.tcm"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#081320] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1828] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
               </div>
@@ -859,7 +859,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                     placeholder="e.g. Just now, Yesterday, or 14 Sep 2026"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#081320] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1828] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -874,7 +874,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                       setFormData({ ...formData, likesOrEngagement: e.target.value })
                     }
                     placeholder="e.g. 1.4k likes • 86 shares or 3.2k views"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#081320] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1828] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
               </div>
@@ -889,7 +889,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                   value={tagsInput}
                   onChange={(e) => setTagsInput(e.target.value)}
                   placeholder="#JainGenius, #YouthEmpowerment, #Chickpet"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#081320] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#E59A1E]"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1828] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#C99A2E]"
                 />
               </div>
 
@@ -906,7 +906,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                       setFormData({ ...formData, videoEmbedUrl: e.target.value })
                     }
                     placeholder="https://www.youtube-nocookie.com/embed/VIDEO_ID"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#081320] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1828] border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
               )}
@@ -929,7 +929,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                     onChange={(e) =>
                       setFormData({ ...formData, isPinned: e.target.checked })
                     }
-                    className="w-4 h-4 rounded text-[#E59A1E] focus:ring-0 bg-[#081320] border-white/20"
+                    className="w-4 h-4 rounded text-[#C99A2E] focus:ring-0 bg-[#0E1828] border-white/20"
                   />
                   <span className="font-semibold text-slate-200">
                     ⭐ Pin to Top of Live Community Feed
@@ -943,7 +943,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                     onChange={(e) =>
                       setFormData({ ...formData, isPublished: e.target.checked })
                     }
-                    className="w-4 h-4 rounded text-[#E59A1E] focus:ring-0 bg-[#081320] border-white/20"
+                    className="w-4 h-4 rounded text-[#C99A2E] focus:ring-0 bg-[#0E1828] border-white/20"
                   />
                   <span className="font-semibold text-slate-200">
                     Visible on Live Public Website
@@ -962,7 +962,7 @@ export const SocialFeedManager: React.FC<SocialFeedManagerProps> = ({
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#F5B738] via-[#E59A1E] to-[#F3A628] text-[#0C1B2A] font-bold hover:brightness-110 shadow-lg"
+                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#C99A2E] via-[#C99A2E] to-[#C99A2E] text-[#15233A] font-bold hover:brightness-110 shadow-lg"
                 >
                   {editingPostId ? 'Save Changes' : 'Publish Post to Feed'}
                 </button>

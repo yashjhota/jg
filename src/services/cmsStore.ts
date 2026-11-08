@@ -21,15 +21,20 @@ import {
   SocialPost,
   TrashItem,
   PageId,
+  VideoSlot,
 } from '../types';
 import { EVENTS_DATA } from '../data/events';
 import { GALLERY_ITEMS } from '../data/gallery';
 import { TESTIMONIAL_SLOTS } from '../data/testimonials';
 import { SITE_CONFIG } from '../data/siteConfig';
 import { INITIAL_SOCIAL_POSTS } from '../data/socialPosts';
+import { VIDEO_SLOTS } from '../data/videos';
+import { NOV2026_NEWS, NOV2026_SETTINGS } from '../data/nov2026Content';
+import { parseVideoUrl } from './videoEmbed';
 
 // Initial News Articles seed
 export const INITIAL_NEWS_ARTICLES: NewsArticle[] = [
+  ...NOV2026_NEWS,
   {
     id: 'art-1',
     title: 'Why 5:45 AM Awakening Unlocks Mental Clarity for Modern Youth',
@@ -72,7 +77,7 @@ export const INITIAL_NEWS_ARTICLES: NewsArticle[] = [
       '24 young members completed their Gardner Multiple Intelligences Assessment, discovering their innate strengths in analytical, interpersonal, and creative spheres.',
     fullBody: [
       'Every human mind possesses distinct cognitive strengths. Rather than forcing every student down the exact same path, Jain Genius administers Gardner’s Multiple Intelligences Test as Step 03 of the Member Journey.',
-      'The 24 active trainees in our first Bangalore cohort uncovered whether their dominant profiles pointed toward analytical accounting, strategic sales, digital content design, or administrative operations.',
+      'The trainees in our first Bangalore cohort uncovered whether their dominant profiles pointed toward analytical accounting, strategic sales, digital content design, or administrative operations.',
       'Following the assessment, individual 1-on-1 counseling mapped each member to their optimal career track with 100% mutual alignment.',
     ],
   },
@@ -95,7 +100,7 @@ export const INITIAL_NEWS_ARTICLES: NewsArticle[] = [
 
 export const INITIAL_SITE_SETTINGS: SiteSettings = {
   bannerEnabled: true,
-  bannerText: '📢 Admissions open for Cohort 02. Sunday Youth Shabhā at 2:30 PM, Pathshala Hall, Chickpet.',
+  bannerText: 'Admissions open for Cohort 02. Sunday Youth Shabhā at 2:15 PM, Pathshala Hall, Chickpet.',
   bannerLinkText: 'View Events',
   bannerLinkPage: 'events',
   phone: SITE_CONFIG.contact.phone,
@@ -120,7 +125,7 @@ export const INITIAL_SITE_SETTINGS: SiteSettings = {
   heroPrimaryBtnText: 'Become a Member',
   heroSecondaryBtnText: 'Join WhatsApp Community',
   instagramUrl: SITE_CONFIG.social.instagram,
-  instagramHandle: '@jaingenius',
+  instagramHandle: SITE_CONFIG.social.instagramHandle,
   youtubeUrl: SITE_CONFIG.social.youtube,
   youtubeHandle: '@jaingenius',
   telegramUrl: SITE_CONFIG.social.telegram,
@@ -131,6 +136,8 @@ export const INITIAL_SITE_SETTINGS: SiteSettings = {
   designerCreditUrl: 'https://www.instagram.com/yashjhota',
   address: 'Pathshala Hall, Chickpet Jain Temple, Chickpet, Bangalore, Karnataka, India',
   targetAge: SITE_CONFIG.targetAge,
+  // Final hero copy from the Nov 2026 brief
+  ...NOV2026_SETTINGS,
 };
 
 // Storage keys for local caching & offline support
@@ -141,6 +148,7 @@ const STORAGE_KEYS = {
   TESTIMONIALS: 'jg_cms_testimonials',
   SETTINGS: 'jg_cms_settings',
   SOCIAL: 'jg_cms_social_posts',
+  VIDEOS: 'jg_cms_videos',
   LOGS: 'jg_cms_activity_logs',
   AUTH: 'jg_cms_admin_auth',
   LIVE_EDIT: 'jg_cms_live_edit_mode',
@@ -170,6 +178,7 @@ export interface CMSState {
   testimonials: TestimonialSlot[];
   settings: SiteSettings;
   socialPosts: SocialPost[];
+  videos: VideoSlot[];
   logs: AdminActivityLog[];
   isAuthenticated: boolean;
   isLiveEditMode: boolean;
@@ -400,6 +409,8 @@ export function parseEventStartDate(dateStr?: string, timeStr?: string): Date {
  */
 export function parseEventEndDate(dateStr?: string, timeStr?: string): Date | null {
   if (!dateStr || typeof dateStr !== 'string') return null;
+  // "From 25 Nov 2026" / "25 Nov 2026 onwards" has no end date: it stays upcoming until an admin changes it.
+  if (/^\s*from\s/i.test(dateStr) || /onwards\s*$/i.test(dateStr)) return null;
   const range = parseDateRangeParts(dateStr);
   const endComp = parseSingleDateComponents(range.endRaw) || parseSingleDateComponents(range.startRaw);
   if (!endComp) return null;
@@ -442,9 +453,13 @@ export function evaluateEventStatus(
  * - Default / 'all': upcoming events first (soonest first), followed by past events (most recent first)
  */
 export function sortEventsByDate(eventsList: EventItem[], filter?: 'upcoming' | 'past' | 'all'): EventItem[] {
+  const sortTime = (ev: EventItem) => {
+    const explicit = ev.sortDate ? new Date(ev.sortDate).getTime() : NaN;
+    return isNaN(explicit) ? parseEventStartDate(ev.date, ev.time).getTime() : explicit;
+  };
   return [...eventsList].sort((a, b) => {
-    const timeA = parseEventStartDate(a.date, a.time).getTime();
-    const timeB = parseEventStartDate(b.date, b.time).getTime();
+    const timeA = sortTime(a);
+    const timeB = sortTime(b);
 
     if (filter === 'upcoming') {
       return timeA - timeB;
@@ -501,6 +516,7 @@ let state: CMSState = {
   ),
   settings: loadFromStorage<SiteSettings>(STORAGE_KEYS.SETTINGS, INITIAL_SITE_SETTINGS),
   socialPosts: loadFromStorage<SocialPost[]>(STORAGE_KEYS.SOCIAL, INITIAL_SOCIAL_POSTS),
+  videos: loadFromStorage<VideoSlot[]>(STORAGE_KEYS.VIDEOS, VIDEO_SLOTS),
   logs: loadFromStorage<AdminActivityLog[]>(STORAGE_KEYS.LOGS, [
     {
       id: 'log-init',
@@ -516,7 +532,7 @@ let state: CMSState = {
   lastSyncedAt: null,
 };
 
-function logActivity(
+export function logActivity(
   action: AdminActivityLog['action'],
   module: AdminActivityLog['module'],
   description: string
@@ -559,6 +575,7 @@ async function checkAndBootstrapInitialData() {
       INITIAL_NEWS_ARTICLES.forEach((art) => batch.set(doc(db, 'news', art.id), sanitizeForFirestore(art)));
       TESTIMONIAL_SLOTS.forEach((t) => batch.set(doc(db, 'testimonials', String(t.slotId)), sanitizeForFirestore(t)));
       INITIAL_SOCIAL_POSTS.forEach((p) => batch.set(doc(db, 'socialPosts', p.id), sanitizeForFirestore(p)));
+      VIDEO_SLOTS.forEach((v) => batch.set(doc(db, 'videos', String(v.slotId)), sanitizeForFirestore(v)));
       batch.set(doc(db, 'settings', 'site_settings'), sanitizeForFirestore(INITIAL_SITE_SETTINGS));
       batch.set(metaRef, {
         initialized: true,
@@ -715,7 +732,36 @@ function initFirestoreSync() {
       (error) => handleListenerError(error, socialPath, OperationType.LIST)
     );
 
-    // 6. Site Settings Listener
+    // 6. Video Slots Listener (5 fixed slots; seeded once if the collection is missing)
+    const videosPath = 'videos';
+    onSnapshot(
+      collection(db, videosPath),
+      (snapshot) => {
+        if (snapshot.empty) {
+          const batch = writeBatch(db);
+          VIDEO_SLOTS.forEach((v) => batch.set(doc(db, videosPath, String(v.slotId)), sanitizeForFirestore(v)));
+          batch.commit().catch((e) => console.warn('Seeding video slots:', e));
+          return;
+        }
+        const remoteVideos: VideoSlot[] = [];
+        snapshot.forEach((d) => {
+          const data = d.data() as VideoSlot;
+          remoteVideos.push({ ...data, slotId: typeof data.slotId === 'number' ? data.slotId : Number(d.id) });
+        });
+        remoteVideos.sort((a, b) => a.slotId - b.slotId);
+        state = {
+          ...state,
+          videos: remoteVideos,
+          firebaseSyncStatus: 'connected',
+          lastSyncedAt: new Date().toISOString(),
+        };
+        saveToStorage(STORAGE_KEYS.VIDEOS, remoteVideos);
+        notify();
+      },
+      (error) => handleListenerError(error, videosPath, OperationType.LIST)
+    );
+
+    // 7. Site Settings Listener
     const settingsPath = 'settings/site_settings';
     onSnapshot(
       doc(db, 'settings', 'site_settings'),
@@ -1161,6 +1207,35 @@ export const CMSStore = {
   async updateSocialConfig(updates: Partial<SiteSettings>): Promise<void> {
     await CMSStore.updateSiteSettings(updates);
     logActivity('update', 'social', 'Updated social channels and handles configuration.');
+  },
+
+  // --- VIDEO SLOTS (Media > Videos) ---
+  async updateVideoSlot(slotId: number, updates: Partial<Omit<VideoSlot, 'slotId'>>): Promise<void> {
+    const current = state.videos.find((v) => v.slotId === slotId) ?? VIDEO_SLOTS.find((v) => v.slotId === slotId);
+    if (!current) return;
+    const merged: VideoSlot = { ...current, ...updates, slotId, updatedAt: new Date().toISOString() };
+    // Keep the stored kind in step with the link
+    if (updates.url !== undefined) merged.kind = parseVideoUrl(merged.url).kind;
+
+    const exists = state.videos.some((v) => v.slotId === slotId);
+    const nextVideos = exists
+      ? state.videos.map((v) => (v.slotId === slotId ? merged : v))
+      : [...state.videos, merged].sort((a, b) => a.slotId - b.slotId);
+    state = { ...state, videos: nextVideos };
+    saveToStorage(STORAGE_KEYS.VIDEOS, state.videos);
+    logActivity(
+      'update',
+      'videos',
+      merged.url ? `Updated video slot ${slotId}: "${merged.title || merged.url}"` : `Cleared video slot ${slotId}`
+    );
+    notify();
+
+    const docPath = `videos/${slotId}`;
+    try {
+      await setDoc(doc(db, 'videos', String(slotId)), sanitizeForFirestore(merged));
+    } catch (error) {
+      handleFirestoreError(error, OperationType.UPDATE, docPath);
+    }
   },
 
   // --- SOCIAL MEDIA POSTS & LIVE FEEDS ---
@@ -1663,6 +1738,7 @@ export const CMSStore = {
         testimonials: state.testimonials,
         settings: state.settings,
         socialPosts: state.socialPosts,
+        videos: state.videos,
       },
     };
     return JSON.stringify(backup, null, 2);
@@ -1674,7 +1750,7 @@ export const CMSStore = {
       if (!parsed.data) {
         throw new Error('Invalid backup schema: missing root data property.');
       }
-      const { events, gallery, news, testimonials, settings, socialPosts } = parsed.data;
+      const { events, gallery, news, testimonials, settings, socialPosts, videos } = parsed.data;
 
       const batch = writeBatch(db);
 
@@ -1708,6 +1784,11 @@ export const CMSStore = {
         saveToStorage(STORAGE_KEYS.SOCIAL, socialPosts);
         socialPosts.forEach((p) => batch.set(doc(db, 'socialPosts', p.id), p));
       }
+      if (videos && Array.isArray(videos)) {
+        state.videos = videos;
+        saveToStorage(STORAGE_KEYS.VIDEOS, videos);
+        videos.forEach((v: VideoSlot) => batch.set(doc(db, 'videos', String(v.slotId)), v));
+      }
 
       await batch.commit();
 
@@ -1731,6 +1812,7 @@ export const CMSStore = {
       testimonials: TESTIMONIAL_SLOTS,
       settings: INITIAL_SITE_SETTINGS,
       socialPosts: INITIAL_SOCIAL_POSTS,
+      videos: VIDEO_SLOTS,
     };
     saveToStorage(STORAGE_KEYS.EVENTS, EVENTS_DATA);
     saveToStorage(STORAGE_KEYS.GALLERY, GALLERY_ITEMS);
@@ -1738,6 +1820,7 @@ export const CMSStore = {
     saveToStorage(STORAGE_KEYS.TESTIMONIALS, TESTIMONIAL_SLOTS);
     saveToStorage(STORAGE_KEYS.SETTINGS, INITIAL_SITE_SETTINGS);
     saveToStorage(STORAGE_KEYS.SOCIAL, INITIAL_SOCIAL_POSTS);
+    saveToStorage(STORAGE_KEYS.VIDEOS, VIDEO_SLOTS);
 
     try {
       const batch = writeBatch(db);
@@ -1746,6 +1829,7 @@ export const CMSStore = {
       INITIAL_NEWS_ARTICLES.forEach((art) => batch.set(doc(db, 'news', art.id), art));
       TESTIMONIAL_SLOTS.forEach((t) => batch.set(doc(db, 'testimonials', String(t.slotId)), t));
       INITIAL_SOCIAL_POSTS.forEach((p) => batch.set(doc(db, 'socialPosts', p.id), p));
+      VIDEO_SLOTS.forEach((v) => batch.set(doc(db, 'videos', String(v.slotId)), v));
       batch.set(doc(db, 'settings', 'site_settings'), INITIAL_SITE_SETTINGS);
       batch.set(doc(db, 'settings', 'cms_meta'), {
         initialized: true,
@@ -1800,6 +1884,7 @@ export function useCMS() {
     deleteSocialPost: CMSStore.deleteSocialPost,
     togglePinSocialPost: CMSStore.togglePinSocialPost,
     togglePublishSocialPost: CMSStore.togglePublishSocialPost,
+    updateVideoSlot: CMSStore.updateVideoSlot,
     // Trash & Recycle Bin
     moveToTrash: CMSStore.moveToTrash,
     restoreFromTrash: CMSStore.restoreFromTrash,

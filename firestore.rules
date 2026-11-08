@@ -120,6 +120,22 @@ service cloud.firestore {
       allow delete: if isValidId(postId);
     }
 
+    // Video slots (Media > Videos): 5 fixed slots with ids "1".."5"
+    function isValidVideoSlot(data) {
+      return data.slotId is number && data.slotId >= 1 && data.slotId <= 5 &&
+             data.url is string && data.url.size() <= 2048 &&
+             data.kind in ['youtube', 'instagram', 'mp4', ''] &&
+             data.title is string && data.title.size() <= 200 &&
+             data.description is string && data.description.size() <= 500 &&
+             data.editedBy is string && data.editedBy.size() <= 200;
+    }
+
+    match /videos/{slotId} {
+      allow read: if true;
+      allow create, update: if isValidId(slotId) && isValidVideoSlot(incoming());
+      allow delete: if false;
+    }
+
     // Site settings document
     match /settings/{settingId} {
       allow read: if true;

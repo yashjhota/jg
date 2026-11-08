@@ -190,7 +190,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
               placeholder="Search events by title, venue, conductor..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 pr-4 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 text-slate-800 w-64 focus:outline-none focus:border-[#E59A1E]"
+              className="pl-9 pr-4 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 text-slate-800 w-64 focus:outline-none focus:border-[#C99A2E]"
             />
           </div>
 
@@ -200,7 +200,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                 key={m}
                 onClick={() => setFilter(m)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-colors ${
-                  filter === m ? 'bg-white text-[#0C1B2A] shadow-xs' : 'text-slate-600 hover:text-slate-900'
+                  filter === m ? 'bg-white text-[#15233A] shadow-xs' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 {m} (
@@ -226,7 +226,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
 
           <button
             onClick={handleOpenCreate}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#F5B738] to-[#E59A1E] hover:from-[#FBC658] hover:to-[#F3A628] text-[#0C1B2A] text-xs font-bold shadow-xs hover:shadow transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] hover:from-[#D9B25A] hover:to-[#C99A2E] text-[#15233A] text-xs font-bold shadow-xs hover:shadow transition-all"
           >
             <Plus className="w-4 h-4" />
             <span>Add New Event</span>
@@ -254,7 +254,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                     {ev.status}
                   </span>
                   <span className="text-xs text-slate-500 flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-[#E59A1E]" />
+                    <Calendar className="w-3.5 h-3.5 text-[#C99A2E]" />
                     {ev.date}
                   </span>
                   {ev.googleFormUrl?.trim() && (
@@ -279,7 +279,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                   <button
                     onClick={() => handleOpenEdit(ev)}
                     title="Edit Event"
-                    className="p-1.5 rounded-lg text-slate-500 hover:text-[#0C1B2A] hover:bg-slate-100"
+                    className="p-1.5 rounded-lg text-slate-500 hover:text-[#15233A] hover:bg-slate-100"
                   >
                     <Edit3 className="w-4 h-4" />
                   </button>
@@ -304,7 +304,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
               )}
 
               <div>
-                <h4 className="text-base font-bold text-[#0C1B2A] font-display line-clamp-1">
+                <h4 className="text-base font-bold text-[#15233A] font-display line-clamp-1">
                   {ev.title}
                 </h4>
                 {ev.subtitle && (
@@ -336,7 +336,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                   {ev.keyTopics.slice(0, 3).map((topic, i) => (
                     <span
                       key={i}
-                      className="text-[10px] px-2 py-0.5 rounded-md bg-amber-50 text-[#B8780E] border border-amber-200/60"
+                      className="text-[10px] px-2 py-0.5 rounded-md bg-amber-50 text-[#A57D22] border border-amber-200/60"
                     >
                       {topic}
                     </span>
@@ -366,7 +366,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
           <p className="text-sm font-semibold text-slate-700">No events found matching your filter.</p>
           <button
             onClick={handleOpenCreate}
-            className="px-4 py-2 rounded-xl bg-[#0C1B2A] text-white text-xs font-semibold"
+            className="px-4 py-2 rounded-xl bg-[#15233A] text-white text-xs font-semibold"
           >
             Create Your First Event
           </button>
@@ -380,11 +380,11 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
           aria-modal="true"
           className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
         >
-          <div className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 text-[#0C1B2A]">
+          <div className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 text-[#15233A]">
             <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50">
               <div className="flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-[#E59A1E]" />
-                <h3 className="text-lg font-bold font-display text-[#0C1B2A]">
+                <Calendar className="w-5 h-5 text-[#C99A2E]" />
+                <h3 className="text-lg font-bold font-display text-[#15233A]">
                   {editingEventId ? 'Edit Event Details' : 'Create New Event'}
                 </h3>
               </div>
@@ -408,7 +408,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     placeholder="e.g. Desh To Aazad Ho Gaya, Hum Kab?"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -421,7 +421,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                     value={formData.subtitle}
                     onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
                     placeholder="e.g. A youth session on overcoming PAIN: Possessiveness, Attitude, Inferiority..."
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -456,12 +456,12 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                         setFormData({ ...formData, date: newDate, status: autoStatus });
                       }}
                       placeholder="e.g. 15 October 2026 or 2026-10-15"
-                      className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                      className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                     />
                     <input
                       type="date"
                       title="Pick a date"
-                      className="px-2 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E] text-slate-600 cursor-pointer"
+                      className="px-2 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E] text-slate-600 cursor-pointer"
                       onChange={(e) => {
                         if (e.target.value) {
                           const [y, m, d] = e.target.value.split('-').map(Number);
@@ -496,7 +496,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                       setFormData({ ...formData, time: newTime, status: autoStatus });
                     }}
                     placeholder="e.g. 2:30 PM – 4:00 PM"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -510,7 +510,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                     value={formData.venue}
                     onChange={(e) => setFormData({ ...formData, venue: e.target.value })}
                     placeholder="e.g. Pathshala Hall, Chickpet Jain Temple, Bangalore"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -528,7 +528,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                     onChange={(e) =>
                       setFormData({ ...formData, status: e.target.value as 'upcoming' | 'past' })
                     }
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   >
                     <option value="upcoming">Upcoming Event (Active)</option>
                     <option value="past">Past Event (Completed & Archived)</option>
@@ -544,7 +544,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                     value={formData.ageGroup}
                     onChange={(e) => setFormData({ ...formData, ageGroup: e.target.value })}
                     placeholder="e.g. Age 15–30"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -557,7 +557,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                     value={formData.entry}
                     onChange={(e) => setFormData({ ...formData, entry: e.target.value })}
                     placeholder="e.g. Free Entry (Registration Required)"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -571,7 +571,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                     value={formData.conductor}
                     onChange={(e) => setFormData({ ...formData, conductor: e.target.value })}
                     placeholder="e.g. Param Pujya Muniraj Shri Bhuvanbhushanvijayji Maharajsaheb"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -585,7 +585,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     placeholder="Detailed explanation of the assembly theme, importance, and practical relevance..."
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
 
@@ -606,12 +606,12 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                         }
                       }}
                       placeholder="Type topic and click Add (e.g. 'Overcoming Procrastination')"
-                      className="flex-1 px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                      className="flex-1 px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                     />
                     <button
                       type="button"
                       onClick={handleAddTopic}
-                      className="px-4 py-2 rounded-xl bg-[#0C1B2A] text-white text-xs font-semibold"
+                      className="px-4 py-2 rounded-xl bg-[#15233A] text-white text-xs font-semibold"
                     >
                       Add
                     </button>
@@ -639,8 +639,8 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                 <div className="sm:col-span-2 p-4 rounded-2xl bg-amber-50/70 border border-amber-200/90 space-y-3">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
-                      <FileSpreadsheet className="w-4 h-4 text-[#B8780E]" />
-                      <span className="text-xs font-bold text-[#0C1B2A]">
+                      <FileSpreadsheet className="w-4 h-4 text-[#A57D22]" />
+                      <span className="text-xs font-bold text-[#15233A]">
                         Event Registration (Google Form Settings)
                       </span>
                     </div>
@@ -668,7 +668,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                           value={formData.googleFormUrl || ''}
                           onChange={(e) => setFormData({ ...formData, googleFormUrl: e.target.value })}
                           placeholder="Paste Google Form link (e.g. https://docs.google.com/forms/d/e/.../viewform)"
-                          className="w-full pl-9 pr-3.5 py-2 text-xs rounded-xl bg-white border border-slate-200 focus:outline-none focus:border-[#E59A1E] text-slate-800"
+                          className="w-full pl-9 pr-3.5 py-2 text-xs rounded-xl bg-white border border-slate-200 focus:outline-none focus:border-[#C99A2E] text-slate-800"
                         />
                       </div>
                       {formData.googleFormUrl?.trim() && (
@@ -676,11 +676,11 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                           href={formData.googleFormUrl.trim()}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#0C1B2A] hover:bg-[#15283C] text-white text-xs font-medium transition-colors shrink-0"
+                          className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#15233A] hover:bg-[#15283C] text-white text-xs font-medium transition-colors shrink-0"
                           title="Open Google Form in a new tab to test"
                         >
                           <span>Test Link</span>
-                          <ExternalLink className="w-3.5 h-3.5 text-[#E59A1E]" />
+                          <ExternalLink className="w-3.5 h-3.5 text-[#C99A2E]" />
                         </a>
                       )}
                     </div>
@@ -710,7 +710,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                     value={formData.recap}
                     onChange={(e) => setFormData({ ...formData, recap: e.target.value })}
                     placeholder="e.g. Over 180 youth attended. Daily Activity Cards distributed."
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
               </div>
@@ -725,7 +725,7 @@ export const EventsManager: React.FC<EventsManagerProps> = ({ onNavigate, showTo
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#F5B738] to-[#E59A1E] text-[#0C1B2A] text-xs font-bold shadow-xs hover:shadow"
+                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] text-[#15233A] text-xs font-bold shadow-xs hover:shadow"
                 >
                   {editingEventId ? 'Save Changes' : 'Publish Event'}
                 </button>

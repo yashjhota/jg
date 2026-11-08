@@ -530,9 +530,9 @@ export class TestRunner {
     {
       const start = performance.now();
       // Primary Navy on Warm Cream Background
-      const navy: [number, number, number] = [12, 27, 42]; // #0C1B2A
-      const cream: [number, number, number] = [250, 248, 245]; // #FAF8F5
-      const amber: [number, number, number] = [229, 154, 30]; // #E59A1E
+      const navy: [number, number, number] = [12, 27, 42]; // #15233A
+      const cream: [number, number, number] = [250, 248, 245]; // #FFFFFF
+      const amber: [number, number, number] = [229, 154, 30]; // #C99A2E
 
       const ratioNavyOnCream = calculateContrastRatio(navy, cream);
       const ratioAmberOnNavy = calculateContrastRatio(amber, navy);
@@ -691,9 +691,9 @@ export class TestRunner {
       canvas.height = 300;
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        ctx.fillStyle = '#0C1B2A';
+        ctx.fillStyle = '#15233A';
         ctx.fillRect(0, 0, 400, 300);
-        ctx.fillStyle = '#E59A1E';
+        ctx.fillStyle = '#C99A2E';
         ctx.font = '24px sans-serif';
         ctx.fillText('Jain Genius Test', 50, 150);
       }

@@ -14,9 +14,9 @@ export function generatePdfReport(summary: TestSuiteSummary): void {
   let y = 16;
 
   // --- BRAND COLORS ---
-  const COLOR_NAVY: [number, number, number] = [12, 27, 42]; // #0C1B2A
-  const COLOR_AMBER: [number, number, number] = [229, 154, 30]; // #E59A1E
-  const COLOR_BG_LIGHT: [number, number, number] = [250, 248, 245]; // #FAF8F5
+  const COLOR_NAVY: [number, number, number] = [12, 27, 42]; // #15233A
+  const COLOR_AMBER: [number, number, number] = [229, 154, 30]; // #C99A2E
+  const COLOR_BG_LIGHT: [number, number, number] = [250, 248, 245]; // #FFFFFF
   const COLOR_SLATE: [number, number, number] = [100, 116, 139]; // #64748B
   const COLOR_DARK_TEXT: [number, number, number] = [15, 23, 42]; // #0F172A
   const COLOR_GREEN: [number, number, number] = [16, 185, 129]; // #10B981

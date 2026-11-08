@@ -118,7 +118,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
               placeholder="Search gallery by title or caption..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 pr-4 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 text-slate-800 w-64 focus:outline-none focus:border-[#E59A1E]"
+              className="pl-9 pr-4 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 text-slate-800 w-64 focus:outline-none focus:border-[#C99A2E]"
             />
           </div>
 
@@ -129,7 +129,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
                 onClick={() => setCategoryFilter(cat)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
                   categoryFilter === cat
-                    ? 'bg-white text-[#0C1B2A] shadow-xs'
+                    ? 'bg-white text-[#15233A] shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
@@ -150,7 +150,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
 
           <button
             onClick={handleOpenCreate}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#F5B738] to-[#E59A1E] hover:from-[#FBC658] hover:to-[#F3A628] text-[#0C1B2A] text-xs font-bold shadow-xs hover:shadow transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] hover:from-[#D9B25A] hover:to-[#C99A2E] text-[#15233A] text-xs font-bold shadow-xs hover:shadow transition-all"
           >
             <Plus className="w-4 h-4" />
             <span>Upload New Photo</span>
@@ -167,7 +167,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
           >
             <div>
               {/* Media Preview Container */}
-              <div className="relative aspect-video bg-gradient-to-br from-[#0C1B2A] to-[#1A365D] overflow-hidden group">
+              <div className="relative aspect-video bg-gradient-to-br from-[#15233A] to-[#1A365D] overflow-hidden group">
                 {item.url ? (
                   <img
                     src={item.url}
@@ -176,7 +176,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
                   />
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center text-slate-300 space-y-2">
-                    <ImageIcon className="w-8 h-8 text-[#E59A1E]/80" />
+                    <ImageIcon className="w-8 h-8 text-[#C99A2E]/80" />
                     <span className="text-xs font-semibold text-white/90 line-clamp-2 px-2">
                       {item.title}
                     </span>
@@ -187,7 +187,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
                 )}
 
                 <div className="absolute top-3 left-3">
-                  <span className="px-2.5 py-1 rounded-md bg-[#0C1B2A]/80 backdrop-blur-xs text-[#F3A628] text-[10px] font-bold uppercase tracking-wider border border-white/10">
+                  <span className="px-2.5 py-1 rounded-md bg-[#15233A]/80 backdrop-blur-xs text-[#C99A2E] text-[10px] font-bold uppercase tracking-wider border border-white/10">
                     {item.category}
                   </span>
                 </div>
@@ -215,7 +215,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
               </div>
 
               <div className="p-4 space-y-2">
-                <h4 className="text-sm font-bold text-[#0C1B2A] font-display line-clamp-1">
+                <h4 className="text-sm font-bold text-[#15233A] font-display line-clamp-1">
                   {item.title}
                 </h4>
                 <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
@@ -226,7 +226,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
 
             <div className="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
               <span className="truncate flex items-center gap-1">
-                <MapPin className="w-3 h-3 text-[#E59A1E]" />
+                <MapPin className="w-3 h-3 text-[#C99A2E]" />
                 {item.event || 'Pathshala Hall, Chickpet'}
               </span>
               <span className="text-[10px] text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded">
@@ -243,7 +243,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
           <p className="text-sm font-semibold text-slate-700">No gallery items in this category.</p>
           <button
             onClick={handleOpenCreate}
-            className="px-4 py-2 rounded-xl bg-[#0C1B2A] text-white text-xs font-semibold"
+            className="px-4 py-2 rounded-xl bg-[#15233A] text-white text-xs font-semibold"
           >
             Upload a Photo Now
           </button>
@@ -257,11 +257,11 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
           aria-modal="true"
           className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
         >
-          <div className="relative w-full max-w-xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 text-[#0C1B2A]">
+          <div className="relative w-full max-w-xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 text-[#15233A]">
             <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50">
               <div className="flex items-center gap-2">
-                <Camera className="w-5 h-5 text-[#E59A1E]" />
-                <h3 className="text-lg font-bold font-display text-[#0C1B2A]">
+                <Camera className="w-5 h-5 text-[#C99A2E]" />
+                <h3 className="text-lg font-bold font-display text-[#15233A]">
                   {editingItemId ? 'Edit Gallery Photo Record' : 'Upload Gallery Photo'}
                 </h3>
               </div>
@@ -284,7 +284,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   placeholder="e.g. Desh To Aazad Ho Gaya, Hum Kab? — Youth Assembly"
-                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                 />
               </div>
 
@@ -309,7 +309,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
                         category: e.target.value as GalleryItem['category'],
                       })
                     }
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   >
                     {categories.map((c) => (
                       <option key={c} value={c}>
@@ -329,7 +329,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
                     value={formData.year}
                     onChange={(e) => setFormData({ ...formData, year: e.target.value })}
                     placeholder="2026"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                   />
                 </div>
               </div>
@@ -344,7 +344,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
                   value={formData.caption}
                   onChange={(e) => setFormData({ ...formData, caption: e.target.value })}
                   placeholder="Provide context on attendees, activities, Sahebji's discourse, or learnings..."
-                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                 />
               </div>
 
@@ -357,7 +357,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
                   value={formData.event}
                   onChange={(e) => setFormData({ ...formData, event: e.target.value })}
                   placeholder="e.g. Pathshala Hall, Chickpet Jain Temple, Bangalore"
-                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#E59A1E]"
+                  className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#C99A2E]"
                 />
               </div>
 
@@ -371,7 +371,7 @@ export const GalleryManager: React.FC<GalleryManagerProps> = ({ onNavigate, show
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#F5B738] to-[#E59A1E] text-[#0C1B2A] text-xs font-bold shadow-xs hover:shadow"
+                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#C99A2E] to-[#C99A2E] text-[#15233A] text-xs font-bold shadow-xs hover:shadow"
                 >
                   {editingItemId ? 'Save Changes' : 'Upload to Gallery'}
                 </button>
